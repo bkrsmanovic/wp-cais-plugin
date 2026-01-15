@@ -1,0 +1,239 @@
+/**
+ * WP Context AI Search - Admin Styles
+ */
+
+.wp-cais-settings {
+	max-width: 1200px;
+}
+
+.wp-cais-header {
+	margin: 20px 0;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.wp-cais-header h2 {
+	margin: 0 0 10px 0;
+	font-size: 24px;
+}
+
+.wp-cais-content-wrapper {
+	display: flex;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.wp-cais-main-content {
+	flex: 1;
+	background: #fff;
+	padding: 20px;
+	border: 1px solid #ccd0d4;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.wp-cais-sidebar {
+	width: 300px;
+}
+
+.wp-cais-section {
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #eee;
+}
+
+.wp-cais-section:last-child {
+	border-bottom: none;
+}
+
+.wp-cais-section h2 {
+	margin-top: 0;
+	font-size: 18px;
+}
+
+.wp-cais-premium-section {
+	position: relative;
+}
+
+.wp-cais-badge {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 3px 8px;
+	background: #ff9800;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	border-radius: 3px;
+	vertical-align: middle;
+}
+
+.wp-cais-plan-badge {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 4px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	border-radius: 4px;
+	vertical-align: middle;
+}
+
+.wp-cais-free-badge {
+	background: #6c757d;
+	color: #fff;
+}
+
+.wp-cais-premium-badge {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+}
+
+.wp-cais-free-plan-notice {
+	background: #e7f3ff;
+	border-left: 4px solid #2271b1;
+}
+
+.wp-cais-free-plan-notice p {
+	margin: 0;
+	line-height: 1.6;
+}
+
+.wp-cais-premium-notice {
+	background: #fff3cd;
+	border: 1px solid #ffc107;
+	border-left: 4px solid #ff9800;
+	padding: 15px;
+	margin: 15px 0;
+	border-radius: 4px;
+}
+
+.wp-cais-premium-notice p {
+	margin: 10px 0;
+}
+
+.wp-cais-premium-notice ul {
+	margin: 10px 0 10px 20px;
+	list-style-type: disc !important;
+}
+
+.wp-cais-premium-notice ul li {
+	margin: 5px 0;
+}
+
+.wp-cais-info-box {
+	background: #fff;
+	border: 1px solid #ccd0d4;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+	padding: 15px;
+	margin-bottom: 20px;
+}
+
+.wp-cais-info-box h3 {
+	margin-top: 0;
+	font-size: 16px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+}
+
+.wp-cais-info-box ul {
+	margin: 10px 0;
+	padding-left: 20px;
+	list-style-type: disc !important;
+}
+
+.wp-cais-info-box ul li {
+	margin: 5px 0;
+}
+
+.wp-cais-premium-box {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	border: none;
+	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+	position: relative;
+	overflow: hidden;
+}
+
+.wp-cais-premium-box::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	right: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+	pointer-events: none;
+}
+
+.wp-cais-premium-box h3 {
+	border-bottom-color: rgba(255, 255, 255, 0.3);
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 12px;
+}
+
+.wp-cais-premium-box p {
+	color: rgba(255, 255, 255, 0.95);
+}
+
+.wp-cais-premium-box ul {
+	list-style-type: disc !important;
+	margin-left: 20px;
+}
+
+.wp-cais-premium-box ul li {
+	color: #fff;
+	line-height: 1.6;
+}
+
+.wp-cais-premium-box .button {
+	background: #fff;
+	color: #667eea !important;
+	border: none;
+	font-weight: 600;
+	padding: 10px 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s ease;
+}
+
+.wp-cais-premium-box .button:hover,
+.wp-cais-premium-box .button:focus {
+	background: #f8f9fa !important;
+	color: #667eea !important;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+fieldset label {
+	display: block;
+	margin: 8px 0;
+}
+
+fieldset input[type="checkbox"] {
+	margin-right: 8px;
+}
+
+.wp-cais-api-key-status {
+	margin-left: 10px;
+	font-weight: 500;
+}
+
+.wp-cais-test-api-key {
+	margin-top: 5px;
+}
+
+/* Force disc bullets on all ULs in plugin */
+.wp-cais-settings ul {
+	list-style-type: disc !important;
+}
+
+@media (max-width: 782px) {
+	.wp-cais-content-wrapper {
+		flex-direction: column;
+	}
+
+	.wp-cais-sidebar {
+		width: 100%;
+	}
+}

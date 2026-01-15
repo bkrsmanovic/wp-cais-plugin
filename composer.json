@@ -1,0 +1,25 @@
+{
+	"name": "wp-context-ai-search/wp-context-ai-search",
+	"description": "AI-powered search for WordPress content with free and premium features",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.4",
+		"freemius/wordpress-sdk": "^2.13"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0",
+		"phpunit/phpunit": "^9.5",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+	},
+	"scripts": {
+		"phpcs": "phpcs --standard=WordPress .",
+		"phpcbf": "phpcbf --standard=WordPress .",
+		"test": "phpunit"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}

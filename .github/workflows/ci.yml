@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  phpcs:
+    name: PHP Code Sniffer
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+      
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+      
+      - name: Run PHPCS
+        run: composer run phpcs
+
+  version-check:
+    name: Version Consistency Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Check version consistency
+        run: |
+          VERSION=$(grep "Version:" wp-context-ai-search.php | sed 's/.*Version: *//' | sed 's/ *\*\/.*//')
+          CONST_VERSION=$(grep "define( 'WP_CAIS_VERSION'" wp-context-ai-search.php | sed "s/.*'WP_CAIS_VERSION', '//" | sed "s/'.*//")
+          if [ "$VERSION" != "$CONST_VERSION" ]; then
+            echo "Version mismatch! Header: $VERSION, Constant: $CONST_VERSION"
+            exit 1
+          fi
+          echo "✓ Versions match: $VERSION"

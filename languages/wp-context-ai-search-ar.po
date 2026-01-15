@@ -1,0 +1,162 @@
+# Arabic translation for WP Context AI Search
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+msgid "WP Context AI Search"
+msgstr "بحث WP السياقي بالذكاء الاصطناعي"
+
+msgid "Search Our Library"
+msgstr "ابحث في مكتبتنا"
+
+msgid "Ask any question and get intelligent, context-aware answers"
+msgstr "اطرح أي سؤال واحصل على إجابات ذكية ومراعية للسياق"
+
+msgid "Type your question here..."
+msgstr "اكتب سؤالك هنا..."
+
+msgid "Enter your question above to get started."
+msgstr "أدخل سؤالك أعلاه للبدء."
+
+msgid "Need more help?"
+msgstr "تحتاج إلى مساعدة إضافية؟"
+
+msgid "or"
+msgstr "أو"
+
+msgid "Searching..."
+msgstr "جاري البحث..."
+
+msgid "An error occurred. Please try again."
+msgstr "حدث خطأ. يرجى المحاولة مرة أخرى."
+
+msgid "WP CAIS not configured properly. Please check your API key settings."
+msgstr "WP CAIS غير مُكوّن بشكل صحيح. يرجى التحقق من إعدادات مفتاح API الخاص بك."
+
+msgid "I found %d relevant result(s) for your query: \"%s\"."
+msgstr "وجدت %d نتيجة ذات صلة لاستفسارك: \"%s\"."
+
+msgid "Here are the most relevant sources:"
+msgstr "إليك المصادر الأكثر صلة:"
+
+msgid "I couldn't find specific information about that in our content."
+msgstr "لم أتمكن من العثور على معلومات محددة حول ذلك في محتوانا."
+
+msgid "I apologize for the inconvenience. Please feel free to contact us for more information."
+msgstr "أعتذر عن الإزعاج. لا تتردد في الاتصال بنا للحصول على مزيد من المعلومات."
+
+msgid "You can reach us:"
+msgstr "يمكنك الوصول إلينا:"
+
+msgid "Free Features"
+msgstr "الميزات المجانية"
+
+msgid "Premium Features"
+msgstr "الميزات المميزة"
+
+msgid "Get Premium"
+msgstr "احصل على Premium"
+
+msgid "Upgrade Now"
+msgstr "ترقية الآن"
+
+msgid "Save Settings"
+msgstr "حفظ الإعدادات"
+
+msgid "Test API Key"
+msgstr "اختبار مفتاح API"
+
+msgid "API key is valid!"
+msgstr "مفتاح API صالح!"
+
+msgid "API key is invalid"
+msgstr "مفتاح API غير صالح"
+
+msgid "Simplify all answers"
+msgstr "تبسيط جميع الإجابات"
+
+msgid "Address users in friendly manner"
+msgstr "التعامل مع المستخدمين بطريقة ودية"
+
+msgid "Add Custom Rule"
+msgstr "إضافة قاعدة مخصصة"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Settings saved successfully."
+msgstr "تم حفظ الإعدادات بنجاح."
+
+msgid "Contact Information"
+msgstr "معلومات الاتصال"
+
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "AI Configuration"
+msgstr "تكوين الذكاء الاصطناعي"
+
+msgid "AI Provider"
+msgstr "مزود الذكاء الاصطناعي"
+
+msgid "API Key"
+msgstr "مفتاح API"
+
+msgid "Database Status"
+msgstr "حالة قاعدة البيانات"
+
+msgid "Create Cache Table"
+msgstr "إنشاء جدول التخزين المؤقت"
+
+msgid "Table created successfully!"
+msgstr "تم إنشاء الجدول بنجاح!"
+
+msgid "Currently %d cached entries."
+msgstr "حاليًا %d إدخالاً مخزناً مؤقتاً."
+
+msgid "Table exists"
+msgstr "الجدول موجود"
+
+msgid "Table does not exist"
+msgstr "الجدول غير موجود"
+
+msgid "The cache table is required for storing search results. Click the button below to create it."
+msgstr "جدول التخزين المؤقت مطلوب لتخزين نتائج البحث. انقر على الزر أدناه لإنشائه."
+
+msgid "You are a helpful assistant that answers questions based on content from a WordPress website. "
+msgstr "أنت مساعد مفيد يجيب على الأسئلة بناءً على المحتوى من موقع WordPress. "
+
+msgid "Keep your answers simple and easy to understand. "
+msgstr "اجعل إجاباتك بسيطة وسهلة الفهم. "
+
+msgid "Use a friendly and professional tone. "
+msgstr "استخدم نغمة ودية ومهنية. "
+
+msgid "If you cannot find the answer in the provided context, apologize and suggest contacting the website for more information. "
+msgstr "إذا لم تتمكن من العثور على الإجابة في السياق المقدم، اعتذر واقترح الاتصال بالموقع لمزيد من المعلومات. "
+
+msgid "Only use information from the provided context. If the context does not contain the answer, say so clearly."
+msgstr "استخدم فقط المعلومات من السياق المقدم. إذا كان السياق لا يحتوي على الإجابة، قل ذلك بوضوح."
+
+msgid "Invalid API key. Please check your API key."
+msgstr "مفتاح API غير صالح. يرجى التحقق من مفتاح API الخاص بك."
+
+msgid "Could not connect to OpenAI API."
+msgstr "تعذر الاتصال بـ OpenAI API."
+
+msgid "Could not validate API key. Please try again."
+msgstr "تعذر التحقق من مفتاح API. يرجى المحاولة مرة أخرى."
+
+msgid "Invalid response from AI service."
+msgstr "استجابة غير صالحة من خدمة الذكاء الاصطناعي."
+
+msgid "Unknown error creating table."
+msgstr "خطأ غير معروف عند إنشاء الجدول."

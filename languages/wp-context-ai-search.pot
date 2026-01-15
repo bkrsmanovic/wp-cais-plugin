@@ -1,0 +1,442 @@
+# WP Context AI Search
+# Copyright (C) 2026 Bojan Krsmanovic
+# This file is distributed under the same license as the WP Context AI Search package.
+# Bojan Krsmanovic <bojan@deeq.io>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/bkrsmanovic/wp-cais-plugin/issues\n"
+"POT-Creation-Date: 2026-12-20 12:00+0000\n"
+"PO-Revision-Date: 2026-12-20 12:00+0000\n"
+"Last-Translator: Bojan Krsmanovic <bojan@deeq.io>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/class-wp-cais-admin.php
+msgid "WP Context AI Search"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "WP CAIS"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Enable AI-powered search for your WordPress content. Select which content types should be searchable."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Free Features"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "These features are available in the free version:"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Searchable Content"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Premium Features"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Premium"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Upgrade to Premium"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Unlock advanced search capabilities with premium features:"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Get Premium"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Contact Information"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Contact information displayed in the search interface footer."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Phone Number"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "e.g., +1 (555) 123-4567"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Address"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "e.g., 123 Main St, City, State 12345"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "AI Configuration"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Configure your AI service provider and API key."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "AI Provider"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "OpenAI (GPT-3.5 Turbo)"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Claude (Anthropic)"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Gemini (Google)"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "HuggingFace (Coming Soon)"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Select your AI service provider. All providers require an API key."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "API Key"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Enter your API key"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Get your API key from %s"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Test API Key"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "API Quota Information"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Loading quota information..."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "AI Behavior Rules"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Configure how the AI should respond to queries."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Predefined Rules"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Simplify all answers"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "If you do not know answer, offer links to help and contact pages with apologies"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Address users in friendly manner"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Custom Rules"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Add Custom Rule"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Remove"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Database Status"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Cache table status and management."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Cache Table"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Table exists"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Currently %d cached entries."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Table does not exist"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "The cache table is required for storing search results. Click the button below to create it."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Create Cache Table"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Settings saved successfully."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "About WP Context AI Search"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "WP Context AI Search provides intelligent, context-aware search results powered by AI. It analyzes your WordPress content to deliver relevant search results."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Free Version"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Search Posts"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Search Pages"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "AI-powered context matching"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Upgrade Now"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Premium Version"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Testing..."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "API key is valid!"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "API key is invalid"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Permission denied."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "API key is empty."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Table created successfully!"
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Failed to create table. Please check database permissions."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Quota information not available. Check your provider dashboard."
+msgstr ""
+
+#: includes/class-wp-cais-admin.php
+msgid "Purchase More Credits"
+msgstr ""
+
+#: includes/class-wp-cais-frontend.php
+msgid "Searching..."
+msgstr ""
+
+#: includes/class-wp-cais-frontend.php
+msgid "An error occurred. Please try again."
+msgstr ""
+
+#: includes/class-wp-cais-frontend.php
+msgid "Invalid query parameter."
+msgstr ""
+
+#: includes/class-wp-cais-frontend.php
+msgid "Please enter a search query."
+msgstr ""
+
+#: includes/class-wp-cais-frontend.php
+msgid "Query must be at least %d characters long."
+msgstr ""
+
+#: includes/class-wp-cais-frontend.php
+msgid "Query must be no more than %d characters long."
+msgstr ""
+
+#: includes/class-wp-cais-frontend.php
+msgid "WP CAIS not configured properly. Please check your API key settings."
+msgstr ""
+
+#: templates/template-search.php
+msgid "Search Our Library"
+msgstr ""
+
+#: templates/template-search.php
+msgid "Ask any question and get intelligent, context-aware answers"
+msgstr ""
+
+#: templates/template-error.php
+msgid "WP CAIS not configured properly. Please check your API key settings."
+msgstr ""
+
+#: templates/template-search-form.php
+msgid "Type your question here..."
+msgstr ""
+
+#: templates/template-search-form.php
+msgid "Enter your question above to get started."
+msgstr ""
+
+#: templates/template-footer.php
+msgid "Need more help?"
+msgstr ""
+
+#: templates/template-footer.php
+msgid "or"
+msgstr ""
+
+#: includes/class-wp-cais-search.php
+msgid "I found %d relevant result(s) for your query: \"%s\"."
+msgstr ""
+
+#: includes/class-wp-cais-search.php
+msgid "Here are the most relevant sources:"
+msgstr ""
+
+#: includes/class-wp-cais-search.php
+msgid "I couldn't find specific information about that in our content."
+msgstr ""
+
+#: includes/class-wp-cais-search.php
+msgid "I apologize for the inconvenience. Please feel free to contact us for more information."
+msgstr ""
+
+#: includes/class-wp-cais-search.php
+msgid "You can reach us:"
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "API key cannot be empty."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Provider validation not implemented."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Could not connect to OpenAI API."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Invalid API key. Please check your API key."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "API error occurred."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Could not validate API key. Please try again."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Could not connect to Claude API."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Could not connect to Gemini API."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Quota checking not implemented for this provider."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Quota information not available. Check your OpenAI dashboard."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Check your Anthropic dashboard for quota information."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Check your Google Cloud Console for quota information."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Invalid response from AI service."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "HuggingFace integration coming soon."
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "You are a helpful assistant that answers questions based on content from a WordPress website. "
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Keep your answers simple and easy to understand. "
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Use a friendly and professional tone. "
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "If you cannot find the answer in the provided context, apologize and suggest contacting the website for more information. "
+msgstr ""
+
+#: includes/class-wp-cais-ai.php
+msgid "Only use information from the provided context. If the context does not contain the answer, say so clearly."
+msgstr ""
+
+#: includes/class-wp-cais-database.php
+msgid "Unknown error creating table."
+msgstr ""

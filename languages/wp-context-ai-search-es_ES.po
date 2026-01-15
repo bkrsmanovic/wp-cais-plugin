@@ -1,0 +1,162 @@
+# Spanish translation for WP Context AI Search
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "WP Context AI Search"
+msgstr "Búsqueda IA Contexto WP"
+
+msgid "Search Our Library"
+msgstr "Buscar en nuestra biblioteca"
+
+msgid "Ask any question and get intelligent, context-aware answers"
+msgstr "Haz cualquier pregunta y obtén respuestas inteligentes y contextuales"
+
+msgid "Type your question here..."
+msgstr "Escribe tu pregunta aquí..."
+
+msgid "Enter your question above to get started."
+msgstr "Ingresa tu pregunta arriba para comenzar."
+
+msgid "Need more help?"
+msgstr "¿Necesitas más ayuda?"
+
+msgid "or"
+msgstr "o"
+
+msgid "Searching..."
+msgstr "Buscando..."
+
+msgid "An error occurred. Please try again."
+msgstr "Ocurrió un error. Por favor, inténtalo de nuevo."
+
+msgid "WP CAIS not configured properly. Please check your API key settings."
+msgstr "WP CAIS no está configurado correctamente. Por favor, verifica la configuración de tu clave API."
+
+msgid "I found %d relevant result(s) for your query: \"%s\"."
+msgstr "Encontré %d resultado(s) relevante(s) para tu consulta: \"%s\"."
+
+msgid "Here are the most relevant sources:"
+msgstr "Aquí están las fuentes más relevantes:"
+
+msgid "I couldn't find specific information about that in our content."
+msgstr "No pude encontrar información específica sobre eso en nuestro contenido."
+
+msgid "I apologize for the inconvenience. Please feel free to contact us for more information."
+msgstr "Me disculpo por las molestias. Por favor, no dudes en contactarnos para más información."
+
+msgid "You can reach us:"
+msgstr "Puedes contactarnos:"
+
+msgid "Free Features"
+msgstr "Características gratuitas"
+
+msgid "Premium Features"
+msgstr "Características Premium"
+
+msgid "Get Premium"
+msgstr "Obtener Premium"
+
+msgid "Upgrade Now"
+msgstr "Actualizar ahora"
+
+msgid "Save Settings"
+msgstr "Guardar configuración"
+
+msgid "Test API Key"
+msgstr "Probar clave API"
+
+msgid "API key is valid!"
+msgstr "¡La clave API es válida!"
+
+msgid "API key is invalid"
+msgstr "La clave API no es válida"
+
+msgid "Simplify all answers"
+msgstr "Simplificar todas las respuestas"
+
+msgid "Address users in friendly manner"
+msgstr "Dirigirse a los usuarios de manera amigable"
+
+msgid "Add Custom Rule"
+msgstr "Agregar regla personalizada"
+
+msgid "Remove"
+msgstr "Eliminar"
+
+msgid "Settings saved successfully."
+msgstr "Configuración guardada exitosamente."
+
+msgid "Contact Information"
+msgstr "Información de contacto"
+
+msgid "Phone Number"
+msgstr "Número de teléfono"
+
+msgid "Address"
+msgstr "Dirección"
+
+msgid "AI Configuration"
+msgstr "Configuración de IA"
+
+msgid "AI Provider"
+msgstr "Proveedor de IA"
+
+msgid "API Key"
+msgstr "Clave API"
+
+msgid "Database Status"
+msgstr "Estado de la base de datos"
+
+msgid "Create Cache Table"
+msgstr "Crear tabla de caché"
+
+msgid "Table created successfully!"
+msgstr "¡Tabla creada exitosamente!"
+
+msgid "Currently %d cached entries."
+msgstr "Actualmente %d entradas en caché."
+
+msgid "Table exists"
+msgstr "La tabla existe"
+
+msgid "Table does not exist"
+msgstr "La tabla no existe"
+
+msgid "The cache table is required for storing search results. Click the button below to create it."
+msgstr "La tabla de caché es necesaria para almacenar los resultados de búsqueda. Haz clic en el botón a continuación para crearla."
+
+msgid "You are a helpful assistant that answers questions based on content from a WordPress website. "
+msgstr "Eres un asistente útil que responde preguntas basándose en el contenido de un sitio web de WordPress. "
+
+msgid "Keep your answers simple and easy to understand. "
+msgstr "Mantén tus respuestas simples y fáciles de entender. "
+
+msgid "Use a friendly and professional tone. "
+msgstr "Usa un tono amigable y profesional. "
+
+msgid "If you cannot find the answer in the provided context, apologize and suggest contacting the website for more information. "
+msgstr "Si no puedes encontrar la respuesta en el contexto proporcionado, disculpa y sugiere contactar el sitio web para más información. "
+
+msgid "Only use information from the provided context. If the context does not contain the answer, say so clearly."
+msgstr "Solo usa información del contexto proporcionado. Si el contexto no contiene la respuesta, dilo claramente."
+
+msgid "Invalid API key. Please check your API key."
+msgstr "Clave API no válida. Por favor, verifica tu clave API."
+
+msgid "Could not connect to OpenAI API."
+msgstr "No se pudo conectar a la API de OpenAI."
+
+msgid "Could not validate API key. Please try again."
+msgstr "No se pudo validar la clave API. Por favor, inténtalo de nuevo."
+
+msgid "Invalid response from AI service."
+msgstr "Respuesta no válida del servicio de IA."
+
+msgid "Unknown error creating table."
+msgstr "Error desconocido al crear la tabla."

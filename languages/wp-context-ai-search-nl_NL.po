@@ -1,0 +1,162 @@
+# Dutch translation for WP Context AI Search
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "WP Context AI Search"
+msgstr "WP Context AI Zoeken"
+
+msgid "Search Our Library"
+msgstr "Doorzoek onze bibliotheek"
+
+msgid "Ask any question and get intelligent, context-aware answers"
+msgstr "Stel vragen en krijg intelligente, contextbewuste antwoorden"
+
+msgid "Type your question here..."
+msgstr "Typ hier uw vraag..."
+
+msgid "Enter your question above to get started."
+msgstr "Voer hierboven uw vraag in om te beginnen."
+
+msgid "Need more help?"
+msgstr "Heeft u meer hulp nodig?"
+
+msgid "or"
+msgstr "of"
+
+msgid "Searching..."
+msgstr "Zoeken..."
+
+msgid "An error occurred. Please try again."
+msgstr "Er is een fout opgetreden. Probeer het opnieuw."
+
+msgid "WP CAIS not configured properly. Please check your API key settings."
+msgstr "WP CAIS is niet correct geconfigureerd. Controleer uw API-sleutelinstellingen."
+
+msgid "I found %d relevant result(s) for your query: \"%s\"."
+msgstr "Ik heb %d relevant(e) resultaat(en) gevonden voor uw zoekopdracht: \"%s\"."
+
+msgid "Here are the most relevant sources:"
+msgstr "Hier zijn de meest relevante bronnen:"
+
+msgid "I couldn't find specific information about that in our content."
+msgstr "Ik kon geen specifieke informatie daarover vinden in onze inhoud."
+
+msgid "I apologize for the inconvenience. Please feel free to contact us for more information."
+msgstr "Ik verontschuldig me voor het ongemak. Neem gerust contact met ons op voor meer informatie."
+
+msgid "You can reach us:"
+msgstr "U kunt ons bereiken:"
+
+msgid "Free Features"
+msgstr "Gratis functies"
+
+msgid "Premium Features"
+msgstr "Premium functies"
+
+msgid "Get Premium"
+msgstr "Krijg Premium"
+
+msgid "Upgrade Now"
+msgstr "Nu upgraden"
+
+msgid "Save Settings"
+msgstr "Instellingen opslaan"
+
+msgid "Test API Key"
+msgstr "API-sleutel testen"
+
+msgid "API key is valid!"
+msgstr "API-sleutel is geldig!"
+
+msgid "API key is invalid"
+msgstr "API-sleutel is ongeldig"
+
+msgid "Simplify all answers"
+msgstr "Vereenvoudig alle antwoorden"
+
+msgid "Address users in friendly manner"
+msgstr "Spreek gebruikers op een vriendelijke manier aan"
+
+msgid "Add Custom Rule"
+msgstr "Aangepaste regel toevoegen"
+
+msgid "Remove"
+msgstr "Verwijderen"
+
+msgid "Settings saved successfully."
+msgstr "Instellingen succesvol opgeslagen."
+
+msgid "Contact Information"
+msgstr "Contactgegevens"
+
+msgid "Phone Number"
+msgstr "Telefoonnummer"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "AI Configuration"
+msgstr "AI-configuratie"
+
+msgid "AI Provider"
+msgstr "AI-provider"
+
+msgid "API Key"
+msgstr "API-sleutel"
+
+msgid "Database Status"
+msgstr "Databasestatus"
+
+msgid "Create Cache Table"
+msgstr "Cache-tabel aanmaken"
+
+msgid "Table created successfully!"
+msgstr "Tabel succesvol aangemaakt!"
+
+msgid "Currently %d cached entries."
+msgstr "Momenteel %d gecachte items."
+
+msgid "Table exists"
+msgstr "Tabel bestaat"
+
+msgid "Table does not exist"
+msgstr "Tabel bestaat niet"
+
+msgid "The cache table is required for storing search results. Click the button below to create it."
+msgstr "De cache-tabel is vereist voor het opslaan van zoekresultaten. Klik op de knop hieronder om deze aan te maken."
+
+msgid "You are a helpful assistant that answers questions based on content from a WordPress website. "
+msgstr "Je bent een behulpzame assistent die vragen beantwoordt op basis van inhoud van een WordPress-website. "
+
+msgid "Keep your answers simple and easy to understand. "
+msgstr "Houd je antwoorden eenvoudig en gemakkelijk te begrijpen. "
+
+msgid "Use a friendly and professional tone. "
+msgstr "Gebruik een vriendelijke en professionele toon. "
+
+msgid "If you cannot find the answer in the provided context, apologize and suggest contacting the website for more information. "
+msgstr "Als je het antwoord niet kunt vinden in de verstrekte context, verontschuldig je dan en stel voor om contact op te nemen met de website voor meer informatie. "
+
+msgid "Only use information from the provided context. If the context does not contain the answer, say so clearly."
+msgstr "Gebruik alleen informatie uit de verstrekte context. Als de context het antwoord niet bevat, zeg dit dan duidelijk."
+
+msgid "Invalid API key. Please check your API key."
+msgstr "Ongeldige API-sleutel. Controleer uw API-sleutel."
+
+msgid "Could not connect to OpenAI API."
+msgstr "Kon geen verbinding maken met OpenAI API."
+
+msgid "Could not validate API key. Please try again."
+msgstr "Kon API-sleutel niet valideren. Probeer het opnieuw."
+
+msgid "Invalid response from AI service."
+msgstr "Ongeldig antwoord van AI-service."
+
+msgid "Unknown error creating table."
+msgstr "Onbekende fout bij het aanmaken van de tabel."

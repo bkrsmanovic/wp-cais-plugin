@@ -1,0 +1,21 @@
+{
+	"name": "wp-context-ai-search",
+	"version": "1.0.0",
+	"description": "AI-powered search for WordPress content",
+	"scripts": {
+		"test": "echo 'Run: composer run phpcs' && composer run phpcs",
+		"version": "node -e \"console.log(require('./package.json').version)\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:bkrsmanovic/wp-cais-plugin.git"
+	},
+	"keywords": [
+		"wordpress",
+		"plugin",
+		"ai",
+		"search"
+	],
+	"author": "Bojan Krsmanovic <bojan@deeq.io>",
+	"license": "GPL-2.0-or-later"
+}

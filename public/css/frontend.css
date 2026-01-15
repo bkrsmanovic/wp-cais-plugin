@@ -1,0 +1,563 @@
+/**
+ * WP Context AI Search - Frontend Styles
+ * 
+ * Customizable via CSS Variables
+ * Override these variables in your theme to customize the appearance
+ */
+
+:root {
+	/* ============================================
+	   Colors - Primary
+	   ============================================ */
+	--wp-cais-primary-color: #007bff;
+	--wp-cais-primary-hover: #0056b3;
+	--wp-cais-primary-text: #fff;
+
+	/* ============================================
+	   Colors - Text
+	   ============================================ */
+	--wp-cais-text-primary: #1a1a1a;
+	--wp-cais-text-secondary: #666;
+	--wp-cais-text-muted: #999;
+	--wp-cais-text-on-primary: #fff;
+
+	/* ============================================
+	   Colors - Backgrounds
+	   ============================================ */
+	--wp-cais-bg-primary: #fff;
+	--wp-cais-bg-secondary: #f8f9fa;
+	--wp-cais-bg-result: #f8f9fa;
+	--wp-cais-bg-input: #fff;
+
+	/* ============================================
+	   Colors - Borders
+	   ============================================ */
+	--wp-cais-border-color: #e0e0e0;
+	--wp-cais-border-color-light: #ddd;
+	--wp-cais-border-color-focus: #007bff;
+	--wp-cais-border-width: 1px;
+	--wp-cais-border-width-focus: 2px;
+	--wp-cais-border-radius: 8px;
+	--wp-cais-border-radius-small: 4px;
+	--wp-cais-border-radius-large: 12px;
+	--wp-cais-border-radius-round: 24px;
+	--wp-cais-border-radius-circle: 50%;
+
+	/* ============================================
+	   Colors - Error States
+	   ============================================ */
+	--wp-cais-error-bg: #fee;
+	--wp-cais-error-border: #fcc;
+	--wp-cais-error-border-accent: #f00;
+	--wp-cais-error-text: #c00;
+
+	/* ============================================
+	   Colors - Loading
+	   ============================================ */
+	--wp-cais-loading-dot-color: #999;
+
+	/* ============================================
+	   Typography - Font Family
+	   ============================================ */
+	--wp-cais-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+	/* ============================================
+	   Typography - Font Sizes
+	   ============================================ */
+	--wp-cais-font-size-xs: 13px;
+	--wp-cais-font-size-sm: 14px;
+	--wp-cais-font-size-base: 15px;
+	--wp-cais-font-size-md: 16px;
+	--wp-cais-font-size-lg: 24px;
+	--wp-cais-font-size-xl: 32px;
+
+	/* ============================================
+	   Typography - Font Weights
+	   ============================================ */
+	--wp-cais-font-weight-normal: 400;
+	--wp-cais-font-weight-medium: 500;
+	--wp-cais-font-weight-semibold: 600;
+
+	/* ============================================
+	   Typography - Line Heights
+	   ============================================ */
+	--wp-cais-line-height-base: 1.6;
+	--wp-cais-line-height-tight: 1.2;
+
+	/* ============================================
+	   Spacing - Padding
+	   ============================================ */
+	--wp-cais-padding-xs: 4px;
+	--wp-cais-padding-sm: 6px;
+	--wp-cais-padding-md: 12px;
+	--wp-cais-padding-base: 15px;
+	--wp-cais-padding-lg: 20px;
+	--wp-cais-padding-xl: 30px;
+	--wp-cais-padding-xxl: 40px;
+
+	/* ============================================
+	   Spacing - Margins
+	   ============================================ */
+	--wp-cais-margin-xs: 4px;
+	--wp-cais-margin-sm: 8px;
+	--wp-cais-margin-md: 12px;
+	--wp-cais-margin-base: 16px;
+	--wp-cais-margin-lg: 20px;
+	--wp-cais-margin-xl: 24px;
+	--wp-cais-margin-xxl: 30px;
+	--wp-cais-margin-xxxl: 40px;
+
+	/* ============================================
+	   Spacing - Gaps
+	   ============================================ */
+	--wp-cais-gap-xs: 4px;
+	--wp-cais-gap-sm: 8px;
+	--wp-cais-gap-md: 12px;
+
+	/* ============================================
+	   Sizing - Container
+	   ============================================ */
+	--wp-cais-container-max-width: 900px;
+	--wp-cais-container-padding-mobile: 15px;
+	--wp-cais-container-padding-desktop: 20px;
+
+	/* ============================================
+	   Sizing - Input & Button
+	   ============================================ */
+	--wp-cais-input-height: 40px;
+	--wp-cais-input-padding-x: 16px;
+	--wp-cais-input-padding-y: 12px;
+	--wp-cais-button-size: 40px;
+	--wp-cais-button-border-radius: 50%;
+
+	/* ============================================
+	   Sizing - Results
+	   ============================================ */
+	--wp-cais-results-min-height: 300px;
+	--wp-cais-results-max-height: 600px;
+
+	/* ============================================
+	   Shadows
+	   ============================================ */
+	--wp-cais-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+	--wp-cais-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+	/* ============================================
+	   Transitions
+	   ============================================ */
+	--wp-cais-transition-fast: 0.2s ease;
+	--wp-cais-transition-base: 0.3s ease;
+	--wp-cais-transition-slow: 0.6s ease;
+
+	/* ============================================
+	   Animation Durations
+	   ============================================ */
+	--wp-cais-animation-fast: 0.35s;
+	--wp-cais-animation-base: 0.5s;
+	--wp-cais-animation-slow: 0.7s;
+	--wp-cais-animation-slower: 0.9s;
+	--wp-cais-animation-loading: 1.2s;
+
+	/* ============================================
+	   Animation Delays
+	   ============================================ */
+	--wp-cais-animation-delay-1: -0.32s;
+	--wp-cais-animation-delay-2: -0.16s;
+
+	/* ============================================
+	   Loading Dots
+	   ============================================ */
+	--wp-cais-loading-dot-size: 8px;
+
+	/* ============================================
+	   Breakpoints
+	   ============================================ */
+	--wp-cais-breakpoint-mobile: 768px;
+}
+
+/* ============================================
+   Base Container
+   ============================================ */
+.wp-cais-search-container {
+	max-width: var(--wp-cais-container-max-width);
+	margin: 0 auto;
+	padding: var(--wp-cais-padding-xxl) var(--wp-cais-container-padding-desktop);
+	font-family: var(--wp-cais-font-family);
+}
+
+/* ============================================
+   Error Messages
+   ============================================ */
+.wp-cais-error-message {
+	background: var(--wp-cais-error-bg);
+	border: var(--wp-cais-border-width) solid var(--wp-cais-error-border);
+	border-left: 4px solid var(--wp-cais-error-border-accent);
+	padding: var(--wp-cais-padding-base);
+	margin: var(--wp-cais-margin-lg) 0;
+	border-radius: var(--wp-cais-border-radius-small);
+	color: var(--wp-cais-error-text);
+	animation: fadeInDown var(--wp-cais-animation-base) ease-out;
+}
+
+.wp-cais-error-message p {
+	margin: 0;
+	font-weight: var(--wp-cais-font-weight-medium);
+}
+
+.wp-cais-error {
+	padding: var(--wp-cais-padding-base);
+	background: var(--wp-cais-error-bg);
+	border: var(--wp-cais-border-width) solid var(--wp-cais-error-border);
+	border-left: 4px solid var(--wp-cais-error-border-accent);
+	border-radius: var(--wp-cais-border-radius-small);
+	color: var(--wp-cais-error-text);
+	animation: fadeInUp var(--wp-cais-animation-fast) ease-out;
+}
+
+.wp-cais-error p {
+	margin: 0;
+	font-weight: var(--wp-cais-font-weight-medium);
+}
+
+/* ============================================
+   Header Section
+   ============================================ */
+.wp-cais-header-section {
+	text-align: center;
+	margin-bottom: var(--wp-cais-margin-xxxl);
+	animation: fadeInDown var(--wp-cais-animation-base) ease-out;
+}
+
+.wp-cais-title {
+	font-size: var(--wp-cais-font-size-xl);
+	font-weight: var(--wp-cais-font-weight-semibold);
+	margin: 0 0 var(--wp-cais-margin-sm) 0;
+	color: var(--wp-cais-text-primary);
+}
+
+.wp-cais-subtitle {
+	font-size: var(--wp-cais-font-size-md);
+	color: var(--wp-cais-text-secondary);
+	margin: 0;
+}
+
+/* ============================================
+   Search Wrapper
+   ============================================ */
+.wp-cais-search-wrapper {
+	background: var(--wp-cais-bg-primary);
+	border-radius: var(--wp-cais-border-radius-large);
+	box-shadow: var(--wp-cais-shadow-sm);
+	overflow: hidden;
+}
+
+.wp-cais-input-container {
+	padding: var(--wp-cais-padding-lg);
+	background: var(--wp-cais-bg-secondary);
+	border-bottom: var(--wp-cais-border-width) solid var(--wp-cais-border-color);
+}
+
+.wp-cais-results-container {
+	padding: var(--wp-cais-padding-xl);
+	min-height: var(--wp-cais-results-min-height);
+	max-height: var(--wp-cais-results-max-height);
+	overflow-y: auto;
+}
+
+/* ============================================
+   Welcome Message
+   ============================================ */
+.wp-cais-welcome-message {
+	text-align: center;
+	color: var(--wp-cais-text-secondary);
+	font-size: var(--wp-cais-font-size-md);
+	padding: var(--wp-cais-padding-lg);
+	animation: fadeIn var(--wp-cais-animation-slow) ease-out;
+}
+
+/* ============================================
+   Results
+   ============================================ */
+.wp-cais-result {
+	margin-bottom: var(--wp-cais-margin-xl);
+	animation: fadeInUp var(--wp-cais-animation-base) cubic-bezier(0.16, 1, 0.3, 1);
+	transform-origin: center;
+}
+
+.wp-cais-result-content {
+	padding: var(--wp-cais-padding-lg);
+	background: var(--wp-cais-bg-result);
+	border-radius: var(--wp-cais-border-radius);
+	line-height: var(--wp-cais-line-height-base);
+	font-size: var(--wp-cais-font-size-base);
+	word-wrap: break-word;
+	color: var(--wp-cais-text-primary);
+}
+
+.wp-cais-result-content p {
+	margin: 0 0 var(--wp-cais-margin-md) 0;
+}
+
+.wp-cais-result-content p:last-child {
+	margin-bottom: 0;
+}
+
+/* ============================================
+   Sources
+   ============================================ */
+.wp-cais-sources {
+	margin-top: var(--wp-cais-margin-base);
+	padding-top: var(--wp-cais-margin-base);
+	border-top: var(--wp-cais-border-width) solid var(--wp-cais-border-color);
+}
+
+.wp-cais-sources-title {
+	font-size: var(--wp-cais-font-size-xs);
+	font-weight: var(--wp-cais-font-weight-semibold);
+	color: var(--wp-cais-text-secondary);
+	margin-bottom: var(--wp-cais-margin-sm);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.wp-cais-source-link {
+	display: inline-block;
+	margin: var(--wp-cais-margin-xs) var(--wp-cais-margin-sm) var(--wp-cais-margin-xs) 0;
+	padding: var(--wp-cais-padding-sm) var(--wp-cais-padding-md);
+	background: var(--wp-cais-bg-primary);
+	border: var(--wp-cais-border-width) solid var(--wp-cais-border-color-light);
+	border-radius: var(--wp-cais-border-radius);
+	text-decoration: none;
+	color: var(--wp-cais-primary-color);
+	font-size: var(--wp-cais-font-size-xs);
+	transition: all var(--wp-cais-transition-fast);
+}
+
+.wp-cais-source-link:hover {
+	background: var(--wp-cais-primary-color);
+	color: var(--wp-cais-primary-text);
+	border-color: var(--wp-cais-primary-color);
+	transform: translateY(-1px);
+}
+
+/* ============================================
+   Loading
+   ============================================ */
+.wp-cais-loading {
+	display: flex;
+	align-items: center;
+	gap: var(--wp-cais-gap-sm);
+	color: var(--wp-cais-text-secondary);
+	font-style: italic;
+	animation: fadeInUp var(--wp-cais-animation-fast) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wp-cais-loading-dots {
+	display: inline-flex;
+	gap: var(--wp-cais-gap-xs);
+}
+
+.wp-cais-loading-dot {
+	width: var(--wp-cais-loading-dot-size);
+	height: var(--wp-cais-loading-dot-size);
+	background: var(--wp-cais-loading-dot-color);
+	border-radius: var(--wp-cais-border-radius-circle);
+	animation: bounce var(--wp-cais-animation-loading) infinite ease-in-out both;
+}
+
+.wp-cais-loading-dot:nth-child(1) {
+	animation-delay: var(--wp-cais-animation-delay-1);
+}
+
+.wp-cais-loading-dot:nth-child(2) {
+	animation-delay: var(--wp-cais-animation-delay-2);
+}
+
+/* ============================================
+   Search Form
+   ============================================ */
+.wp-cais-search-form {
+	display: flex;
+	gap: var(--wp-cais-gap-md);
+}
+
+.wp-cais-input-wrapper {
+	flex: 1;
+	display: flex;
+	background: var(--wp-cais-bg-input);
+	border: var(--wp-cais-border-width-focus) solid var(--wp-cais-border-color);
+	border-radius: var(--wp-cais-border-radius-round);
+	padding: var(--wp-cais-padding-xs);
+	transition: border-color var(--wp-cais-transition-fast);
+}
+
+.wp-cais-input-wrapper:focus-within {
+	border-color: var(--wp-cais-border-color-focus);
+}
+
+.wp-cais-query-input {
+	flex: 1;
+	border: none;
+	outline: none;
+	padding: var(--wp-cais-input-padding-y) var(--wp-cais-input-padding-x);
+	font-size: var(--wp-cais-font-size-base);
+	background: transparent;
+	color: var(--wp-cais-text-primary);
+}
+
+.wp-cais-query-input::placeholder {
+	color: var(--wp-cais-text-muted);
+}
+
+/* ============================================
+   Submit Button
+   ============================================ */
+.wp-cais-submit-btn {
+	width: var(--wp-cais-button-size);
+	height: var(--wp-cais-button-size);
+	border: none;
+	background: var(--wp-cais-primary-color);
+	color: var(--wp-cais-primary-text);
+	border-radius: var(--wp-cais-button-border-radius);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all var(--wp-cais-transition-fast);
+	flex-shrink: 0;
+}
+
+.wp-cais-submit-btn:hover {
+	background: var(--wp-cais-primary-hover);
+	transform: scale(1.05);
+}
+
+.wp-cais-submit-btn:active {
+	transform: scale(0.95);
+}
+
+.wp-cais-submit-btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+	transform: none;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.wp-cais-footer {
+	margin-top: var(--wp-cais-margin-xxl);
+	text-align: center;
+	padding: var(--wp-cais-padding-lg);
+	color: var(--wp-cais-text-secondary);
+	font-size: var(--wp-cais-font-size-sm);
+	animation: fadeIn var(--wp-cais-animation-slower) ease-out;
+}
+
+.wp-cais-footer-text {
+	margin: 0 0 var(--wp-cais-margin-xs) 0;
+}
+
+.wp-cais-footer-address {
+	margin: 0;
+	color: var(--wp-cais-text-secondary);
+}
+
+.wp-cais-contact-link {
+	color: var(--wp-cais-primary-color);
+	text-decoration: none;
+	font-weight: var(--wp-cais-font-weight-medium);
+	transition: color var(--wp-cais-transition-fast);
+	margin-left: 4px;
+}
+
+.wp-cais-contact-link:hover {
+	color: var(--wp-cais-primary-hover);
+	text-decoration: underline;
+}
+
+.wp-cais-separator {
+	margin: 0 var(--wp-cais-margin-sm);
+}
+
+.wp-cais-address {
+	font-style: italic;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-15px) scale(0.98);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(15px) scale(0.98);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes bounce {
+	0%, 80%, 100% {
+		transform: scale(0);
+		opacity: 0.5;
+	}
+	40% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes slideInSubtle {
+	from {
+		opacity: 0;
+		transform: translateY(8px) scale(0.99);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+	.wp-cais-search-container {
+		padding: var(--wp-cais-padding-lg) var(--wp-cais-container-padding-mobile);
+	}
+
+	.wp-cais-title {
+		font-size: var(--wp-cais-font-size-lg);
+	}
+
+	.wp-cais-result-content {
+		font-size: var(--wp-cais-font-size-sm);
+	}
+
+	.wp-cais-messages {
+		padding: var(--wp-cais-padding-lg);
+		min-height: var(--wp-cais-results-min-height);
+	}
+}

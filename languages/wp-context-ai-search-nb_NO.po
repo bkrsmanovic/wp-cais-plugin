@@ -1,0 +1,162 @@
+# Norwegian translation for WP Context AI Search
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "WP Context AI Search"
+msgstr "WP Context AI-søk"
+
+msgid "Search Our Library"
+msgstr "Søk i vårt bibliotek"
+
+msgid "Ask any question and get intelligent, context-aware answers"
+msgstr "Still spørsmål og få intelligente, kontekstbevisste svar"
+
+msgid "Type your question here..."
+msgstr "Skriv spørsmålet ditt her..."
+
+msgid "Enter your question above to get started."
+msgstr "Skriv inn spørsmålet ditt over for å komme i gang."
+
+msgid "Need more help?"
+msgstr "Trenger du mer hjelp?"
+
+msgid "or"
+msgstr "eller"
+
+msgid "Searching..."
+msgstr "Søker..."
+
+msgid "An error occurred. Please try again."
+msgstr "En feil oppstod. Vennligst prøv igjen."
+
+msgid "WP CAIS not configured properly. Please check your API key settings."
+msgstr "WP CAIS er ikke konfigurert riktig. Vennligst sjekk API-nøkkelinnstillingene dine."
+
+msgid "I found %d relevant result(s) for your query: \"%s\"."
+msgstr "Jeg fant %d relevante resultat(er) for spørringen din: \"%s\"."
+
+msgid "Here are the most relevant sources:"
+msgstr "Her er de mest relevante kildene:"
+
+msgid "I couldn't find specific information about that in our content."
+msgstr "Jeg kunne ikke finne spesifikk informasjon om det i innholdet vårt."
+
+msgid "I apologize for the inconvenience. Please feel free to contact us for more information."
+msgstr "Jeg beklager uleiligheten. Ta gjerne kontakt med oss for mer informasjon."
+
+msgid "You can reach us:"
+msgstr "Du kan nå oss:"
+
+msgid "Free Features"
+msgstr "Gratisfunksjoner"
+
+msgid "Premium Features"
+msgstr "Premium-funksjoner"
+
+msgid "Get Premium"
+msgstr "Få Premium"
+
+msgid "Upgrade Now"
+msgstr "Oppgrader nå"
+
+msgid "Save Settings"
+msgstr "Lagre innstillinger"
+
+msgid "Test API Key"
+msgstr "Test API-nøkkel"
+
+msgid "API key is valid!"
+msgstr "API-nøkkel er gyldig!"
+
+msgid "API key is invalid"
+msgstr "API-nøkkel er ugyldig"
+
+msgid "Simplify all answers"
+msgstr "Forenkle alle svar"
+
+msgid "Address users in friendly manner"
+msgstr "Adresser brukere på en vennlig måte"
+
+msgid "Add Custom Rule"
+msgstr "Legg til tilpasset regel"
+
+msgid "Remove"
+msgstr "Fjern"
+
+msgid "Settings saved successfully."
+msgstr "Innstillinger lagret."
+
+msgid "Contact Information"
+msgstr "Kontaktinformasjon"
+
+msgid "Phone Number"
+msgstr "Telefonnummer"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "AI Configuration"
+msgstr "AI-konfigurasjon"
+
+msgid "AI Provider"
+msgstr "AI-leverandør"
+
+msgid "API Key"
+msgstr "API-nøkkel"
+
+msgid "Database Status"
+msgstr "Database-status"
+
+msgid "Create Cache Table"
+msgstr "Opprett cache-tabell"
+
+msgid "Table created successfully!"
+msgstr "Tabell opprettet!"
+
+msgid "Currently %d cached entries."
+msgstr "For øyeblikket %d cachede oppføringer."
+
+msgid "Table exists"
+msgstr "Tabell eksisterer"
+
+msgid "Table does not exist"
+msgstr "Tabell eksisterer ikke"
+
+msgid "The cache table is required for storing search results. Click the button below to create it."
+msgstr "Cache-tabellen er nødvendig for å lagre søkeresultater. Klikk på knappen nedenfor for å opprette den."
+
+msgid "You are a helpful assistant that answers questions based on content from a WordPress website. "
+msgstr "Du er en hjelpsom assistent som svarer på spørsmål basert på innhold fra en WordPress-nettsted. "
+
+msgid "Keep your answers simple and easy to understand. "
+msgstr "Hold svarene dine enkle og lette å forstå. "
+
+msgid "Use a friendly and professional tone. "
+msgstr "Bruk en vennlig og profesjonell tone. "
+
+msgid "If you cannot find the answer in the provided context, apologize and suggest contacting the website for more information. "
+msgstr "Hvis du ikke kan finne svaret i den gitte konteksten, beklag og foreslå å kontakte nettstedet for mer informasjon. "
+
+msgid "Only use information from the provided context. If the context does not contain the answer, say so clearly."
+msgstr "Bruk kun informasjon fra den gitte konteksten. Hvis konteksten ikke inneholder svaret, si det tydelig."
+
+msgid "Invalid API key. Please check your API key."
+msgstr "Ugyldig API-nøkkel. Vennligst sjekk API-nøkkelen din."
+
+msgid "Could not connect to OpenAI API."
+msgstr "Kunne ikke koble til OpenAI API."
+
+msgid "Could not validate API key. Please try again."
+msgstr "Kunne ikke validere API-nøkkel. Vennligst prøv igjen."
+
+msgid "Invalid response from AI service."
+msgstr "Ugyldig svar fra AI-tjenesten."
+
+msgid "Unknown error creating table."
+msgstr "Ukjent feil ved oppretting av tabell."

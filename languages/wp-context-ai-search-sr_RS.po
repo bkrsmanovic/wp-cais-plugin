@@ -1,0 +1,162 @@
+# Serbian translation for WP Context AI Search
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Language: sr_RS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "WP Context AI Search"
+msgstr "WP Context AI Pretraga"
+
+msgid "Search Our Library"
+msgstr "Pretražite našu biblioteku"
+
+msgid "Ask any question and get intelligent, context-aware answers"
+msgstr "Postavite bilo koje pitanje i dobijte inteligentne, kontekstualne odgovore"
+
+msgid "Type your question here..."
+msgstr "Unesite vaše pitanje ovde..."
+
+msgid "Enter your question above to get started."
+msgstr "Unesite vaše pitanje iznad da biste počeli."
+
+msgid "Need more help?"
+msgstr "Trebate više pomoći?"
+
+msgid "or"
+msgstr "ili"
+
+msgid "Searching..."
+msgstr "Pretraživanje..."
+
+msgid "An error occurred. Please try again."
+msgstr "Došlo je do greške. Molimo pokušajte ponovo."
+
+msgid "WP CAIS not configured properly. Please check your API key settings."
+msgstr "WP CAIS nije pravilno konfigurisan. Molimo proverite postavke vašeg API ključa."
+
+msgid "I found %d relevant result(s) for your query: \"%s\"."
+msgstr "Pronašao sam %d relevantan(ih) rezultat(a) za vaš upit: \"%s\"."
+
+msgid "Here are the most relevant sources:"
+msgstr "Evo najrelevantnijih izvora:"
+
+msgid "I couldn't find specific information about that in our content."
+msgstr "Nisam mogao da pronađem specifične informacije o tome u našem sadržaju."
+
+msgid "I apologize for the inconvenience. Please feel free to contact us for more information."
+msgstr "Izvinjavam se zbog neprijatnosti. Slobodno nas kontaktirajte za više informacija."
+
+msgid "You can reach us:"
+msgstr "Možete nas kontaktirati:"
+
+msgid "Free Features"
+msgstr "Besplatne funkcije"
+
+msgid "Premium Features"
+msgstr "Premium funkcije"
+
+msgid "Get Premium"
+msgstr "Nabavite Premium"
+
+msgid "Upgrade Now"
+msgstr "Nadogradite sada"
+
+msgid "Save Settings"
+msgstr "Sačuvaj postavke"
+
+msgid "Test API Key"
+msgstr "Testiraj API ključ"
+
+msgid "API key is valid!"
+msgstr "API ključ je važeći!"
+
+msgid "API key is invalid"
+msgstr "API ključ nije važeći"
+
+msgid "Simplify all answers"
+msgstr "Pojednostavite sve odgovore"
+
+msgid "Address users in friendly manner"
+msgstr "Obraćajte se korisnicima na prijateljski način"
+
+msgid "Add Custom Rule"
+msgstr "Dodaj prilagođeno pravilo"
+
+msgid "Remove"
+msgstr "Ukloni"
+
+msgid "Settings saved successfully."
+msgstr "Postavke su uspešno sačuvane."
+
+msgid "Contact Information"
+msgstr "Kontakt informacije"
+
+msgid "Phone Number"
+msgstr "Broj telefona"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "AI Configuration"
+msgstr "AI konfiguracija"
+
+msgid "AI Provider"
+msgstr "AI provajder"
+
+msgid "API Key"
+msgstr "API ključ"
+
+msgid "Database Status"
+msgstr "Status baze podataka"
+
+msgid "Create Cache Table"
+msgstr "Kreiraj cache tabelu"
+
+msgid "Table created successfully!"
+msgstr "Tabela je uspešno kreirana!"
+
+msgid "Currently %d cached entries."
+msgstr "Trenutno %d keširanih unosa."
+
+msgid "Table exists"
+msgstr "Tabela postoji"
+
+msgid "Table does not exist"
+msgstr "Tabela ne postoji"
+
+msgid "The cache table is required for storing search results. Click the button below to create it."
+msgstr "Cache tabela je potrebna za čuvanje rezultata pretrage. Kliknite na dugme ispod da biste je kreirali."
+
+msgid "You are a helpful assistant that answers questions based on content from a WordPress website. "
+msgstr "Vi ste koristan asistent koji odgovara na pitanja na osnovu sadržaja sa WordPress sajta. "
+
+msgid "Keep your answers simple and easy to understand. "
+msgstr "Držite vaše odgovore jednostavnim i lako razumljivim. "
+
+msgid "Use a friendly and professional tone. "
+msgstr "Koristite prijateljski i profesionalan ton. "
+
+msgid "If you cannot find the answer in the provided context, apologize and suggest contacting the website for more information. "
+msgstr "Ako ne možete da pronađete odgovor u datom kontekstu, izvinite se i predložite kontaktiranje sajta za više informacija. "
+
+msgid "Only use information from the provided context. If the context does not contain the answer, say so clearly."
+msgstr "Koristite samo informacije iz datog konteksta. Ako kontekst ne sadrži odgovor, jasno to recite."
+
+msgid "Invalid API key. Please check your API key."
+msgstr "Nevažeći API ključ. Molimo proverite vaš API ključ."
+
+msgid "Could not connect to OpenAI API."
+msgstr "Nije moguće povezati se sa OpenAI API."
+
+msgid "Could not validate API key. Please try again."
+msgstr "Nije moguće potvrditi API ključ. Molimo pokušajte ponovo."
+
+msgid "Invalid response from AI service."
+msgstr "Nevažeći odgovor od AI servisa."
+
+msgid "Unknown error creating table."
+msgstr "Nepoznata greška pri kreiranju tabele."

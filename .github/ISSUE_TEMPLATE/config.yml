@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Premium Support
+    url: https://deeq.io
+    about: For premium support and feature requests, please contact us directly.
+  - name: Documentation
+    url: https://github.com/bkrsmanovic/wp-cais-plugin
+    about: Check the README for documentation and usage instructions.

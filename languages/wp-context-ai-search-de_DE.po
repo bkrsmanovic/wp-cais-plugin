@@ -1,0 +1,330 @@
+# German translation for WP Context AI Search
+# Copyright (C) 2026
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-01 12:00+0000\n"
+"PO-Revision-Date: 2026-01-01 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "WP Context AI Search"
+msgstr "WP Context KI-Suche"
+
+msgid "WP CAIS"
+msgstr "WP CAIS"
+
+msgid "Enable AI-powered search for your WordPress content. Select which content types should be searchable."
+msgstr "Aktivieren Sie die KI-gestützte Suche für Ihre WordPress-Inhalte. Wählen Sie aus, welche Inhaltstypen durchsuchbar sein sollen."
+
+msgid "Free Features"
+msgstr "Kostenlose Funktionen"
+
+msgid "These features are available in the free version:"
+msgstr "Diese Funktionen sind in der kostenlosen Version verfügbar:"
+
+msgid "Searchable Content"
+msgstr "Durchsuchbare Inhalte"
+
+msgid "Premium Features"
+msgstr "Premium-Funktionen"
+
+msgid "Premium"
+msgstr "Premium"
+
+msgid "Upgrade to Premium"
+msgstr "Auf Premium upgraden"
+
+msgid "Unlock advanced search capabilities with premium features:"
+msgstr "Erschließen Sie erweiterte Suchfunktionen mit Premium-Funktionen:"
+
+msgid "Get Premium"
+msgstr "Premium erhalten"
+
+msgid "Contact Information"
+msgstr "Kontaktinformationen"
+
+msgid "Contact information displayed in the search interface footer."
+msgstr "Kontaktinformationen, die in der Fußzeile der Suchoberfläche angezeigt werden."
+
+msgid "Phone Number"
+msgstr "Telefonnummer"
+
+msgid "e.g., +1 (555) 123-4567"
+msgstr "z.B. +49 (0) 123 456789"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "e.g., 123 Main St, City, State 12345"
+msgstr "z.B. Musterstraße 123, 12345 Musterstadt"
+
+msgid "AI Configuration"
+msgstr "KI-Konfiguration"
+
+msgid "Configure your AI service provider and API key."
+msgstr "Konfigurieren Sie Ihren KI-Dienstanbieter und API-Schlüssel."
+
+msgid "AI Provider"
+msgstr "KI-Anbieter"
+
+msgid "OpenAI (GPT-3.5 Turbo)"
+msgstr "OpenAI (GPT-3.5 Turbo)"
+
+msgid "Claude (Anthropic)"
+msgstr "Claude (Anthropic)"
+
+msgid "Gemini (Google)"
+msgstr "Gemini (Google)"
+
+msgid "HuggingFace (Coming Soon)"
+msgstr "HuggingFace (Demnächst)"
+
+msgid "Select your AI service provider. All providers require an API key."
+msgstr "Wählen Sie Ihren KI-Dienstanbieter. Alle Anbieter benötigen einen API-Schlüssel."
+
+msgid "API Key"
+msgstr "API-Schlüssel"
+
+msgid "Enter your API key"
+msgstr "Geben Sie Ihren API-Schlüssel ein"
+
+msgid "Get your API key from %s"
+msgstr "Holen Sie sich Ihren API-Schlüssel von %s"
+
+msgid "Test API Key"
+msgstr "API-Schlüssel testen"
+
+msgid "API Quota Information"
+msgstr "API-Kontingent-Informationen"
+
+msgid "Loading quota information..."
+msgstr "Kontingent-Informationen werden geladen..."
+
+msgid "AI Behavior Rules"
+msgstr "KI-Verhaltensregeln"
+
+msgid "Configure how the AI should respond to queries."
+msgstr "Konfigurieren Sie, wie die KI auf Anfragen reagieren soll."
+
+msgid "Predefined Rules"
+msgstr "Vordefinierte Regeln"
+
+msgid "Simplify all answers"
+msgstr "Alle Antworten vereinfachen"
+
+msgid "If you do not know answer, offer links to help and contact pages with apologies"
+msgstr "Wenn Sie die Antwort nicht wissen, bieten Sie Links zu Hilfe- und Kontaktseiten mit Entschuldigungen an"
+
+msgid "Address users in friendly manner"
+msgstr "Benutzer freundlich ansprechen"
+
+msgid "Custom Rules"
+msgstr "Benutzerdefinierte Regeln"
+
+msgid "Add Custom Rule"
+msgstr "Benutzerdefinierte Regel hinzufügen"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Database Status"
+msgstr "Datenbankstatus"
+
+msgid "Cache table status and management."
+msgstr "Cache-Tabellenstatus und -verwaltung."
+
+msgid "Cache Table"
+msgstr "Cache-Tabelle"
+
+msgid "Table exists"
+msgstr "Tabelle existiert"
+
+msgid "Currently %d cached entries."
+msgstr "Aktuell %d gecachte Einträge."
+
+msgid "Table does not exist"
+msgstr "Tabelle existiert nicht"
+
+msgid "The cache table is required for storing search results. Click the button below to create it."
+msgstr "Die Cache-Tabelle ist zum Speichern von Suchergebnissen erforderlich. Klicken Sie auf die Schaltfläche unten, um sie zu erstellen."
+
+msgid "Create Cache Table"
+msgstr "Cache-Tabelle erstellen"
+
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+msgid "Settings saved successfully."
+msgstr "Einstellungen erfolgreich gespeichert."
+
+msgid "About WP Context AI Search"
+msgstr "Über WP Context KI-Suche"
+
+msgid "WP Context AI Search provides intelligent, context-aware search results powered by AI. It analyzes your WordPress content to deliver relevant search results."
+msgstr "WP Context KI-Suche bietet intelligente, kontextbezogene Suchergebnisse, die von KI unterstützt werden. Es analysiert Ihre WordPress-Inhalte, um relevante Suchergebnisse zu liefern."
+
+msgid "Free Version"
+msgstr "Kostenlose Version"
+
+msgid "Search Posts"
+msgstr "Beiträge durchsuchen"
+
+msgid "Search Pages"
+msgstr "Seiten durchsuchen"
+
+msgid "AI-powered context matching"
+msgstr "KI-gestütztes Kontext-Matching"
+
+msgid "Upgrade Now"
+msgstr "Jetzt upgraden"
+
+msgid "Premium Version"
+msgstr "Premium-Version"
+
+msgid "Testing..."
+msgstr "Testen..."
+
+msgid "API key is valid!"
+msgstr "API-Schlüssel ist gültig!"
+
+msgid "API key is invalid"
+msgstr "API-Schlüssel ist ungültig"
+
+msgid "Permission denied."
+msgstr "Zugriff verweigert."
+
+msgid "API key is empty."
+msgstr "API-Schlüssel ist leer."
+
+msgid "Table created successfully!"
+msgstr "Tabelle erfolgreich erstellt!"
+
+msgid "Failed to create table. Please check database permissions."
+msgstr "Tabelle konnte nicht erstellt werden. Bitte überprüfen Sie die Datenbankberechtigungen."
+
+msgid "Quota information not available. Check your provider dashboard."
+msgstr "Kontingent-Informationen nicht verfügbar. Überprüfen Sie Ihr Anbieter-Dashboard."
+
+msgid "Purchase More Credits"
+msgstr "Weitere Credits kaufen"
+
+msgid "Searching..."
+msgstr "Suche..."
+
+msgid "An error occurred. Please try again."
+msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+
+msgid "Invalid query parameter."
+msgstr "Ungültiger Abfrageparameter."
+
+msgid "Please enter a search query."
+msgstr "Bitte geben Sie eine Suchanfrage ein."
+
+msgid "Query must be at least %d characters long."
+msgstr "Die Abfrage muss mindestens %d Zeichen lang sein."
+
+msgid "Query must be no more than %d characters long."
+msgstr "Die Abfrage darf höchstens %d Zeichen lang sein."
+
+msgid "WP CAIS not configured properly. Please check your API key settings."
+msgstr "WP CAIS ist nicht ordnungsgemäß konfiguriert. Bitte überprüfen Sie Ihre API-Schlüssel-Einstellungen."
+
+msgid "Search Our Library"
+msgstr "Durchsuchen Sie unsere Bibliothek"
+
+msgid "Ask any question and get intelligent, context-aware answers"
+msgstr "Stellen Sie Fragen und erhalten Sie intelligente, kontextbezogene Antworten"
+
+msgid "Type your question here..."
+msgstr "Geben Sie hier Ihre Frage ein..."
+
+msgid "Enter your question above to get started."
+msgstr "Geben Sie oben Ihre Frage ein, um zu beginnen."
+
+msgid "Need more help?"
+msgstr "Benötigen Sie weitere Hilfe?"
+
+msgid "or"
+msgstr "oder"
+
+msgid "I found %d relevant result(s) for your query: \"%s\"."
+msgstr "Ich habe %d relevante Ergebnis(se) für Ihre Anfrage gefunden: \"%s\"."
+
+msgid "Here are the most relevant sources:"
+msgstr "Hier sind die relevantesten Quellen:"
+
+msgid "I couldn't find specific information about that in our content."
+msgstr "Ich konnte keine spezifischen Informationen dazu in unseren Inhalten finden."
+
+msgid "I apologize for the inconvenience. Please feel free to contact us for more information."
+msgstr "Ich entschuldige mich für die Unannehmlichkeiten. Bitte kontaktieren Sie uns gerne für weitere Informationen."
+
+msgid "You can reach us:"
+msgstr "Sie erreichen uns unter:"
+
+msgid "API key cannot be empty."
+msgstr "API-Schlüssel darf nicht leer sein."
+
+msgid "Provider validation not implemented."
+msgstr "Anbieter-Validierung nicht implementiert."
+
+msgid "Could not connect to OpenAI API."
+msgstr "Verbindung zur OpenAI API konnte nicht hergestellt werden."
+
+msgid "Invalid API key. Please check your API key."
+msgstr "Ungültiger API-Schlüssel. Bitte überprüfen Sie Ihren API-Schlüssel."
+
+msgid "API error occurred."
+msgstr "API-Fehler aufgetreten."
+
+msgid "Could not validate API key. Please try again."
+msgstr "API-Schlüssel konnte nicht validiert werden. Bitte versuchen Sie es erneut."
+
+msgid "Could not connect to Claude API."
+msgstr "Verbindung zur Claude API konnte nicht hergestellt werden."
+
+msgid "Could not connect to Gemini API."
+msgstr "Verbindung zur Gemini API konnte nicht hergestellt werden."
+
+msgid "Quota checking not implemented for this provider."
+msgstr "Kontingent-Prüfung für diesen Anbieter nicht implementiert."
+
+msgid "Quota information not available. Check your OpenAI dashboard."
+msgstr "Kontingent-Informationen nicht verfügbar. Überprüfen Sie Ihr OpenAI-Dashboard."
+
+msgid "Check your Anthropic dashboard for quota information."
+msgstr "Überprüfen Sie Ihr Anthropic-Dashboard für Kontingent-Informationen."
+
+msgid "Check your Google Cloud Console for quota information."
+msgstr "Überprüfen Sie Ihre Google Cloud Console für Kontingent-Informationen."
+
+msgid "Invalid response from AI service."
+msgstr "Ungültige Antwort vom KI-Dienst."
+
+msgid "HuggingFace integration coming soon."
+msgstr "HuggingFace-Integration kommt demnächst."
+
+msgid "You are a helpful assistant that answers questions based on content from a WordPress website. "
+msgstr "Sie sind ein hilfreicher Assistent, der Fragen basierend auf Inhalten von einer WordPress-Website beantwortet. "
+
+msgid "Keep your answers simple and easy to understand. "
+msgstr "Halten Sie Ihre Antworten einfach und leicht verständlich. "
+
+msgid "Use a friendly and professional tone. "
+msgstr "Verwenden Sie einen freundlichen und professionellen Ton. "
+
+msgid "If you cannot find the answer in the provided context, apologize and suggest contacting the website for more information. "
+msgstr "Wenn Sie die Antwort im bereitgestellten Kontext nicht finden können, entschuldigen Sie sich und schlagen Sie vor, die Website für weitere Informationen zu kontaktieren. "
+
+msgid "Only use information from the provided context. If the context does not contain the answer, say so clearly."
+msgstr "Verwenden Sie nur Informationen aus dem bereitgestellten Kontext. Wenn der Kontext die Antwort nicht enthält, sagen Sie dies klar."
+
+msgid "Unknown error creating table."
+msgstr "Unbekannter Fehler beim Erstellen der Tabelle."
