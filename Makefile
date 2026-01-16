@@ -20,7 +20,7 @@ test:
 version-check:
 	@echo "Checking version consistency..."
 	@VERSION=$$(grep "Version:" wp-context-ai-search.php | sed 's/.*Version: *//' | sed 's/ *\*\/.*//'); \
-	CONST_VERSION=$$(grep "define( 'WP_CAIS_VERSION'" wp-context-ai-search.php | sed "s/.*'WP_CAIS_VERSION', '//" | sed "s/'.*//"); \
+	CONST_VERSION=$$(grep "define( 'CAIS_VERSION'" wp-context-ai-search.php | sed "s/.*'CAIS_VERSION', '//" | sed "s/'.*//"); \
 	if [ "$$VERSION" = "$$CONST_VERSION" ]; then \
 		echo "✓ Versions match: $$VERSION"; \
 	else \
@@ -42,14 +42,14 @@ version:
 	@echo "Updating version to $(VERSION) in all files..."
 	@# Main plugin file - header and constant
 	@sed -i "s/Version: [0-9.]*/Version: $(VERSION)/" wp-context-ai-search.php
-	@sed -i "s/define( 'WP_CAIS_VERSION', '[^']*'/define( 'WP_CAIS_VERSION', '$(VERSION)'/" wp-context-ai-search.php
+	@sed -i "s/define( 'CAIS_VERSION', '[^']*'/define( 'CAIS_VERSION', '$(VERSION)'/" wp-context-ai-search.php
 	@# package.json
 	@sed -i 's/"version": "[^"]*"/"version": "$(VERSION)"/' package.json
 	@# README.txt - stable tag and changelog sections
 	@sed -i "s/Stable tag: [0-9.]*/Stable tag: $(VERSION)/" README.txt
 	@sed -i "s/= [0-9.]* =/= $(VERSION) =/g" README.txt
 	@# Language files (.po and .pot)
-	@find languages -name "*.po" -o -name "*.pot" | xargs sed -i "s/Project-Id-Version: WP Context AI Search [0-9.]*/Project-Id-Version: WP Context AI Search $(VERSION)/"
+	@find languages -name "*.po" -o -name "*.pot" | xargs sed -i "s/Project-Id-Version: Context AI Search [0-9.]*/Project-Id-Version: Context AI Search $(VERSION)/"
 	@# Documentation files
 	@sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/v$(VERSION)/g" GIT_PUSH_INSTRUCTIONS.md 2>/dev/null || true
 	@sed -i "s/Version is [0-9.]*/Version is $(VERSION)/" GIT_PUSH_INSTRUCTIONS.md 2>/dev/null || true
@@ -112,7 +112,7 @@ pre-release: version-check phpcs
 package:
 	@echo "Packaging plugin for WordPress.org submission..."
 	@VERSION=$$(grep "Version:" wp-context-ai-search.php | sed 's/.*Version: *//' | sed 's/ *\*\/.*//'); \
-	PLUGIN_NAME="wp-context-ai-search"; \
+	PLUGIN_NAME="context-ai-search"; \
 	ZIP_NAME="$${PLUGIN_NAME}-$${VERSION}.zip"; \
 	TEMP_DIR="/tmp/$${PLUGIN_NAME}-package"; \
 	rm -rf "$$TEMP_DIR" "$$ZIP_NAME"; \
@@ -129,20 +129,23 @@ package:
 	cp LICENSE.txt "$$TEMP_DIR/$${PLUGIN_NAME}/"; \
 	cp CHANGELOG.md "$$TEMP_DIR/$${PLUGIN_NAME}/" 2>/dev/null || true; \
 	echo "Cleaning up hidden files and development files..."; \
-	find "$$TEMP_DIR/$${PLUGIN_NAME}" -name ".DS_Store" -delete; \
-	find "$$TEMP_DIR/$${PLUGIN_NAME}" -name ".editorconfig" -delete; \
-	find "$$TEMP_DIR/$${PLUGIN_NAME}" -name ".*" -type f -delete; \
+	find "$$TEMP_DIR/$${PLUGIN_NAME}" -name ".DS_Store" -delete 2>/dev/null || true; \
+	find "$$TEMP_DIR/$${PLUGIN_NAME}" -name ".editorconfig" -delete 2>/dev/null || true; \
+	find "$$TEMP_DIR/$${PLUGIN_NAME}" -name ".git*" -delete 2>/dev/null || true; \
 	echo "Creating zip file..."; \
 	CURRENT_DIR=$$(pwd); \
-	cd "$$TEMP_DIR" && zip -r "$$ZIP_NAME" "$${PLUGIN_NAME}" -q && mv "$$ZIP_NAME" "$$CURRENT_DIR/"; \
+	cd "$$TEMP_DIR" && zip -r "$$ZIP_NAME" "$${PLUGIN_NAME}" -q && mv "$$ZIP_NAME" "$$CURRENT_DIR/" && echo "Zip created successfully"; \
 	cd - > /dev/null; \
 	rm -rf "$$TEMP_DIR"; \
+	if [ ! -f "$$CURRENT_DIR/$$ZIP_NAME" ]; then \
+		echo "ERROR: Zip file was not created!"; \
+		exit 1; \
+	fi; \
 	echo ""; \
 	echo "✓ Package created: $$ZIP_NAME"; \
 	echo ""; \
 	echo "⚠️  IMPORTANT: Before submitting to WordPress.org:"; \
-	echo "   1. Remove 'wp_org_gatekeeper' line from wp-context-ai-search.php (line 62)"; \
-	echo "   2. Test the zip on a fresh WordPress installation"; \
-	echo "   3. Verify all features work correctly"; \
+	echo "   1. Test the zip on a fresh WordPress installation"; \
+	echo "   2. Verify all features work correctly"; \
 	echo ""; \
 	echo "Package location: $$(pwd)/$$ZIP_NAME"

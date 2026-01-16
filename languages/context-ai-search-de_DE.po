@@ -1,8 +1,8 @@
-# German translation for WP Context AI Search
+# German translation for Context AI Search
 # Copyright (C) 2026
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Project-Id-Version: Context AI Search 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-01 12:00+0000\n"
 "PO-Revision-Date: 2026-01-01 12:00+0000\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "WP Context AI Search"
-msgstr "WP Context KI-Suche"
+msgid "Context AI Search"
+msgstr "Context KI-Suche"
 
 msgid "WP CAIS"
-msgstr "WP CAIS"
+msgstr "CAIS"
 
 msgid "Enable AI-powered search for your WordPress content. Select which content types should be searchable."
 msgstr "Aktivieren Sie die KI-gestützte Suche für Ihre WordPress-Inhalte. Wählen Sie aus, welche Inhaltstypen durchsuchbar sein sollen."
@@ -164,11 +164,11 @@ msgstr "Einstellungen speichern"
 msgid "Settings saved successfully."
 msgstr "Einstellungen erfolgreich gespeichert."
 
-msgid "About WP Context AI Search"
-msgstr "Über WP Context KI-Suche"
+msgid "About Context AI Search"
+msgstr "Über Context KI-Suche"
 
-msgid "WP Context AI Search provides intelligent, context-aware search results powered by AI. It analyzes your WordPress content to deliver relevant search results."
-msgstr "WP Context KI-Suche bietet intelligente, kontextbezogene Suchergebnisse, die von KI unterstützt werden. Es analysiert Ihre WordPress-Inhalte, um relevante Suchergebnisse zu liefern."
+msgid "Context AI Search provides intelligent, context-aware search results powered by AI. It analyzes your WordPress content to deliver relevant search results."
+msgstr "Context KI-Suche bietet intelligente, kontextbezogene Suchergebnisse, die von KI unterstützt werden. Es analysiert Ihre WordPress-Inhalte, um relevante Suchergebnisse zu liefern."
 
 msgid "Free Version"
 msgstr "Kostenlose Version"
@@ -234,7 +234,7 @@ msgid "Query must be no more than %d characters long."
 msgstr "Die Abfrage darf höchstens %d Zeichen lang sein."
 
 msgid "WP CAIS not configured properly. Please check your API key settings."
-msgstr "WP CAIS ist nicht ordnungsgemäß konfiguriert. Bitte überprüfen Sie Ihre API-Schlüssel-Einstellungen."
+msgstr "CAIS ist nicht ordnungsgemäß konfiguriert. Bitte überprüfen Sie Ihre API-Schlüssel-Einstellungen."
 
 msgid "Search Our Library"
 msgstr "Durchsuchen Sie unsere Bibliothek"

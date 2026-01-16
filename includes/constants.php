@@ -2,7 +2,7 @@
 /**
  * Plugin constants.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,16 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_Constants class.
+ * CAIS_Constants class.
  */
-class WP_CAIS_Constants {
+class CAIS_Constants {
 
 	/**
 	 * Cache group name for object cache.
 	 *
 	 * @var string
 	 */
-	const CACHE_GROUP = 'wp_cais';
+	const CACHE_GROUP = 'cais';
 
 	/**
 	 * Cache expiry time in seconds (1 hour).

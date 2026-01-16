@@ -34,8 +34,8 @@ jobs:
       
       - name: Check version consistency
         run: |
-          VERSION=$(grep "Version:" wp-context-ai-search.php | sed 's/.*Version: *//' | sed 's/ *\*\/.*//')
-          CONST_VERSION=$(grep "define( 'WP_CAIS_VERSION'" wp-context-ai-search.php | sed "s/.*'WP_CAIS_VERSION', '//" | sed "s/'.*//")
+          VERSION=$(grep "Version:" context-ai-search.php | sed 's/.*Version: *//' | sed 's/ *\*\/.*//')
+          CONST_VERSION=$(grep "define( 'CAIS_VERSION'" context-ai-search.php | sed "s/.*'CAIS_VERSION', '//" | sed "s/'.*//")
           if [ "$VERSION" != "$CONST_VERSION" ]; then
             echo "Version mismatch! Header: $VERSION, Constant: $CONST_VERSION"
             exit 1

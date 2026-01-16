@@ -2,7 +2,7 @@
 /**
  * Admin functionality.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_Admin class.
+ * CAIS_Admin class.
  */
-class WP_CAIS_Admin extends WP_CAIS_Singleton {
+class CAIS_Admin extends CAIS_Singleton {
 
 	/**
 	 * Constructor.
@@ -22,15 +22,15 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-		add_action( 'wp_ajax_wp_cais_test_api_key', array( $this, 'test_api_key_ajax' ) );
-		add_action( 'wp_ajax_wp_cais_get_quota', array( $this, 'get_quota_ajax' ) );
-		add_action( 'wp_ajax_wp_cais_create_table', array( $this, 'create_table_ajax' ) );
+		add_action( 'wp_ajax_cais_test_api_key', array( $this, 'test_api_key_ajax' ) );
+		add_action( 'wp_ajax_cais_get_quota', array( $this, 'get_quota_ajax' ) );
+		add_action( 'wp_ajax_cais_create_table', array( $this, 'create_table_ajax' ) );
 		
 		// Add plugin action links
-		if ( function_exists( 'wp_cais_fs' ) ) {
+		if ( function_exists( 'cais_fs' ) ) {
 			// Freemius handles upgrade links automatically
 		} else {
-			add_filter( 'plugin_action_links_' . WP_CAIS_PLUGIN_BASENAME, array( $this, 'add_plugin_action_links' ) );
+			add_filter( 'plugin_action_links_' . CAIS_PLUGIN_BASENAME, array( $this, 'add_plugin_action_links' ) );
 		}
 	}
 
@@ -41,8 +41,8 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 	 * @return array Modified action links.
 	 */
 	public function add_plugin_action_links( $links ) {
-		$settings_link = '<a href="' . admin_url( 'options-general.php?page=wp-context-ai-search' ) . '">' . __( 'Settings', 'wp-context-ai-search' ) . '</a>';
-		$premium_link  = '<a href="' . esc_url( WP_CAIS_PREMIUM_URL ) . '" target="_blank" rel="noopener noreferrer" style="color: #2271b1; font-weight: 600;">' . __( 'Get Premium', 'wp-context-ai-search' ) . '</a>';
+		$settings_link = '<a href="' . admin_url( 'options-general.php?page=context-ai-search' ) . '">' . __( 'Settings', 'context-ai-search' ) . '</a>';
+		$premium_link  = '<a href="' . esc_url( CAIS_PREMIUM_URL ) . '" target="_blank" rel="noopener noreferrer" style="color: #2271b1; font-weight: 600;">' . __( 'Get Premium', 'context-ai-search' ) . '</a>';
 		
 		array_unshift( $links, $settings_link );
 		$links[] = $premium_link;
@@ -57,10 +57,10 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 		// Create the main admin menu page
 		// Freemius will hook into this existing menu
 		add_menu_page(
-			__( 'WP Context AI Search', 'wp-context-ai-search' ),
-			__( 'Context AI Search', 'wp-context-ai-search' ),
+			__( 'Context AI Search', 'context-ai-search' ),
+			__( 'Context AI Search', 'context-ai-search' ),
 			'manage_options',
-			'wp-context-ai-search',
+			'context-ai-search',
 			array( $this, 'render_settings_page' ),
 			'dashicons-search',
 			30
@@ -68,11 +68,11 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 
 		// Add Settings as the first submenu (default page)
 		add_submenu_page(
-			'wp-context-ai-search',
-			__( 'Settings', 'wp-context-ai-search' ),
-			__( 'Settings', 'wp-context-ai-search' ),
+			'context-ai-search',
+			__( 'Settings', 'context-ai-search' ),
+			__( 'Settings', 'context-ai-search' ),
 			'manage_options',
-			'wp-context-ai-search',
+			'context-ai-search',
 			array( $this, 'render_settings_page' )
 		);
 	}
@@ -82,8 +82,8 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 	 */
 	public function register_settings() {
 		register_setting(
-			'wp_cais_settings_group',
-			WP_CAIS_Settings::OPTION_NAME,
+			'cais_settings_group',
+			CAIS_Settings::OPTION_NAME,
 			array(
 				'sanitize_callback' => array( $this, 'sanitize_settings' ),
 			)
@@ -145,11 +145,11 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 	 * Handle form submission.
 	 */
 	private function handle_form_submission() {
-		if ( ! isset( $_POST['wp_cais_save_settings'] ) ) {
+		if ( ! isset( $_POST['cais_save_settings'] ) ) {
 			return;
 		}
 
-		if ( ! check_admin_referer( 'wp_cais_save_settings', 'wp_cais_settings_nonce' ) ) {
+		if ( ! check_admin_referer( 'cais_save_settings', 'cais_settings_nonce' ) ) {
 			return;
 		}
 
@@ -160,10 +160,10 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 		$enabled_post_types = isset( $_POST['enabled_post_types'] ) ? (array) $_POST['enabled_post_types'] : array();
 
 		// Validate that only free post types are enabled if not premium.
-		$is_premium = function_exists( 'wp_cais_fs' ) ? wp_cais_fs()->can_use_premium_code__premium_only() : false;
+		$is_premium = function_exists( 'cais_fs' ) ? cais_fs()->can_use_premium_code__premium_only() : false;
 		if ( ! $is_premium ) {
 			// Filter out premium post types for free users
-			$free_types = WP_CAIS_Settings::get_free_post_types();
+			$free_types = CAIS_Settings::get_free_post_types();
 			$enabled_post_types = array_intersect( $enabled_post_types, $free_types );
 		}
 
@@ -198,33 +198,33 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 		// AI Configuration
 		if ( isset( $_POST['ai_api_key'] ) ) {
 			$new_api_key = sanitize_text_field( $_POST['ai_api_key'] );
-			$current_api_key = WP_CAIS_Settings::get_ai_api_key();
+			$current_api_key = CAIS_Settings::get_ai_api_key();
 			$provider = isset( $_POST['ai_provider'] ) ? sanitize_text_field( $_POST['ai_provider'] ) : 'openai';
 			
 			// Validate API key if it's new or changed
 			if ( ! empty( $new_api_key ) && $new_api_key !== $current_api_key ) {
-				require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-ai.php';
-				$validation = WP_CAIS_AI::validate_api_key( $new_api_key, $provider );
+				require_once CAIS_PLUGIN_DIR . 'includes/class-cais-ai.php';
+				$validation = CAIS_AI::validate_api_key( $new_api_key, $provider );
 				
 				if ( is_wp_error( $validation ) ) {
 					add_settings_error(
-						'wp_cais_settings',
+						'cais_settings',
 						'invalid_api_key',
 						sprintf(
 							/* translators: %s: Error message */
-							__( 'API Key Validation Failed: %s', 'wp-context-ai-search' ),
+							__( 'API Key Validation Failed: %s', 'context-ai-search' ),
 							$validation->get_error_message()
 						),
 						'error'
 					);
 					// Don't save invalid key - keep the old one
 					// Clear the validation cache so it re-checks
-					delete_transient( 'wp_cais_api_valid_' . md5( $new_api_key ) );
+					delete_transient( 'cais_api_valid_' . md5( $new_api_key ) );
 				} else {
 					$settings_to_save['ai_api_key'] = $new_api_key;
 					// Clear old cache and set new validation cache
-					delete_transient( 'wp_cais_api_valid_' . md5( $current_api_key ) );
-					set_transient( 'wp_cais_api_valid_' . md5( $new_api_key ), 1, HOUR_IN_SECONDS );
+					delete_transient( 'cais_api_valid_' . md5( $current_api_key ) );
+					set_transient( 'cais_api_valid_' . md5( $new_api_key ), 1, HOUR_IN_SECONDS );
 				}
 			} elseif ( ! empty( $new_api_key ) && $new_api_key === $current_api_key ) {
 				// Key unchanged, save as is
@@ -232,7 +232,7 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 			} else {
 				// Empty key - clear cache
 				$settings_to_save['ai_api_key'] = '';
-				delete_transient( 'wp_cais_api_valid_' . md5( $current_api_key ) );
+				delete_transient( 'cais_api_valid_' . md5( $current_api_key ) );
 			}
 		}
 		if ( isset( $_POST['ai_provider'] ) ) {
@@ -240,12 +240,12 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 		}
 
 
-		WP_CAIS_Settings::update_settings( $settings_to_save );
+		CAIS_Settings::update_settings( $settings_to_save );
 
 		add_settings_error(
-			'wp_cais_settings',
-			'wp_cais_settings_saved',
-			__( 'Settings saved successfully.', 'wp-context-ai-search' ),
+			'cais_settings',
+			'cais_settings_saved',
+			__( 'Settings saved successfully.', 'context-ai-search' ),
 			'success'
 		);
 	}
@@ -261,11 +261,11 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( $_SERVER['REQUEST_URI'] ) : '';
 		
 		$is_our_page = (
-			'settings_page_wp-context-ai-search' === $hook ||
-			'toplevel_page_wp-context-ai-search' === $hook ||
-			'wp-context-ai-search' === $page ||
-			strpos( $hook, 'wp-context-ai-search' ) !== false ||
-			strpos( $request_uri, 'page=wp-context-ai-search' ) !== false
+			'settings_page_context-ai-search' === $hook ||
+			'toplevel_page_context-ai-search' === $hook ||
+			'context-ai-search' === $page ||
+			strpos( $hook, 'context-ai-search' ) !== false ||
+			strpos( $request_uri, 'page=context-ai-search' ) !== false
 		);
 		
 		if ( ! $is_our_page ) {
@@ -273,32 +273,32 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 		}
 
 		wp_enqueue_style(
-			'wp-cais-admin',
-			WP_CAIS_PLUGIN_URL . 'admin/css/admin.css',
+			'cais-admin',
+			CAIS_PLUGIN_URL . 'admin/css/admin.css',
 			array(),
-			WP_CAIS_VERSION
+			CAIS_VERSION
 		);
 
 		wp_enqueue_script(
-			'wp-cais-admin',
-			WP_CAIS_PLUGIN_URL . 'admin/js/admin.js',
+			'cais-admin',
+			CAIS_PLUGIN_URL . 'admin/js/admin.js',
 			array( 'jquery' ),
-			WP_CAIS_VERSION,
+			CAIS_VERSION,
 			true
 		);
 
 		wp_localize_script(
-			'wp-cais-admin',
+			'cais-admin',
 			'wpCaisAdmin',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce' => wp_create_nonce( 'wp_cais_test_api_key' ),
+				'nonce' => wp_create_nonce( 'cais_test_api_key' ),
 				'strings' => array(
-					'removeRule' => __( 'Remove', 'wp-context-ai-search' ),
-					'addRule' => __( 'Add Custom Rule', 'wp-context-ai-search' ),
-					'testing' => __( 'Testing...', 'wp-context-ai-search' ),
-					'valid' => __( 'API key is valid!', 'wp-context-ai-search' ),
-					'invalid' => __( 'API key is invalid', 'wp-context-ai-search' ),
+					'removeRule' => __( 'Remove', 'context-ai-search' ),
+					'addRule' => __( 'Add Custom Rule', 'context-ai-search' ),
+					'testing' => __( 'Testing...', 'context-ai-search' ),
+					'valid' => __( 'API key is valid!', 'context-ai-search' ),
+					'invalid' => __( 'API key is invalid', 'context-ai-search' ),
 				),
 			)
 		);
@@ -310,62 +310,62 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 	public function render_settings_page() {
 		$this->handle_form_submission();
 
-		$settings           = WP_CAIS_Settings::get_settings();
+		$settings           = CAIS_Settings::get_settings();
 		$enabled_post_types = $settings['enabled_post_types'];
-		$is_premium         = function_exists( 'wp_cais_fs' ) ? wp_cais_fs()->can_use_premium_code__premium_only() : false;
-		$free_post_types    = WP_CAIS_Settings::get_free_post_types();
-		$premium_post_types = WP_CAIS_Settings::get_premium_post_types();
-		$premium_features   = WP_CAIS_License::get_premium_features();
-		$contact_info       = WP_CAIS_Settings::get_contact_info();
-		$custom_title        = WP_CAIS_Settings::get_setting( 'custom_title', '' );
-		$custom_subtitle     = WP_CAIS_Settings::get_setting( 'custom_subtitle', '' );
-		$custom_placeholder  = WP_CAIS_Settings::get_setting( 'custom_placeholder', '' );
-		$custom_welcome_msg  = WP_CAIS_Settings::get_setting( 'custom_welcome_msg', '' );
-		$ai_api_key         = WP_CAIS_Settings::get_ai_api_key();
-		$ai_provider        = WP_CAIS_Settings::get_ai_provider();
+		$is_premium         = function_exists( 'cais_fs' ) ? cais_fs()->can_use_premium_code__premium_only() : false;
+		$free_post_types    = CAIS_Settings::get_free_post_types();
+		$premium_post_types = CAIS_Settings::get_premium_post_types();
+		$premium_features   = CAIS_License::get_premium_features();
+		$contact_info       = CAIS_Settings::get_contact_info();
+		$custom_title        = CAIS_Settings::get_setting( 'custom_title', '' );
+		$custom_subtitle     = CAIS_Settings::get_setting( 'custom_subtitle', '' );
+		$custom_placeholder  = CAIS_Settings::get_setting( 'custom_placeholder', '' );
+		$custom_welcome_msg  = CAIS_Settings::get_setting( 'custom_welcome_msg', '' );
+		$ai_api_key         = CAIS_Settings::get_ai_api_key();
+		$ai_provider        = CAIS_Settings::get_ai_provider();
 		
 		// Check database table status
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-database.php';
-		$table_exists = WP_CAIS_Database::table_exists();
-		$table_name = WP_CAIS_Database::get_table_name();
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-database.php';
+		$table_exists = CAIS_Database::table_exists();
+		$table_name = CAIS_Database::get_table_name();
 
 		?>
-		<div class="wrap wp-cais-settings" id="wp-cais-settings-wrapper">
+		<div class="wrap cais-settings" id="cais-settings-wrapper">
 			<h1>
 				<?php echo esc_html( get_admin_page_title() ); ?>
-				<?php if ( ! $is_premium && function_exists( 'wp_cais_fs' ) ) : ?>
-					<span class="wp-cais-plan-badge wp-cais-free-badge">
-						<?php esc_html_e( 'Free Plan', 'wp-context-ai-search' ); ?>
+				<?php if ( ! $is_premium && function_exists( 'cais_fs' ) ) : ?>
+					<span class="cais-plan-badge cais-free-badge">
+						<?php esc_html_e( 'Free Plan', 'context-ai-search' ); ?>
 					</span>
-					<?php if ( wp_cais_fs()->is_registered() ) : ?>
-						<a href="<?php echo esc_url( wp_cais_fs()->get_upgrade_url() ); ?>" class="button button-primary" style="margin-left: 10px;">
-							<?php esc_html_e( 'Upgrade to Premium', 'wp-context-ai-search' ); ?>
+					<?php if ( cais_fs()->is_registered() ) : ?>
+						<a href="<?php echo esc_url( cais_fs()->get_upgrade_url() ); ?>" class="button button-primary" style="margin-left: 10px;">
+							<?php esc_html_e( 'Upgrade to Premium', 'context-ai-search' ); ?>
 						</a>
 					<?php endif; ?>
 				<?php elseif ( $is_premium ) : ?>
-					<span class="wp-cais-plan-badge wp-cais-premium-badge">
-						<?php esc_html_e( 'Premium', 'wp-context-ai-search' ); ?>
+					<span class="cais-plan-badge cais-premium-badge">
+						<?php esc_html_e( 'Premium', 'context-ai-search' ); ?>
 					</span>
 				<?php endif; ?>
 			</h1>
 
-			<div class="wp-cais-header">
-				<h2><?php esc_html_e( 'WP Context AI Search', 'wp-context-ai-search' ); ?></h2>
+			<div class="cais-header">
+				<h2><?php esc_html_e( 'Context AI Search', 'context-ai-search' ); ?></h2>
 				<p class="description">
-					<?php esc_html_e( 'Enable AI-powered search for your WordPress content. Select which content types should be searchable.', 'wp-context-ai-search' ); ?>
+					<?php esc_html_e( 'Enable AI-powered search for your WordPress content. Select which content types should be searchable.', 'context-ai-search' ); ?>
 				</p>
-				<?php if ( ! $is_premium && function_exists( 'wp_cais_fs' ) ) : ?>
-					<div class="wp-cais-free-plan-notice notice notice-info" style="margin-top: 15px; padding: 12px;">
+				<?php if ( ! $is_premium && function_exists( 'cais_fs' ) ) : ?>
+					<div class="cais-free-plan-notice notice notice-info" style="margin-top: 15px; padding: 12px;">
 						<p style="margin: 0;">
-							<strong><?php esc_html_e( 'You are using the Free plan.', 'wp-context-ai-search' ); ?></strong>
-							<?php esc_html_e( 'Upgrade to Premium to unlock Custom Post Types. JSON/Markdown files and external data sources coming soon.', 'wp-context-ai-search' ); ?>
-							<?php if ( wp_cais_fs()->is_registered() ) : ?>
-								<a href="<?php echo esc_url( wp_cais_fs()->get_upgrade_url() ); ?>" class="button button-primary" style="margin-left: 10px;">
-									<?php esc_html_e( 'Upgrade Now', 'wp-context-ai-search' ); ?>
+							<strong><?php esc_html_e( 'You are using the Free plan.', 'context-ai-search' ); ?></strong>
+							<?php esc_html_e( 'Upgrade to Premium to unlock Custom Post Types. JSON/Markdown files and external data sources coming soon.', 'context-ai-search' ); ?>
+							<?php if ( cais_fs()->is_registered() ) : ?>
+								<a href="<?php echo esc_url( cais_fs()->get_upgrade_url() ); ?>" class="button button-primary" style="margin-left: 10px;">
+									<?php esc_html_e( 'Upgrade Now', 'context-ai-search' ); ?>
 								</a>
 							<?php else : ?>
-								<a href="<?php echo esc_url( wp_cais_fs()->get_upgrade_url() ); ?>" class="button button-primary" style="margin-left: 10px;">
-									<?php esc_html_e( 'View Pricing', 'wp-context-ai-search' ); ?>
+								<a href="<?php echo esc_url( cais_fs()->get_upgrade_url() ); ?>" class="button button-primary" style="margin-left: 10px;">
+									<?php esc_html_e( 'View Pricing', 'context-ai-search' ); ?>
 								</a>
 							<?php endif; ?>
 						</p>
@@ -373,47 +373,47 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 				<?php endif; ?>
 			</div>
 
-			<?php settings_errors( 'wp_cais_settings' ); ?>
+			<?php settings_errors( 'cais_settings' ); ?>
 
-			<div class="wp-cais-section" style="margin-bottom: 20px;">
-				<div class="wp-cais-info-box" style="background: #f0f6fc; border-left: 4px solid #2271b1; padding: 15px; margin-bottom: 20px;">
-					<h3 style="margin-top: 0;"><?php esc_html_e( 'How to Use', 'wp-context-ai-search' ); ?></h3>
+			<div class="cais-section" style="margin-bottom: 20px;">
+				<div class="cais-info-box" style="background: #f0f6fc; border-left: 4px solid #2271b1; padding: 15px; margin-bottom: 20px;">
+					<h3 style="margin-top: 0;"><?php esc_html_e( 'How to Use', 'context-ai-search' ); ?></h3>
 					<p style="margin-bottom: 10px;">
-						<?php esc_html_e( 'Add the search interface to any page or post using one of the following methods:', 'wp-context-ai-search' ); ?>
+						<?php esc_html_e( 'Add the search interface to any page or post using one of the following methods:', 'context-ai-search' ); ?>
 					</p>
 					<p style="margin-bottom: 5px;">
-						<strong><?php esc_html_e( 'Shortcode:', 'wp-context-ai-search' ); ?></strong>
+						<strong><?php esc_html_e( 'Shortcode:', 'context-ai-search' ); ?></strong>
 					</p>
 					<code style="display: block; background: #fff; padding: 10px; border: 1px solid #c3c4c7; margin-bottom: 15px; font-size: 13px;">
-						[wp-context-ai-search]
+						[context-ai-search]
 					</code>
 					<p style="margin-bottom: 5px;">
-						<strong><?php esc_html_e( 'PHP Function (in theme templates):', 'wp-context-ai-search' ); ?></strong>
+						<strong><?php esc_html_e( 'PHP Function (in theme templates):', 'context-ai-search' ); ?></strong>
 					</p>
 					<code style="display: block; background: #fff; padding: 10px; border: 1px solid #c3c4c7; font-size: 13px;">
-						&lt;?php echo do_shortcode( '[wp-context-ai-search]' ); ?&gt;
+						&lt;?php echo do_shortcode( '[context-ai-search]' ); ?&gt;
 					</code>
 					<p style="margin-top: 10px; margin-bottom: 0; font-size: 13px; color: #646970;">
-						<?php esc_html_e( 'Note: The search interface will only display if your API key is properly configured.', 'wp-context-ai-search' ); ?>
+						<?php esc_html_e( 'Note: The search interface will only display if your API key is properly configured.', 'context-ai-search' ); ?>
 					</p>
 				</div>
 			</div>
 
-			<div class="wp-cais-content-wrapper">
-				<div class="wp-cais-main-content">
+			<div class="cais-content-wrapper">
+				<div class="cais-main-content">
 					<form method="post" action="">
-						<?php wp_nonce_field( 'wp_cais_save_settings', 'wp_cais_settings_nonce' ); ?>
+						<?php wp_nonce_field( 'cais_save_settings', 'cais_settings_nonce' ); ?>
 
-						<div class="wp-cais-section">
-							<h2><?php esc_html_e( 'Free Features', 'wp-context-ai-search' ); ?></h2>
+						<div class="cais-section">
+							<h2><?php esc_html_e( 'Free Features', 'context-ai-search' ); ?></h2>
 							<p class="description">
-								<?php esc_html_e( 'These features are available in the free version:', 'wp-context-ai-search' ); ?>
+								<?php esc_html_e( 'These features are available in the free version:', 'context-ai-search' ); ?>
 							</p>
 
 							<table class="form-table">
 								<tbody>
 									<tr>
-										<th scope="row"><?php esc_html_e( 'Searchable Content', 'wp-context-ai-search' ); ?></th>
+										<th scope="row"><?php esc_html_e( 'Searchable Content', 'context-ai-search' ); ?></th>
 										<td>
 											<fieldset>
 												<?php foreach ( $free_post_types as $post_type ) : ?>
@@ -439,21 +439,21 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 						</div>
 
 						<?php if ( ! empty( $premium_post_types ) || ! $is_premium ) : ?>
-							<div class="wp-cais-section wp-cais-premium-section">
+							<div class="cais-section cais-premium-section">
 								<h2>
-									<?php esc_html_e( 'Premium Features', 'wp-context-ai-search' ); ?>
+									<?php esc_html_e( 'Premium Features', 'context-ai-search' ); ?>
 									<?php if ( ! $is_premium ) : ?>
-										<span class="wp-cais-badge"><?php esc_html_e( 'Premium', 'wp-context-ai-search' ); ?></span>
+										<span class="cais-badge"><?php esc_html_e( 'Premium', 'context-ai-search' ); ?></span>
 									<?php endif; ?>
 								</h2>
 
 								<?php if ( ! $is_premium ) : ?>
-									<div class="wp-cais-premium-notice">
+									<div class="cais-premium-notice">
 										<p>
-											<strong><?php esc_html_e( 'Upgrade to Premium', 'wp-context-ai-search' ); ?></strong>
+											<strong><?php esc_html_e( 'Upgrade to Premium', 'context-ai-search' ); ?></strong>
 										</p>
 										<p>
-											<?php esc_html_e( 'Unlock advanced search capabilities with premium features:', 'wp-context-ai-search' ); ?>
+											<?php esc_html_e( 'Unlock advanced search capabilities with premium features:', 'context-ai-search' ); ?>
 										</p>
 										<ul>
 											<?php foreach ( $premium_features as $feature_key => $feature_data ) : ?>
@@ -471,16 +471,16 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 											<?php endforeach; ?>
 										</ul>
 										<p style="margin-top: 10px; font-size: 12px;">
-											* <?php esc_html_e( 'Coming soon', 'wp-context-ai-search' ); ?>
+											* <?php esc_html_e( 'Coming soon', 'context-ai-search' ); ?>
 										</p>
 										<p>
-											<?php if ( function_exists( 'wp_cais_fs' ) ) : ?>
-												<a href="<?php echo esc_url( wp_cais_fs()->get_upgrade_url() ); ?>" class="button button-primary">
-													<?php esc_html_e( 'Get Premium', 'wp-context-ai-search' ); ?>
+											<?php if ( function_exists( 'cais_fs' ) ) : ?>
+												<a href="<?php echo esc_url( cais_fs()->get_upgrade_url() ); ?>" class="button button-primary">
+													<?php esc_html_e( 'Get Premium', 'context-ai-search' ); ?>
 												</a>
 											<?php else : ?>
-												<a href="<?php echo esc_url( WP_CAIS_PREMIUM_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button button-primary">
-													<?php esc_html_e( 'Get Premium', 'wp-context-ai-search' ); ?>
+												<a href="<?php echo esc_url( CAIS_PREMIUM_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button button-primary">
+													<?php esc_html_e( 'Get Premium', 'context-ai-search' ); ?>
 												</a>
 											<?php endif; ?>
 										</p>
@@ -490,7 +490,7 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 										<table class="form-table">
 											<tbody>
 												<tr>
-													<th scope="row"><?php esc_html_e( 'Custom Post Types', 'wp-context-ai-search' ); ?></th>
+													<th scope="row"><?php esc_html_e( 'Custom Post Types', 'context-ai-search' ); ?></th>
 													<td>
 														<fieldset>
 															<?php foreach ( $premium_post_types as $post_type => $label ) : ?>
@@ -517,17 +517,17 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 							</div>
 						<?php endif; ?>
 
-						<div class="wp-cais-section">
-							<h2><?php esc_html_e( 'Search Interface Text', 'wp-context-ai-search' ); ?></h2>
+						<div class="cais-section">
+							<h2><?php esc_html_e( 'Search Interface Text', 'context-ai-search' ); ?></h2>
 							<p class="description">
-								<?php esc_html_e( 'Customize the text displayed in the search interface. Leave empty to use default translations.', 'wp-context-ai-search' ); ?>
+								<?php esc_html_e( 'Customize the text displayed in the search interface. Leave empty to use default translations.', 'context-ai-search' ); ?>
 							</p>
 
 							<table class="form-table">
 								<tbody>
 									<tr>
 										<th scope="row">
-											<label for="custom_title"><?php esc_html_e( 'Search Title', 'wp-context-ai-search' ); ?></label>
+											<label for="custom_title"><?php esc_html_e( 'Search Title', 'context-ai-search' ); ?></label>
 										</th>
 										<td>
 											<input
@@ -536,16 +536,16 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 												name="custom_title"
 												value="<?php echo esc_attr( $custom_title ); ?>"
 												class="regular-text"
-												placeholder="<?php esc_attr_e( 'e.g., Search Our Library', 'wp-context-ai-search' ); ?>"
+												placeholder="<?php esc_attr_e( 'e.g., Search Our Library', 'context-ai-search' ); ?>"
 											/>
 											<p class="description">
-												<?php esc_html_e( 'Main title displayed at the top of the search interface.', 'wp-context-ai-search' ); ?>
+												<?php esc_html_e( 'Main title displayed at the top of the search interface.', 'context-ai-search' ); ?>
 											</p>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">
-											<label for="custom_subtitle"><?php esc_html_e( 'Subtitle', 'wp-context-ai-search' ); ?></label>
+											<label for="custom_subtitle"><?php esc_html_e( 'Subtitle', 'context-ai-search' ); ?></label>
 										</th>
 										<td>
 											<input
@@ -554,16 +554,16 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 												name="custom_subtitle"
 												value="<?php echo esc_attr( $custom_subtitle ); ?>"
 												class="regular-text"
-												placeholder="<?php esc_attr_e( 'e.g., Ask any question and get intelligent answers', 'wp-context-ai-search' ); ?>"
+												placeholder="<?php esc_attr_e( 'e.g., Ask any question and get intelligent answers', 'context-ai-search' ); ?>"
 											/>
 											<p class="description">
-												<?php esc_html_e( 'Subtitle displayed below the main title.', 'wp-context-ai-search' ); ?>
+												<?php esc_html_e( 'Subtitle displayed below the main title.', 'context-ai-search' ); ?>
 											</p>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">
-											<label for="custom_placeholder"><?php esc_html_e( 'Input Placeholder', 'wp-context-ai-search' ); ?></label>
+											<label for="custom_placeholder"><?php esc_html_e( 'Input Placeholder', 'context-ai-search' ); ?></label>
 										</th>
 										<td>
 											<input
@@ -572,16 +572,16 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 												name="custom_placeholder"
 												value="<?php echo esc_attr( $custom_placeholder ); ?>"
 												class="regular-text"
-												placeholder="<?php esc_attr_e( 'e.g., Type your question here...', 'wp-context-ai-search' ); ?>"
+												placeholder="<?php esc_attr_e( 'e.g., Type your question here...', 'context-ai-search' ); ?>"
 											/>
 											<p class="description">
-												<?php esc_html_e( 'Placeholder text shown in the search input field.', 'wp-context-ai-search' ); ?>
+												<?php esc_html_e( 'Placeholder text shown in the search input field.', 'context-ai-search' ); ?>
 											</p>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">
-											<label for="custom_welcome_msg"><?php esc_html_e( 'Welcome Message', 'wp-context-ai-search' ); ?></label>
+											<label for="custom_welcome_msg"><?php esc_html_e( 'Welcome Message', 'context-ai-search' ); ?></label>
 										</th>
 										<td>
 											<input
@@ -590,10 +590,10 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 												name="custom_welcome_msg"
 												value="<?php echo esc_attr( $custom_welcome_msg ); ?>"
 												class="regular-text"
-												placeholder="<?php esc_attr_e( 'e.g., Enter your question above to get started.', 'wp-context-ai-search' ); ?>"
+												placeholder="<?php esc_attr_e( 'e.g., Enter your question above to get started.', 'context-ai-search' ); ?>"
 											/>
 											<p class="description">
-												<?php esc_html_e( 'Welcome message displayed before the user enters a query.', 'wp-context-ai-search' ); ?>
+												<?php esc_html_e( 'Welcome message displayed before the user enters a query.', 'context-ai-search' ); ?>
 											</p>
 										</td>
 									</tr>
@@ -601,17 +601,17 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 							</table>
 						</div>
 
-						<div class="wp-cais-section">
-							<h2><?php esc_html_e( 'Contact Information', 'wp-context-ai-search' ); ?></h2>
+						<div class="cais-section">
+							<h2><?php esc_html_e( 'Contact Information', 'context-ai-search' ); ?></h2>
 							<p class="description">
-								<?php esc_html_e( 'Contact information displayed in the search interface footer.', 'wp-context-ai-search' ); ?>
+								<?php esc_html_e( 'Contact information displayed in the search interface footer.', 'context-ai-search' ); ?>
 							</p>
 
 							<table class="form-table">
 								<tbody>
 									<tr>
 										<th scope="row">
-											<label for="contact_phone"><?php esc_html_e( 'Phone Number', 'wp-context-ai-search' ); ?></label>
+											<label for="contact_phone"><?php esc_html_e( 'Phone Number', 'context-ai-search' ); ?></label>
 										</th>
 										<td>
 											<input
@@ -620,13 +620,13 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 												name="contact_phone"
 												value="<?php echo esc_attr( $contact_info['phone'] ); ?>"
 												class="regular-text"
-												placeholder="<?php esc_attr_e( 'e.g., +1 (555) 123-4567', 'wp-context-ai-search' ); ?>"
+												placeholder="<?php esc_attr_e( 'e.g., +1 (555) 123-4567', 'context-ai-search' ); ?>"
 											/>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">
-											<label for="contact_address"><?php esc_html_e( 'Address', 'wp-context-ai-search' ); ?></label>
+											<label for="contact_address"><?php esc_html_e( 'Address', 'context-ai-search' ); ?></label>
 										</th>
 										<td>
 											<textarea
@@ -634,7 +634,7 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 												name="contact_address"
 												rows="3"
 												class="large-text"
-												placeholder="<?php esc_attr_e( 'e.g., 123 Main St, City, State 12345', 'wp-context-ai-search' ); ?>"
+												placeholder="<?php esc_attr_e( 'e.g., 123 Main St, City, State 12345', 'context-ai-search' ); ?>"
 											><?php echo esc_textarea( $contact_info['address'] ); ?></textarea>
 										</td>
 									</tr>
@@ -642,41 +642,41 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 							</table>
 						</div>
 
-						<div class="wp-cais-section">
-							<h2><?php esc_html_e( 'AI Configuration', 'wp-context-ai-search' ); ?></h2>
+						<div class="cais-section">
+							<h2><?php esc_html_e( 'AI Configuration', 'context-ai-search' ); ?></h2>
 							<p class="description">
-								<?php esc_html_e( 'Configure your AI service provider and API key.', 'wp-context-ai-search' ); ?>
+								<?php esc_html_e( 'Configure your AI service provider and API key.', 'context-ai-search' ); ?>
 							</p>
 
 							<table class="form-table">
 								<tbody>
 									<tr>
 										<th scope="row">
-											<label for="ai_provider"><?php esc_html_e( 'AI Provider', 'wp-context-ai-search' ); ?></label>
+											<label for="ai_provider"><?php esc_html_e( 'AI Provider', 'context-ai-search' ); ?></label>
 										</th>
 										<td>
 											<select id="ai_provider" name="ai_provider">
 												<option value="openai" <?php selected( $ai_provider, 'openai' ); ?>>
-													<?php esc_html_e( 'OpenAI (GPT-3.5 Turbo)', 'wp-context-ai-search' ); ?>
+													<?php esc_html_e( 'OpenAI (GPT-3.5 Turbo)', 'context-ai-search' ); ?>
 												</option>
 												<option value="claude" <?php selected( $ai_provider, 'claude' ); ?>>
-													<?php esc_html_e( 'Claude (Anthropic)', 'wp-context-ai-search' ); ?>
+													<?php esc_html_e( 'Claude (Anthropic)', 'context-ai-search' ); ?>
 												</option>
 												<option value="gemini" <?php selected( $ai_provider, 'gemini' ); ?>>
-													<?php esc_html_e( 'Gemini (Google)', 'wp-context-ai-search' ); ?>
+													<?php esc_html_e( 'Gemini (Google)', 'context-ai-search' ); ?>
 												</option>
 												<option value="huggingface" <?php selected( $ai_provider, 'huggingface' ); ?>>
-													<?php esc_html_e( 'HuggingFace (Coming Soon)', 'wp-context-ai-search' ); ?>
+													<?php esc_html_e( 'HuggingFace (Coming Soon)', 'context-ai-search' ); ?>
 												</option>
 											</select>
 											<p class="description">
-												<?php esc_html_e( 'Select your AI service provider. All providers require an API key.', 'wp-context-ai-search' ); ?>
+												<?php esc_html_e( 'Select your AI service provider. All providers require an API key.', 'context-ai-search' ); ?>
 											</p>
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">
-											<label for="ai_api_key"><?php esc_html_e( 'API Key', 'wp-context-ai-search' ); ?></label>
+											<label for="ai_api_key"><?php esc_html_e( 'API Key', 'context-ai-search' ); ?></label>
 										</th>
 										<td>
 											<input
@@ -685,10 +685,10 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 												name="ai_api_key"
 												value="<?php echo esc_attr( $ai_api_key ); ?>"
 												class="regular-text"
-												placeholder="<?php esc_attr_e( 'Enter your API key', 'wp-context-ai-search' ); ?>"
+												placeholder="<?php esc_attr_e( 'Enter your API key', 'context-ai-search' ); ?>"
 											/>
 											<p class="description">
-												<span id="wp-cais-api-key-link">
+												<span id="cais-api-key-link">
 													<?php
 													$provider_links = array(
 														'openai' => '<a href="https://platform.openai.com/api-keys" target="_blank">OpenAI</a>',
@@ -698,25 +698,25 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 													$current_link = isset( $provider_links[ $ai_provider ] ) ? $provider_links[ $ai_provider ] : $provider_links['openai'];
 													printf(
 														/* translators: %s: Link to provider */
-														esc_html__( 'Get your API key from %s', 'wp-context-ai-search' ),
+														esc_html__( 'Get your API key from %s', 'context-ai-search' ),
 														$current_link
 													);
 													?>
 												</span>
 											</p>
 											<p>
-												<button type="button" class="button wp-cais-test-api-key" id="wp-cais-test-api-key">
-													<?php esc_html_e( 'Test API Key', 'wp-context-ai-search' ); ?>
+												<button type="button" class="button cais-test-api-key" id="cais-test-api-key">
+													<?php esc_html_e( 'Test API Key', 'context-ai-search' ); ?>
 												</button>
-												<span id="wp-cais-api-key-status" class="wp-cais-api-key-status"></span>
+												<span id="cais-api-key-status" class="cais-api-key-status"></span>
 											</p>
-											<div id="wp-cais-quota-info" class="wp-cais-quota-info" style="margin-top: 15px; padding: 12px; background: #f0f0f1; border-left: 4px solid #2271b1; display: none;">
+											<div id="cais-quota-info" class="cais-quota-info" style="margin-top: 15px; padding: 12px; background: #f0f0f1; border-left: 4px solid #2271b1; display: none;">
 												<p style="margin: 0 0 8px 0; font-weight: 600;">
-													<?php esc_html_e( 'API Quota Information', 'wp-context-ai-search' ); ?>
+													<?php esc_html_e( 'API Quota Information', 'context-ai-search' ); ?>
 												</p>
-												<div id="wp-cais-quota-content">
+												<div id="cais-quota-content">
 													<p style="margin: 0; color: #646970;">
-														<?php esc_html_e( 'Loading quota information...', 'wp-context-ai-search' ); ?>
+														<?php esc_html_e( 'Loading quota information...', 'context-ai-search' ); ?>
 													</p>
 												</div>
 											</div>
@@ -726,20 +726,20 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 							</table>
 						</div>
 
-						<div class="wp-cais-section">
-							<h2><?php esc_html_e( 'Database Status', 'wp-context-ai-search' ); ?></h2>
+						<div class="cais-section">
+							<h2><?php esc_html_e( 'Database Status', 'context-ai-search' ); ?></h2>
 							<p class="description">
-								<?php esc_html_e( 'Cache table status and management.', 'wp-context-ai-search' ); ?>
+								<?php esc_html_e( 'Cache table status and management.', 'context-ai-search' ); ?>
 							</p>
 
 							<table class="form-table">
 								<tbody>
 									<tr>
-										<th scope="row"><?php esc_html_e( 'Cache Table', 'wp-context-ai-search' ); ?></th>
+										<th scope="row"><?php esc_html_e( 'Cache Table', 'context-ai-search' ); ?></th>
 										<td>
 											<?php if ( $table_exists ) : ?>
 												<p style="color: green; margin: 0;">
-													✓ <?php esc_html_e( 'Table exists', 'wp-context-ai-search' ); ?>: <code><?php echo esc_html( $table_name ); ?></code>
+													✓ <?php esc_html_e( 'Table exists', 'context-ai-search' ); ?>: <code><?php echo esc_html( $table_name ); ?></code>
 												</p>
 												<?php
 												global $wpdb;
@@ -749,23 +749,23 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 													<?php
 													printf(
 														/* translators: %d: Number of cached entries */
-														esc_html__( 'Currently %d cached entries.', 'wp-context-ai-search' ),
+														esc_html__( 'Currently %d cached entries.', 'context-ai-search' ),
 														(int) $cache_count
 													);
 													?>
 												</p>
 											<?php else : ?>
 												<p style="color: #d63638; margin: 0;">
-													✗ <?php esc_html_e( 'Table does not exist', 'wp-context-ai-search' ); ?>: <code><?php echo esc_html( $table_name ); ?></code>
+													✗ <?php esc_html_e( 'Table does not exist', 'context-ai-search' ); ?>: <code><?php echo esc_html( $table_name ); ?></code>
 												</p>
 												<p class="description" style="margin-top: 8px;">
-													<?php esc_html_e( 'The cache table is required for storing search results. Click the button below to create it.', 'wp-context-ai-search' ); ?>
+													<?php esc_html_e( 'The cache table is required for storing search results. Click the button below to create it.', 'context-ai-search' ); ?>
 												</p>
 												<p style="margin-top: 12px;">
-													<button type="button" class="button button-secondary" id="wp-cais-create-table">
-														<?php esc_html_e( 'Create Cache Table', 'wp-context-ai-search' ); ?>
+													<button type="button" class="button button-secondary" id="cais-create-table">
+														<?php esc_html_e( 'Create Cache Table', 'context-ai-search' ); ?>
 													</button>
-													<span id="wp-cais-table-status" class="wp-cais-api-key-status" style="margin-left: 10px;"></span>
+													<span id="cais-table-status" class="cais-api-key-status" style="margin-left: 10px;"></span>
 												</p>
 											<?php endif; ?>
 										</td>
@@ -774,16 +774,16 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 							</table>
 						</div>
 
-						<?php submit_button( __( 'Save Settings', 'wp-context-ai-search' ), 'primary', 'wp_cais_save_settings' ); ?>
+						<?php submit_button( __( 'Save Settings', 'context-ai-search' ), 'primary', 'cais_save_settings' ); ?>
 					</form>
 				</div>
 
-				<div class="wp-cais-sidebar">
+				<div class="cais-sidebar">
 					<?php if ( ! $is_premium ) : ?>
-						<div class="wp-cais-info-box wp-cais-premium-box">
-							<h3><?php esc_html_e( 'Upgrade to Premium', 'wp-context-ai-search' ); ?></h3>
+						<div class="cais-info-box cais-premium-box">
+							<h3><?php esc_html_e( 'Upgrade to Premium', 'context-ai-search' ); ?></h3>
 							<p style="margin-bottom: 15px;">
-								<?php esc_html_e( 'Unlock advanced search capabilities with premium features:', 'wp-context-ai-search' ); ?>
+								<?php esc_html_e( 'Unlock advanced search capabilities with premium features:', 'context-ai-search' ); ?>
 							</p>
 							<ul style="margin-bottom: 20px;">
 								<?php foreach ( $premium_features as $feature_key => $feature_data ) : ?>
@@ -801,35 +801,35 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 								<?php endforeach; ?>
 							</ul>
 							<p style="margin-top: 10px; font-size: 12px; color: rgba(255, 255, 255, 0.8);">
-								* <?php esc_html_e( 'Coming soon', 'wp-context-ai-search' ); ?>
+								* <?php esc_html_e( 'Coming soon', 'context-ai-search' ); ?>
 							</p>
 							<p style="margin: 0; text-align: center;">
-								<?php if ( function_exists( 'wp_cais_fs' ) ) : ?>
-									<a href="<?php echo esc_url( wp_cais_fs()->get_upgrade_url() ); ?>" class="button button-primary" style="width: 100%; text-align: center; font-weight: 600;">
-										<?php esc_html_e( 'Upgrade Now', 'wp-context-ai-search' ); ?>
+								<?php if ( function_exists( 'cais_fs' ) ) : ?>
+									<a href="<?php echo esc_url( cais_fs()->get_upgrade_url() ); ?>" class="button button-primary" style="width: 100%; text-align: center; font-weight: 600;">
+										<?php esc_html_e( 'Upgrade Now', 'context-ai-search' ); ?>
 									</a>
 								<?php else : ?>
-									<a href="<?php echo esc_url( WP_CAIS_PREMIUM_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button button-primary" style="width: 100%; text-align: center; font-weight: 600;">
-										<?php esc_html_e( 'Upgrade Now', 'wp-context-ai-search' ); ?>
+									<a href="<?php echo esc_url( CAIS_PREMIUM_URL ); ?>" target="_blank" rel="noopener noreferrer" class="button button-primary" style="width: 100%; text-align: center; font-weight: 600;">
+										<?php esc_html_e( 'Upgrade Now', 'context-ai-search' ); ?>
 									</a>
 								<?php endif; ?>
 							</p>
 						</div>
 					<?php endif; ?>
 
-					<div class="wp-cais-info-box">
-						<h3><?php esc_html_e( 'About WP Context AI Search', 'wp-context-ai-search' ); ?></h3>
+					<div class="cais-info-box">
+						<h3><?php esc_html_e( 'About Context AI Search', 'context-ai-search' ); ?></h3>
 						<p>
-							<?php esc_html_e( 'WP Context AI Search provides intelligent, context-aware search results powered by AI. It analyzes your WordPress content to deliver relevant search results.', 'wp-context-ai-search' ); ?>
+							<?php esc_html_e( 'Context AI Search provides intelligent, context-aware search results powered by AI. It analyzes your WordPress content to deliver relevant search results.', 'context-ai-search' ); ?>
 						</p>
 					</div>
 
-					<div class="wp-cais-info-box">
-						<h3><?php esc_html_e( 'Free Version', 'wp-context-ai-search' ); ?></h3>
+					<div class="cais-info-box">
+						<h3><?php esc_html_e( 'Free Version', 'context-ai-search' ); ?></h3>
 						<ul>
-							<li><?php esc_html_e( 'Search Posts', 'wp-context-ai-search' ); ?></li>
-							<li><?php esc_html_e( 'Search Pages', 'wp-context-ai-search' ); ?></li>
-							<li><?php esc_html_e( 'AI-powered context matching', 'wp-context-ai-search' ); ?></li>
+							<li><?php esc_html_e( 'Search Posts', 'context-ai-search' ); ?></li>
+							<li><?php esc_html_e( 'Search Pages', 'context-ai-search' ); ?></li>
+							<li><?php esc_html_e( 'AI-powered context matching', 'context-ai-search' ); ?></li>
 						</ul>
 					</div>
 				</div>
@@ -842,38 +842,38 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 	 * Test API key via AJAX.
 	 */
 	public function test_api_key_ajax() {
-		check_ajax_referer( 'wp_cais_test_api_key', 'nonce' );
+		check_ajax_referer( 'cais_test_api_key', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'wp-context-ai-search' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'context-ai-search' ) ) );
 		}
 
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_text_field( $_POST['api_key'] ) : '';
 		$provider = isset( $_POST['provider'] ) ? sanitize_text_field( $_POST['provider'] ) : 'openai';
 
 		if ( empty( $api_key ) ) {
-			wp_send_json_error( array( 'message' => __( 'API key is empty.', 'wp-context-ai-search' ) ) );
+			wp_send_json_error( array( 'message' => __( 'API key is empty.', 'context-ai-search' ) ) );
 		}
 
 		// Clear any cached validation for this key
-		delete_transient( 'wp_cais_api_valid_' . md5( $api_key ) );
+		delete_transient( 'cais_api_valid_' . md5( $api_key ) );
 
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-ai.php';
-		$validation = WP_CAIS_AI::validate_api_key( $api_key, $provider );
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-ai.php';
+		$validation = CAIS_AI::validate_api_key( $api_key, $provider );
 
 		if ( is_wp_error( $validation ) ) {
 			wp_send_json_error( array( 'message' => $validation->get_error_message() ) );
 		}
 
 		// Cache the valid result
-		set_transient( 'wp_cais_api_valid_' . md5( $api_key ), 1, HOUR_IN_SECONDS );
+		set_transient( 'cais_api_valid_' . md5( $api_key ), 1, HOUR_IN_SECONDS );
 
 		// Also get quota info
-		$quota = WP_CAIS_AI::get_api_quota( $api_key, $provider );
+		$quota = CAIS_AI::get_api_quota( $api_key, $provider );
 		$quota_data = is_wp_error( $quota ) ? null : $quota;
 
 		wp_send_json_success( array(
-			'message' => __( 'API key is valid!', 'wp-context-ai-search' ),
+			'message' => __( 'API key is valid!', 'context-ai-search' ),
 			'quota' => $quota_data,
 		) );
 	}
@@ -882,21 +882,21 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 	 * Get quota information via AJAX.
 	 */
 	public function get_quota_ajax() {
-		check_ajax_referer( 'wp_cais_test_api_key', 'nonce' );
+		check_ajax_referer( 'cais_test_api_key', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'wp-context-ai-search' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'context-ai-search' ) ) );
 		}
 
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_text_field( $_POST['api_key'] ) : '';
 		$provider = isset( $_POST['provider'] ) ? sanitize_text_field( $_POST['provider'] ) : 'openai';
 
 		if ( empty( $api_key ) ) {
-			wp_send_json_error( array( 'message' => __( 'API key is empty.', 'wp-context-ai-search' ) ) );
+			wp_send_json_error( array( 'message' => __( 'API key is empty.', 'context-ai-search' ) ) );
 		}
 
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-ai.php';
-		$quota = WP_CAIS_AI::get_api_quota( $api_key, $provider );
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-ai.php';
+		$quota = CAIS_AI::get_api_quota( $api_key, $provider );
 
 		if ( is_wp_error( $quota ) ) {
 			wp_send_json_error( array( 'message' => $quota->get_error_message() ) );
@@ -909,29 +909,29 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 	 * Create database table via AJAX.
 	 */
 	public function create_table_ajax() {
-		check_ajax_referer( 'wp_cais_test_api_key', 'nonce' );
+		check_ajax_referer( 'cais_test_api_key', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'wp-context-ai-search' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'context-ai-search' ) ) );
 		}
 
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-database.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-database.php';
 		
-		$result = WP_CAIS_Database::create_table();
+		$result = CAIS_Database::create_table();
 		
 		if ( is_wp_error( $result ) ) {
 			wp_send_json_error( array( 'message' => $result->get_error_message() ) );
 		}
 		
-		if ( WP_CAIS_Database::table_exists() ) {
-			$table_name = WP_CAIS_Database::get_table_name();
+		if ( CAIS_Database::table_exists() ) {
+			$table_name = CAIS_Database::get_table_name();
 			wp_send_json_success( array(
-				'message' => __( 'Table created successfully!', 'wp-context-ai-search' ),
+				'message' => __( 'Table created successfully!', 'context-ai-search' ),
 				'table_name' => $table_name,
 			) );
 		}
 		
-		wp_send_json_error( array( 'message' => __( 'Failed to create table. Please check database permissions.', 'wp-context-ai-search' ) ) );
+		wp_send_json_error( array( 'message' => __( 'Failed to create table. Please check database permissions.', 'context-ai-search' ) ) );
 	}
 
 	/**
@@ -942,14 +942,14 @@ class WP_CAIS_Admin extends WP_CAIS_Singleton {
 	 * @return array
 	 */
 	public function add_plugin_row_meta( $links, $file ) {
-		if ( WP_CAIS_PLUGIN_BASENAME !== $file ) {
+		if ( CAIS_PLUGIN_BASENAME !== $file ) {
 			return $links;
 		}
 
 		$premium_link = sprintf(
 			'<a href="%s" target="_blank" rel="noopener noreferrer" style="color: #ff9800; font-weight: 600;">%s</a>',
-			function_exists( 'wp_cais_fs' ) ? esc_url( wp_cais_fs()->get_upgrade_url() ) : esc_url( WP_CAIS_PREMIUM_URL ),
-			esc_html__( 'Get Premium', 'wp-context-ai-search' )
+			function_exists( 'cais_fs' ) ? esc_url( cais_fs()->get_upgrade_url() ) : esc_url( CAIS_PREMIUM_URL ),
+			esc_html__( 'Get Premium', 'context-ai-search' )
 		);
 
 		array_unshift( $links, $premium_link );

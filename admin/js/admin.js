@@ -1,5 +1,5 @@
 /**
- * WP Context AI Search - Admin Scripts
+ * Context AI Search - Admin Scripts
  */
 (function($) {
 	'use strict';
@@ -9,27 +9,27 @@
 		console.log('wpCaisAdmin object:', wpCaisAdmin);
 		
 		// Handle premium feature checkboxes
-		var isPremium = $('.wp-cais-premium-section .wp-cais-premium-notice').length === 0;
+		var isPremium = $('.cais-premium-section .cais-premium-notice').length === 0;
 
 		if (!isPremium) {
 			// Disable premium checkboxes
-			$('.wp-cais-premium-section input[type="checkbox"]').prop('disabled', true);
+			$('.cais-premium-section input[type="checkbox"]').prop('disabled', true);
 
 			// Show tooltip or message when clicking disabled checkboxes
-			$('.wp-cais-premium-section input[type="checkbox"]').on('click', function(e) {
+			$('.cais-premium-section input[type="checkbox"]').on('click', function(e) {
 				e.preventDefault();
 				$(this).prop('checked', false);
 				
 				// Scroll to premium notice
 				$('html, body').animate({
-					scrollTop: $('.wp-cais-premium-notice').offset().top - 50
+					scrollTop: $('.cais-premium-notice').offset().top - 50
 				}, 500);
 			});
 		}
 
 		// Form validation
 		$('form').on('submit', function(e) {
-			var freeCheckboxes = $('.wp-cais-section:not(.wp-cais-premium-section) input[type="checkbox"]');
+			var freeCheckboxes = $('.cais-section:not(.cais-premium-section) input[type="checkbox"]');
 			var hasFreeChecked = false;
 
 			freeCheckboxes.each(function() {
@@ -57,15 +57,15 @@
 		$('#ai_provider').on('change', function() {
 			var provider = $(this).val();
 			var link = providerLinks[provider] || providerLinks['openai'];
-			$('#wp-cais-api-key-link').html('Get your API key from ' + link);
+			$('#cais-api-key-link').html('Get your API key from ' + link);
 			// Hide quota info when provider changes
-			$('#wp-cais-quota-info').hide();
+			$('#cais-quota-info').hide();
 		});
 
 		// Function to display quota information
 		function displayQuotaInfo(quota, provider) {
-			var $quotaInfo = $('#wp-cais-quota-info');
-			var $quotaContent = $('#wp-cais-quota-content');
+			var $quotaInfo = $('#cais-quota-info');
+			var $quotaContent = $('#cais-quota-content');
 			
 			if (!quota || !quota.has_quota_info) {
 				$quotaContent.html('<p style="margin: 0; color: #646970;">' + (quota.message || 'Quota information not available. Check your provider dashboard.') + '</p>');
@@ -118,7 +118,7 @@
 		// Function to fetch quota information
 		function fetchQuotaInfo(apiKey, provider) {
 			if (!apiKey || !apiKey.trim()) {
-				$('#wp-cais-quota-info').hide();
+				$('#cais-quota-info').hide();
 				return;
 			}
 
@@ -126,7 +126,7 @@
 				url: wpCaisAdmin.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'wp_cais_get_quota',
+					action: 'cais_get_quota',
 					nonce: wpCaisAdmin.nonce,
 					api_key: apiKey,
 					provider: provider
@@ -135,22 +135,22 @@
 					if (response.success && response.data.quota) {
 						displayQuotaInfo(response.data.quota, provider);
 					} else {
-						$('#wp-cais-quota-info').hide();
+						$('#cais-quota-info').hide();
 					}
 				},
 				error: function() {
-					$('#wp-cais-quota-info').hide();
+					$('#cais-quota-info').hide();
 				}
 			});
 		}
 
 		// Test API key - use both class and ID selector for better compatibility
-		$(document).on('click', '.wp-cais-test-api-key, #wp-cais-test-api-key', function(e) {
+		$(document).on('click', '.cais-test-api-key, #cais-test-api-key', function(e) {
 			e.preventDefault();
 			e.stopPropagation();
 			
 			var $button = $(this);
-			var $status = $('#wp-cais-api-key-status');
+			var $status = $('#cais-api-key-status');
 			var apiKey = $('#ai_api_key').val();
 			var provider = $('#ai_provider').val();
 
@@ -163,19 +163,19 @@
 
 			if (!apiKey || !apiKey.trim()) {
 				$status.html('<span style="color: red;">✗ API key is empty</span>');
-				$('#wp-cais-quota-info').hide();
+				$('#cais-quota-info').hide();
 				return false;
 			}
 
 			$button.prop('disabled', true).text(wpCaisAdmin.strings.testing || 'Testing...');
 			$status.html('<span style="color: #666;">Testing...</span>');
-			$('#wp-cais-quota-info').hide();
+			$('#cais-quota-info').hide();
 
 			$.ajax({
 				url: wpCaisAdmin.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'wp_cais_test_api_key',
+					action: 'cais_test_api_key',
 					nonce: wpCaisAdmin.nonce,
 					api_key: apiKey,
 					provider: provider
@@ -193,13 +193,13 @@
 						}
 					} else {
 						$status.html('<span style="color: red;">✗ ' + (response.data.message || 'Validation failed') + '</span>');
-						$('#wp-cais-quota-info').hide();
+						$('#cais-quota-info').hide();
 					}
 				},
 				error: function(xhr, status, error) {
 					console.error('API test error:', { xhr: xhr, status: status, error: error, responseText: xhr.responseText });
 					$status.html('<span style="color: red;">✗ Connection error. Please check your network.</span>');
-					$('#wp-cais-quota-info').hide();
+					$('#cais-quota-info').hide();
 				},
 				complete: function() {
 					$button.prop('disabled', false).text('Test API Key');
@@ -221,16 +221,16 @@
 					fetchQuotaInfo(apiKey, provider);
 				}, 1000);
 			} else {
-				$('#wp-cais-quota-info').hide();
+				$('#cais-quota-info').hide();
 			}
 		});
 
 		// Create database table
-		$(document).on('click', '#wp-cais-create-table', function(e) {
+		$(document).on('click', '#cais-create-table', function(e) {
 			e.preventDefault();
 			
 			var $button = $(this);
-			var $status = $('#wp-cais-table-status');
+			var $status = $('#cais-table-status');
 			
 			$button.prop('disabled', true).text('Creating...');
 			$status.html('<span style="color: #666;">Creating table...</span>');
@@ -239,7 +239,7 @@
 				url: wpCaisAdmin.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'wp_cais_create_table',
+					action: 'cais_create_table',
 					nonce: wpCaisAdmin.nonce
 				},
 				success: function(response) {

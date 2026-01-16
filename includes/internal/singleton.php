@@ -2,7 +2,7 @@
 /**
  * Singleton base class.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'WP_CAIS_Singleton' ) ) :
+if ( ! class_exists( 'CAIS_Singleton' ) ) :
 
 	/**
-	 * WP_CAIS_Singleton class.
+	 * CAIS_Singleton class.
 	 */
-	class WP_CAIS_Singleton {
+	class CAIS_Singleton {
 		/**
 		 * Instances storage.
 		 *

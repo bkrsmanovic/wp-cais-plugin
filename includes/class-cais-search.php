@@ -2,7 +2,7 @@
 /**
  * Search functionality.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_Search class.
+ * CAIS_Search class.
  */
-class WP_CAIS_Search {
+class CAIS_Search {
 
 	/**
 	 * Process search query.
@@ -23,8 +23,8 @@ class WP_CAIS_Search {
 	 */
 	public function process_query( $query ) {
 		// Check cache first
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-database.php';
-		$cached = WP_CAIS_Database::get_cached( $query );
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-database.php';
+		$cached = CAIS_Database::get_cached( $query );
 		
 		if ( $cached ) {
 			return array(
@@ -46,8 +46,8 @@ class WP_CAIS_Search {
 		}
 
 		// Generate AI response
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-ai.php';
-		$ai_handler = new WP_CAIS_AI();
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-ai.php';
+		$ai_handler = new CAIS_AI();
 		$ai_response = $ai_handler->generate_response( $query, $results );
 
 		if ( is_wp_error( $ai_response ) ) {
@@ -57,7 +57,7 @@ class WP_CAIS_Search {
 
 		// Cache the response
 		$source_ids = array_column( $results, 'id' );
-		WP_CAIS_Database::cache_response( $query, $ai_response, $source_ids );
+		CAIS_Database::cache_response( $query, $ai_response, $source_ids );
 
 		return array(
 			'response' => $ai_response,
@@ -73,12 +73,12 @@ class WP_CAIS_Search {
 	 * @return array
 	 */
 	private function search_content( $query ) {
-		$enabled_types = WP_CAIS_Settings::get_enabled_post_types();
+		$enabled_types = CAIS_Settings::get_enabled_post_types();
 		
 		// Filter out premium post types if user doesn't have premium access
-		$is_premium = function_exists( 'wp_cais_fs' ) ? wp_cais_fs()->can_use_premium_code__premium_only() : false;
+		$is_premium = function_exists( 'cais_fs' ) ? cais_fs()->can_use_premium_code__premium_only() : false;
 		if ( ! $is_premium ) {
-			$free_types = WP_CAIS_Settings::get_free_post_types();
+			$free_types = CAIS_Settings::get_free_post_types();
 			$enabled_types = array_intersect( $enabled_types, $free_types );
 		}
 		
@@ -108,7 +108,7 @@ class WP_CAIS_Search {
 		// Score and sort results by relevance
 		$results = $this->score_and_sort_results( $results, $query );
 
-		$max_results = defined( 'WP_CAIS_MAX_RESULTS' ) ? (int) WP_CAIS_MAX_RESULTS : 10;
+		$max_results = defined( 'CAIS_MAX_RESULTS' ) ? (int) CAIS_MAX_RESULTS : 10;
 		return array_slice( $results, 0, $max_results );
 	}
 
@@ -183,7 +183,7 @@ class WP_CAIS_Search {
 			return array();
 		}
 		
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-content-extractor.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-content-extractor.php';
 		
 		// Build search conditions
 		// Prepare post types for IN clause
@@ -238,7 +238,7 @@ class WP_CAIS_Search {
 				continue;
 			}
 			
-			$full_content = WP_CAIS_Content_Extractor::extract_content( $post_id );
+			$full_content = CAIS_Content_Extractor::extract_content( $post_id );
 			
 			// Check if content actually contains the terms
 			$content_lower = strtolower( $full_content );
@@ -289,7 +289,7 @@ class WP_CAIS_Search {
 		$results = array();
 		
 		if ( $search_query->have_posts() ) {
-			require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-content-extractor.php';
+			require_once CAIS_PLUGIN_DIR . 'includes/class-cais-content-extractor.php';
 			
 			$query_lower = strtolower( $query );
 			$key_terms = $this->extract_key_terms( $query );
@@ -298,7 +298,7 @@ class WP_CAIS_Search {
 				$search_query->the_post();
 				$post = get_post();
 				
-				$full_content = WP_CAIS_Content_Extractor::extract_content( $post->ID );
+				$full_content = CAIS_Content_Extractor::extract_content( $post->ID );
 				$content_lower = strtolower( $full_content );
 				
 				// Check for matches
@@ -359,13 +359,13 @@ class WP_CAIS_Search {
 		$results = array();
 
 		if ( $search_query->have_posts() ) {
-			require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-content-extractor.php';
+			require_once CAIS_PLUGIN_DIR . 'includes/class-cais-content-extractor.php';
 			
 			while ( $search_query->have_posts() ) {
 				$search_query->the_post();
 				$post = get_post();
 				
-				$full_content = WP_CAIS_Content_Extractor::extract_content( $post->ID );
+				$full_content = CAIS_Content_Extractor::extract_content( $post->ID );
 				$title = get_the_title();
 				$excerpt = get_the_excerpt();
 				
@@ -474,13 +474,13 @@ class WP_CAIS_Search {
 	private function generate_simple_response( $query, $results ) {
 		$response = sprintf(
 			/* translators: %1$d: number of results, %2$s: search query text */
-			__( 'I found %1$d relevant result(s) for your query: "%2$s".', 'wp-context-ai-search' ),
+			__( 'I found %1$d relevant result(s) for your query: "%2$s".', 'context-ai-search' ),
 			count( $results ),
 			esc_html( $query )
 		);
 
 		$response .= "\n\n";
-		$response .= __( 'Here are the most relevant sources:', 'wp-context-ai-search' );
+		$response .= __( 'Here are the most relevant sources:', 'context-ai-search' );
 
 		foreach ( array_slice( $results, 0, 3 ) as $result ) {
 			$title = html_entity_decode( $result['title'], ENT_QUOTES | ENT_HTML5, 'UTF-8' );
@@ -503,8 +503,8 @@ class WP_CAIS_Search {
 	 * @return string
 	 */
 	private function get_no_results_response() {
-		$response = __( "I couldn't find specific information about that in our content.", 'wp-context-ai-search' );
-		$response .= "\n\n" . __( 'I apologize for the inconvenience. Please feel free to contact us for more information.', 'wp-context-ai-search' );
+		$response = __( "I couldn't find specific information about that in our content.", 'context-ai-search' );
+		$response .= "\n\n" . __( 'I apologize for the inconvenience. Please feel free to contact us for more information.', 'context-ai-search' );
 		
 		return $response;
 	}

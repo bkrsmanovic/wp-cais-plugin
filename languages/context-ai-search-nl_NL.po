@@ -1,15 +1,15 @@
-# Dutch translation for WP Context AI Search
+# Dutch translation for Context AI Search
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Project-Id-Version: Context AI Search 1.0.0\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "WP Context AI Search"
-msgstr "WP Context AI Zoeken"
+msgid "Context AI Search"
+msgstr "Context AI Zoeken"
 
 msgid "Search Our Library"
 msgstr "Doorzoek onze bibliotheek"
@@ -36,7 +36,7 @@ msgid "An error occurred. Please try again."
 msgstr "Er is een fout opgetreden. Probeer het opnieuw."
 
 msgid "WP CAIS not configured properly. Please check your API key settings."
-msgstr "WP CAIS is niet correct geconfigureerd. Controleer uw API-sleutelinstellingen."
+msgstr "CAIS is niet correct geconfigureerd. Controleer uw API-sleutelinstellingen."
 
 msgid "I found %d relevant result(s) for your query: \"%s\"."
 msgstr "Ik heb %d relevant(e) resultaat(en) gevonden voor uw zoekopdracht: \"%s\"."

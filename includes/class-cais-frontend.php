@@ -2,7 +2,7 @@
 /**
  * Frontend functionality.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,14 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_Frontend class.
+ * CAIS_Frontend class.
  */
-class WP_CAIS_Frontend extends WP_CAIS_Singleton {
+class CAIS_Frontend extends CAIS_Singleton {
 
 	/**
 	 * Template loader instance.
 	 *
-	 * @var WP_CAIS_Template_Loader
+	 * @var CAIS_Template_Loader
 	 */
 	private $template_loader = null;
 
@@ -26,13 +26,13 @@ class WP_CAIS_Frontend extends WP_CAIS_Singleton {
 	 * Constructor.
 	 */
 	protected function __construct() {
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/templates.php';
-		$this->template_loader = new WP_CAIS_Template_Loader();
+		require_once CAIS_PLUGIN_DIR . 'includes/templates.php';
+		$this->template_loader = new CAIS_Template_Loader();
 
-		add_shortcode( 'wp-context-ai-search', array( $this, 'render_search_interface' ) );
+		add_shortcode( 'context-ai-search', array( $this, 'render_search_interface' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-		add_action( 'wp_ajax_wp_cais_search', array( $this, 'handle_search_ajax' ) );
-		add_action( 'wp_ajax_nopriv_wp_cais_search', array( $this, 'handle_search_ajax' ) );
+		add_action( 'wp_ajax_cais_search', array( $this, 'handle_search_ajax' ) );
+		add_action( 'wp_ajax_nopriv_cais_search', array( $this, 'handle_search_ajax' ) );
 	}
 
 	/**
@@ -45,39 +45,39 @@ class WP_CAIS_Frontend extends WP_CAIS_Singleton {
 
 		// Enqueue main stylesheet
 		wp_enqueue_style(
-			'wp-cais-frontend',
-			WP_CAIS_PLUGIN_URL . 'public/css/frontend.css',
+			'cais-frontend',
+			CAIS_PLUGIN_URL . 'public/css/frontend.css',
 			array(),
-			WP_CAIS_VERSION
+			CAIS_VERSION
 		);
 
 		// Enqueue RTL stylesheet if needed
 		if ( is_rtl() ) {
 			wp_enqueue_style(
-				'wp-cais-frontend-rtl',
-				WP_CAIS_PLUGIN_URL . 'public/css/frontend-rtl.css',
-				array( 'wp-cais-frontend' ),
-				WP_CAIS_VERSION
+				'cais-frontend-rtl',
+				CAIS_PLUGIN_URL . 'public/css/frontend-rtl.css',
+				array( 'cais-frontend' ),
+				CAIS_VERSION
 			);
 		}
 
 		wp_enqueue_script(
-			'wp-cais-frontend',
-			WP_CAIS_PLUGIN_URL . 'public/js/frontend.js',
+			'cais-frontend',
+			CAIS_PLUGIN_URL . 'public/js/frontend.js',
 			array( 'jquery' ),
-			WP_CAIS_VERSION,
+			CAIS_VERSION,
 			true
 		);
 
 		wp_localize_script(
-			'wp-cais-frontend',
+			'cais-frontend',
 			'wpCais',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce' => wp_create_nonce( 'wp_cais_search_nonce' ),
+				'nonce' => wp_create_nonce( 'cais_search_nonce' ),
 				'strings' => array(
-					'searching' => __( 'Searching...', 'wp-context-ai-search' ),
-					'error' => __( 'An error occurred. Please try again.', 'wp-context-ai-search' ),
+					'searching' => __( 'Searching...', 'context-ai-search' ),
+					'error' => __( 'An error occurred. Please try again.', 'context-ai-search' ),
 				),
 			)
 		);
@@ -93,7 +93,7 @@ class WP_CAIS_Frontend extends WP_CAIS_Singleton {
 		if ( ! $post ) {
 			return false;
 		}
-		return has_shortcode( $post->post_content, 'wp-context-ai-search' );
+		return has_shortcode( $post->post_content, 'context-ai-search' );
 	}
 
 	/**
@@ -103,8 +103,8 @@ class WP_CAIS_Frontend extends WP_CAIS_Singleton {
 	 * @return string
 	 */
 	public function render_search_interface( $atts = array() ) {
-		$contact_info = WP_CAIS_Settings::get_contact_info();
-		$is_configured = WP_CAIS_Settings::is_api_configured();
+		$contact_info = CAIS_Settings::get_contact_info();
+		$is_configured = CAIS_Settings::is_api_configured();
 
 		$data = array(
 			'contact_info' => $contact_info,
@@ -136,11 +136,11 @@ class WP_CAIS_Frontend extends WP_CAIS_Singleton {
 	 * Handle AJAX search request.
 	 */
 	public function handle_search_ajax() {
-		check_ajax_referer( 'wp_cais_search_nonce', 'nonce' );
+		check_ajax_referer( 'cais_search_nonce', 'nonce' );
 
 		// Validate and sanitize input
 		if ( ! isset( $_POST['query'] ) || ! is_string( $_POST['query'] ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid query parameter.', 'wp-context-ai-search' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid query parameter.', 'context-ai-search' ) ) );
 		}
 
 		$query = sanitize_text_field( wp_unslash( $_POST['query'] ) );
@@ -148,17 +148,17 @@ class WP_CAIS_Frontend extends WP_CAIS_Singleton {
 
 		// Validate query length
 		if ( empty( $query ) ) {
-			wp_send_json_error( array( 'message' => __( 'Please enter a search query.', 'wp-context-ai-search' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Please enter a search query.', 'context-ai-search' ) ) );
 		}
 
-		$min_length = defined( 'WP_CAIS_MIN_QUERY_LENGTH' ) ? (int) WP_CAIS_MIN_QUERY_LENGTH : 2;
-		$max_length = defined( 'WP_CAIS_MAX_QUERY_LENGTH' ) ? (int) WP_CAIS_MAX_QUERY_LENGTH : 500;
+		$min_length = defined( 'CAIS_MIN_QUERY_LENGTH' ) ? (int) CAIS_MIN_QUERY_LENGTH : 2;
+		$max_length = defined( 'CAIS_MAX_QUERY_LENGTH' ) ? (int) CAIS_MAX_QUERY_LENGTH : 500;
 
 		if ( strlen( $query ) < $min_length ) {
 			wp_send_json_error( array( 
 				'message' => sprintf( 
 					/* translators: %d: Minimum query length */
-					__( 'Query must be at least %d characters long.', 'wp-context-ai-search' ),
+					__( 'Query must be at least %d characters long.', 'context-ai-search' ),
 					$min_length
 				)
 			) );
@@ -168,19 +168,19 @@ class WP_CAIS_Frontend extends WP_CAIS_Singleton {
 			wp_send_json_error( array( 
 				'message' => sprintf( 
 					/* translators: %d: Maximum query length */
-					__( 'Query must be no more than %d characters long.', 'wp-context-ai-search' ),
+					__( 'Query must be no more than %d characters long.', 'context-ai-search' ),
 					$max_length
 				)
 			) );
 		}
 
 		// Check if API is configured
-		if ( ! WP_CAIS_Settings::is_api_configured() ) {
-			wp_send_json_error( array( 'message' => __( 'WP CAIS not configured properly. Please check your API key settings.', 'wp-context-ai-search' ) ) );
+		if ( ! CAIS_Settings::is_api_configured() ) {
+			wp_send_json_error( array( 'message' => __( 'WP CAIS not configured properly. Please check your API key settings.', 'context-ai-search' ) ) );
 		}
 
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-search.php';
-		$search_handler = new WP_CAIS_Search();
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-search.php';
+		$search_handler = new CAIS_Search();
 		$result = $search_handler->process_query( $query );
 
 		if ( is_wp_error( $result ) ) {

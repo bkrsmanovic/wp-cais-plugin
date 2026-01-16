@@ -2,7 +2,7 @@
 /**
  * Database management for caching.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,16 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_Database class.
+ * CAIS_Database class.
  */
-class WP_CAIS_Database {
+class CAIS_Database {
 
 	/**
 	 * Table name for cache.
 	 *
 	 * @var string
 	 */
-	private static $table_name = 'wp_cais_cache';
+	private static $table_name = 'cais_cache';
 
 	/**
 	 * Get table name with prefix.
@@ -104,7 +104,7 @@ class WP_CAIS_Database {
 		
 		$error = $wpdb->last_error;
 		if ( empty( $error ) ) {
-			$error = __( 'Unknown error creating table.', 'wp-context-ai-search' );
+			$error = __( 'Unknown error creating table.', 'context-ai-search' );
 		}
 		
 		return new WP_Error( 'table_creation_failed', $error );

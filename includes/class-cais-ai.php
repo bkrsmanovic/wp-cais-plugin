@@ -2,7 +2,7 @@
 /**
  * AI integration.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_AI class.
+ * CAIS_AI class.
  */
-class WP_CAIS_AI {
+class CAIS_AI {
 
 	/**
 	 * Validate API key.
@@ -24,7 +24,7 @@ class WP_CAIS_AI {
 	 */
 	public static function validate_api_key( $api_key, $provider = 'openai' ) {
 		if ( empty( $api_key ) ) {
-			return new WP_Error( 'empty_key', __( 'API key cannot be empty.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'empty_key', __( 'API key cannot be empty.', 'context-ai-search' ) );
 		}
 
 		switch ( $provider ) {
@@ -35,7 +35,7 @@ class WP_CAIS_AI {
 			case 'gemini':
 				return self::validate_gemini_key( $api_key );
 			default:
-				return new WP_Error( 'unsupported_provider', __( 'Provider validation not implemented.', 'wp-context-ai-search' ) );
+				return new WP_Error( 'unsupported_provider', __( 'Provider validation not implemented.', 'context-ai-search' ) );
 		}
 	}
 
@@ -58,7 +58,7 @@ class WP_CAIS_AI {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			return new WP_Error( 'connection_error', __( 'Could not connect to OpenAI API.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'connection_error', __( 'Could not connect to OpenAI API.', 'context-ai-search' ) );
 		}
 
 		$code = wp_remote_retrieve_response_code( $response );
@@ -66,13 +66,13 @@ class WP_CAIS_AI {
 
 		// Check for authentication errors (401 = unauthorized, 403 = forbidden)
 		if ( 401 === $code || 403 === $code ) {
-			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'Invalid API key. Please check your API key.', 'wp-context-ai-search' );
+			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'Invalid API key. Please check your API key.', 'context-ai-search' );
 			return new WP_Error( 'invalid_key', $error_message );
 		}
 
 		// Check for other errors
 		if ( isset( $body['error'] ) ) {
-			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'wp-context-ai-search' );
+			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'context-ai-search' );
 			return new WP_Error( 'api_error', $error_message );
 		}
 
@@ -82,7 +82,7 @@ class WP_CAIS_AI {
 		}
 
 		// If we get here, something unexpected happened
-		return new WP_Error( 'validation_failed', __( 'Could not validate API key. Please try again.', 'wp-context-ai-search' ) );
+		return new WP_Error( 'validation_failed', __( 'Could not validate API key. Please try again.', 'context-ai-search' ) );
 	}
 
 	/**
@@ -116,7 +116,7 @@ class WP_CAIS_AI {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			return new WP_Error( 'connection_error', __( 'Could not connect to Claude API.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'connection_error', __( 'Could not connect to Claude API.', 'context-ai-search' ) );
 		}
 
 		$code = wp_remote_retrieve_response_code( $response );
@@ -124,13 +124,13 @@ class WP_CAIS_AI {
 
 		// Check for authentication errors
 		if ( 401 === $code || 403 === $code ) {
-			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'Invalid API key. Please check your API key.', 'wp-context-ai-search' );
+			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'Invalid API key. Please check your API key.', 'context-ai-search' );
 			return new WP_Error( 'invalid_key', $error_message );
 		}
 
 		// Check for other errors
 		if ( isset( $body['error'] ) ) {
-			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'wp-context-ai-search' );
+			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'context-ai-search' );
 			return new WP_Error( 'api_error', $error_message );
 		}
 
@@ -139,7 +139,7 @@ class WP_CAIS_AI {
 			return true;
 		}
 
-		return new WP_Error( 'validation_failed', __( 'Could not validate API key. Please try again.', 'wp-context-ai-search' ) );
+		return new WP_Error( 'validation_failed', __( 'Could not validate API key. Please try again.', 'context-ai-search' ) );
 	}
 
 	/**
@@ -170,7 +170,7 @@ class WP_CAIS_AI {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			return new WP_Error( 'connection_error', __( 'Could not connect to Gemini API.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'connection_error', __( 'Could not connect to Gemini API.', 'context-ai-search' ) );
 		}
 
 		$code = wp_remote_retrieve_response_code( $response );
@@ -178,7 +178,7 @@ class WP_CAIS_AI {
 
 		// Check for authentication errors
 		if ( 400 === $code || 401 === $code || 403 === $code ) {
-			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'Invalid API key. Please check your API key.', 'wp-context-ai-search' );
+			$error_message = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'Invalid API key. Please check your API key.', 'context-ai-search' );
 			return new WP_Error( 'invalid_key', $error_message );
 		}
 
@@ -187,7 +187,7 @@ class WP_CAIS_AI {
 			return true;
 		}
 
-		return new WP_Error( 'validation_failed', __( 'Could not validate API key. Please try again.', 'wp-context-ai-search' ) );
+		return new WP_Error( 'validation_failed', __( 'Could not validate API key. Please try again.', 'context-ai-search' ) );
 	}
 
 	/**
@@ -199,7 +199,7 @@ class WP_CAIS_AI {
 	 */
 	public static function get_api_quota( $api_key, $provider = 'openai' ) {
 		if ( empty( $api_key ) ) {
-			return new WP_Error( 'empty_key', __( 'API key cannot be empty.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'empty_key', __( 'API key cannot be empty.', 'context-ai-search' ) );
 		}
 
 		switch ( $provider ) {
@@ -210,7 +210,7 @@ class WP_CAIS_AI {
 			case 'gemini':
 				return self::get_gemini_quota( $api_key );
 			default:
-				return new WP_Error( 'unsupported_provider', __( 'Quota checking not implemented for this provider.', 'wp-context-ai-search' ) );
+				return new WP_Error( 'unsupported_provider', __( 'Quota checking not implemented for this provider.', 'context-ai-search' ) );
 		}
 	}
 
@@ -236,7 +236,7 @@ class WP_CAIS_AI {
 			// If we can't get usage, return basic info
 			return array(
 				'has_quota_info' => false,
-				'message' => __( 'Quota information not available. Check your OpenAI dashboard.', 'wp-context-ai-search' ),
+				'message' => __( 'Quota information not available. Check your OpenAI dashboard.', 'context-ai-search' ),
 			);
 		}
 
@@ -289,7 +289,7 @@ class WP_CAIS_AI {
 
 		return array(
 			'has_quota_info' => false,
-			'message' => __( 'Quota information not available. Check your OpenAI dashboard.', 'wp-context-ai-search' ),
+			'message' => __( 'Quota information not available. Check your OpenAI dashboard.', 'context-ai-search' ),
 		);
 	}
 
@@ -304,7 +304,7 @@ class WP_CAIS_AI {
 		// Return message to check dashboard
 		return array(
 			'has_quota_info' => false,
-			'message' => __( 'Check your Anthropic dashboard for quota information.', 'wp-context-ai-search' ),
+			'message' => __( 'Check your Anthropic dashboard for quota information.', 'context-ai-search' ),
 		);
 	}
 
@@ -319,7 +319,7 @@ class WP_CAIS_AI {
 		// For now, return message to check dashboard
 		return array(
 			'has_quota_info' => false,
-			'message' => __( 'Check your Google Cloud Console for quota information.', 'wp-context-ai-search' ),
+			'message' => __( 'Check your Google Cloud Console for quota information.', 'context-ai-search' ),
 		);
 	}
 
@@ -331,11 +331,11 @@ class WP_CAIS_AI {
 	 * @return string|WP_Error
 	 */
 	public function generate_response( $query, $results ) {
-		$api_key = WP_CAIS_Settings::get_ai_api_key();
-		$provider = WP_CAIS_Settings::get_ai_provider();
+		$api_key = CAIS_Settings::get_ai_api_key();
+		$provider = CAIS_Settings::get_ai_provider();
 
 		if ( empty( $api_key ) ) {
-			return new WP_Error( 'no_api_key', __( 'AI API key is not configured.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'no_api_key', __( 'AI API key is not configured.', 'context-ai-search' ) );
 		}
 
 		switch ( $provider ) {
@@ -348,7 +348,7 @@ class WP_CAIS_AI {
 			case 'huggingface':
 				return $this->generate_huggingface_response( $query, $results, $api_key );
 			default:
-				return new WP_Error( 'invalid_provider', __( 'Invalid AI provider.', 'wp-context-ai-search' ) );
+				return new WP_Error( 'invalid_provider', __( 'Invalid AI provider.', 'context-ai-search' ) );
 		}
 	}
 
@@ -404,12 +404,12 @@ class WP_CAIS_AI {
 		$body = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( isset( $body['error'] ) ) {
-			$error_msg = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'wp-context-ai-search' );
+			$error_msg = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'context-ai-search' );
 			return new WP_Error( 'api_error', $error_msg );
 		}
 
 		if ( 200 !== $code ) {
-			return new WP_Error( 'api_error', __( 'Invalid API key or API error. Please check your API key settings.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'api_error', __( 'Invalid API key or API error. Please check your API key settings.', 'context-ai-search' ) );
 		}
 
 		if ( isset( $body['choices'][0]['message']['content'] ) ) {
@@ -419,7 +419,7 @@ class WP_CAIS_AI {
 			return $response_text;
 		}
 
-		return new WP_Error( 'invalid_response', __( 'Invalid response from AI service.', 'wp-context-ai-search' ) );
+		return new WP_Error( 'invalid_response', __( 'Invalid response from AI service.', 'context-ai-search' ) );
 	}
 
 	/**
@@ -469,12 +469,12 @@ class WP_CAIS_AI {
 		$body = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( isset( $body['error'] ) ) {
-			$error_msg = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'wp-context-ai-search' );
+			$error_msg = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'context-ai-search' );
 			return new WP_Error( 'api_error', $error_msg );
 		}
 
 		if ( 200 !== $code ) {
-			return new WP_Error( 'api_error', __( 'Invalid API key or API error. Please check your API key settings.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'api_error', __( 'Invalid API key or API error. Please check your API key settings.', 'context-ai-search' ) );
 		}
 
 		if ( isset( $body['content'][0]['text'] ) ) {
@@ -483,7 +483,7 @@ class WP_CAIS_AI {
 			return $response_text;
 		}
 
-		return new WP_Error( 'invalid_response', __( 'Invalid response from AI service.', 'wp-context-ai-search' ) );
+		return new WP_Error( 'invalid_response', __( 'Invalid response from AI service.', 'context-ai-search' ) );
 	}
 
 	/**
@@ -536,12 +536,12 @@ class WP_CAIS_AI {
 		$body = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( isset( $body['error'] ) ) {
-			$error_msg = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'wp-context-ai-search' );
+			$error_msg = isset( $body['error']['message'] ) ? $body['error']['message'] : __( 'API error occurred.', 'context-ai-search' );
 			return new WP_Error( 'api_error', $error_msg );
 		}
 
 		if ( 200 !== $code ) {
-			return new WP_Error( 'api_error', __( 'Invalid API key or API error. Please check your API key settings.', 'wp-context-ai-search' ) );
+			return new WP_Error( 'api_error', __( 'Invalid API key or API error. Please check your API key settings.', 'context-ai-search' ) );
 		}
 
 		if ( isset( $body['candidates'][0]['content']['parts'][0]['text'] ) ) {
@@ -550,7 +550,7 @@ class WP_CAIS_AI {
 			return $response_text;
 		}
 
-		return new WP_Error( 'invalid_response', __( 'Invalid response from AI service.', 'wp-context-ai-search' ) );
+		return new WP_Error( 'invalid_response', __( 'Invalid response from AI service.', 'context-ai-search' ) );
 	}
 
 	/**
@@ -564,7 +564,7 @@ class WP_CAIS_AI {
 	private function generate_huggingface_response( $query, $results, $api_key ) {
 		// HuggingFace implementation can be added later
 		// For now, return error to use OpenAI
-		return new WP_Error( 'not_implemented', __( 'HuggingFace integration coming soon.', 'wp-context-ai-search' ) );
+		return new WP_Error( 'not_implemented', __( 'HuggingFace integration coming soon.', 'context-ai-search' ) );
 	}
 
 	/**
@@ -573,10 +573,10 @@ class WP_CAIS_AI {
 	 * @return string
 	 */
 	private function build_system_prompt() {
-		$prompt = __( 'You are a helpful assistant that answers questions based on content from a WordPress website. ', 'wp-context-ai-search' );
-		$prompt .= __( 'Use a friendly and professional tone. ', 'wp-context-ai-search' );
-		$prompt .= __( 'Keep your answers clear and concise. ', 'wp-context-ai-search' );
-		$prompt .= __( 'Only use information from the provided context. If the context does not contain the answer, say so clearly.', 'wp-context-ai-search' );
+		$prompt = __( 'You are a helpful assistant that answers questions based on content from a WordPress website. ', 'context-ai-search' );
+		$prompt .= __( 'Use a friendly and professional tone. ', 'context-ai-search' );
+		$prompt .= __( 'Keep your answers clear and concise. ', 'context-ai-search' );
+		$prompt .= __( 'Only use information from the provided context. If the context does not contain the answer, say so clearly.', 'context-ai-search' );
 
 		return trim( $prompt );
 	}

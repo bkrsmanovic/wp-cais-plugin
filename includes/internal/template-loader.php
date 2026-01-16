@@ -2,7 +2,7 @@
 /**
  * Template Loader for Plugins.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -10,34 +10,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'WP_CAIS_Template_Loader_Base' ) ) :
+if ( ! class_exists( 'CAIS_Template_Loader_Base' ) ) :
 
 	/**
 	 * Template loader base class.
 	 *
-	 * @package WP_CAIS_Template_Loader_Base
+	 * @package CAIS_Template_Loader_Base
 	 */
-	class WP_CAIS_Template_Loader_Base {
+	class CAIS_Template_Loader_Base {
 		/**
 		 * Prefix for filter names.
 		 *
 		 * @var string
 		 */
-		protected $filter_prefix = 'wp_cais';
+		protected $filter_prefix = 'cais';
 
 		/**
 		 * Directory name where custom templates for this plugin should be found in the theme.
 		 *
 		 * @var string
 		 */
-		protected $theme_template_directory = 'wp-cais/templates';
+		protected $theme_template_directory = 'cais/templates';
 
 		/**
 		 * Reference to the root directory path of this plugin.
 		 *
 		 * @var string
 		 */
-		protected $plugin_directory = WP_CAIS_PLUGIN_DIR;
+		protected $plugin_directory = CAIS_PLUGIN_DIR;
 
 		/**
 		 * Directory name where templates are found in this plugin.
@@ -92,7 +92,7 @@ if ( ! class_exists( 'WP_CAIS_Template_Loader_Base' ) ) :
 		 *
 		 * @param mixed  $data     Custom data for the template.
 		 * @param string $var_name Optional. Variable under which the custom data is available in the template.
-		 * @return WP_CAIS_Template_Loader_Base
+		 * @return CAIS_Template_Loader_Base
 		 */
 		public function set_template_data( $data, $var_name = 'data' ) {
 			global $wp_query;
@@ -110,7 +110,7 @@ if ( ! class_exists( 'WP_CAIS_Template_Loader_Base' ) ) :
 		/**
 		 * Remove access to custom data in template.
 		 *
-		 * @return WP_CAIS_Template_Loader_Base
+		 * @return CAIS_Template_Loader_Base
 		 */
 		public function unset_template_data() {
 			global $wp_query;

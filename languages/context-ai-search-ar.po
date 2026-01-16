@@ -1,15 +1,15 @@
-# Arabic translation for WP Context AI Search
+# Arabic translation for Context AI Search
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Project-Id-Version: Context AI Search 1.0.0\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 
-msgid "WP Context AI Search"
-msgstr "بحث WP السياقي بالذكاء الاصطناعي"
+msgid "Context AI Search"
+msgstr "بحث السياقي بالذكاء الاصطناعي"
 
 msgid "Search Our Library"
 msgstr "ابحث في مكتبتنا"
@@ -36,7 +36,7 @@ msgid "An error occurred. Please try again."
 msgstr "حدث خطأ. يرجى المحاولة مرة أخرى."
 
 msgid "WP CAIS not configured properly. Please check your API key settings."
-msgstr "WP CAIS غير مُكوّن بشكل صحيح. يرجى التحقق من إعدادات مفتاح API الخاص بك."
+msgstr "CAIS غير مُكوّن بشكل صحيح. يرجى التحقق من إعدادات مفتاح API الخاص بك."
 
 msgid "I found %d relevant result(s) for your query: \"%s\"."
 msgstr "وجدت %d نتيجة ذات صلة لاستفسارك: \"%s\"."

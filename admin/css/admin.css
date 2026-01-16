@@ -1,29 +1,29 @@
 /**
- * WP Context AI Search - Admin Styles
+ * Context AI Search - Admin Styles
  */
 
-.wp-cais-settings {
+.cais-settings {
 	max-width: 1200px;
 }
 
-.wp-cais-header {
+.cais-header {
 	margin: 20px 0;
 	padding-bottom: 20px;
 	border-bottom: 1px solid #ddd;
 }
 
-.wp-cais-header h2 {
+.cais-header h2 {
 	margin: 0 0 10px 0;
 	font-size: 24px;
 }
 
-.wp-cais-content-wrapper {
+.cais-content-wrapper {
 	display: flex;
 	gap: 20px;
 	margin-top: 20px;
 }
 
-.wp-cais-main-content {
+.cais-main-content {
 	flex: 1;
 	background: #fff;
 	padding: 20px;
@@ -31,30 +31,30 @@
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
 
-.wp-cais-sidebar {
+.cais-sidebar {
 	width: 300px;
 }
 
-.wp-cais-section {
+.cais-section {
 	margin-bottom: 30px;
 	padding-bottom: 20px;
 	border-bottom: 1px solid #eee;
 }
 
-.wp-cais-section:last-child {
+.cais-section:last-child {
 	border-bottom: none;
 }
 
-.wp-cais-section h2 {
+.cais-section h2 {
 	margin-top: 0;
 	font-size: 18px;
 }
 
-.wp-cais-premium-section {
+.cais-premium-section {
 	position: relative;
 }
 
-.wp-cais-badge {
+.cais-badge {
 	display: inline-block;
 	margin-left: 10px;
 	padding: 3px 8px;
@@ -67,7 +67,7 @@
 	vertical-align: middle;
 }
 
-.wp-cais-plan-badge {
+.cais-plan-badge {
 	display: inline-block;
 	margin-left: 10px;
 	padding: 4px 12px;
@@ -78,27 +78,27 @@
 	vertical-align: middle;
 }
 
-.wp-cais-free-badge {
+.cais-free-badge {
 	background: #6c757d;
 	color: #fff;
 }
 
-.wp-cais-premium-badge {
+.cais-premium-badge {
 	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	color: #fff;
 }
 
-.wp-cais-free-plan-notice {
+.cais-free-plan-notice {
 	background: #e7f3ff;
 	border-left: 4px solid #2271b1;
 }
 
-.wp-cais-free-plan-notice p {
+.cais-free-plan-notice p {
 	margin: 0;
 	line-height: 1.6;
 }
 
-.wp-cais-premium-notice {
+.cais-premium-notice {
 	background: #fff3cd;
 	border: 1px solid #ffc107;
 	border-left: 4px solid #ff9800;
@@ -107,20 +107,20 @@
 	border-radius: 4px;
 }
 
-.wp-cais-premium-notice p {
+.cais-premium-notice p {
 	margin: 10px 0;
 }
 
-.wp-cais-premium-notice ul {
+.cais-premium-notice ul {
 	margin: 10px 0 10px 20px;
 	list-style-type: disc !important;
 }
 
-.wp-cais-premium-notice ul li {
+.cais-premium-notice ul li {
 	margin: 5px 0;
 }
 
-.wp-cais-info-box {
+.cais-info-box {
 	background: #fff;
 	border: 1px solid #ccd0d4;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
@@ -128,24 +128,24 @@
 	margin-bottom: 20px;
 }
 
-.wp-cais-info-box h3 {
+.cais-info-box h3 {
 	margin-top: 0;
 	font-size: 16px;
 	border-bottom: 1px solid #eee;
 	padding-bottom: 10px;
 }
 
-.wp-cais-info-box ul {
+.cais-info-box ul {
 	margin: 10px 0;
 	padding-left: 20px;
 	list-style-type: disc !important;
 }
 
-.wp-cais-info-box ul li {
+.cais-info-box ul li {
 	margin: 5px 0;
 }
 
-.wp-cais-premium-box {
+.cais-premium-box {
 	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	color: #fff;
 	border: none;
@@ -154,7 +154,7 @@
 	overflow: hidden;
 }
 
-.wp-cais-premium-box::before {
+.cais-premium-box::before {
 	content: '';
 	position: absolute;
 	top: -50%;
@@ -165,7 +165,7 @@
 	pointer-events: none;
 }
 
-.wp-cais-premium-box h3 {
+.cais-premium-box h3 {
 	border-bottom-color: rgba(255, 255, 255, 0.3);
 	color: #fff;
 	font-size: 18px;
@@ -173,21 +173,21 @@
 	margin-bottom: 12px;
 }
 
-.wp-cais-premium-box p {
+.cais-premium-box p {
 	color: rgba(255, 255, 255, 0.95);
 }
 
-.wp-cais-premium-box ul {
+.cais-premium-box ul {
 	list-style-type: disc !important;
 	margin-left: 20px;
 }
 
-.wp-cais-premium-box ul li {
+.cais-premium-box ul li {
 	color: #fff;
 	line-height: 1.6;
 }
 
-.wp-cais-premium-box .button {
+.cais-premium-box .button {
 	background: #fff;
 	color: #667eea !important;
 	border: none;
@@ -197,8 +197,8 @@
 	transition: all 0.2s ease;
 }
 
-.wp-cais-premium-box .button:hover,
-.wp-cais-premium-box .button:focus {
+.cais-premium-box .button:hover,
+.cais-premium-box .button:focus {
 	background: #f8f9fa !important;
 	color: #667eea !important;
 	transform: translateY(-1px);
@@ -214,26 +214,26 @@ fieldset input[type="checkbox"] {
 	margin-right: 8px;
 }
 
-.wp-cais-api-key-status {
+.cais-api-key-status {
 	margin-left: 10px;
 	font-weight: 500;
 }
 
-.wp-cais-test-api-key {
+.cais-test-api-key {
 	margin-top: 5px;
 }
 
 /* Force disc bullets on all ULs in plugin */
-.wp-cais-settings ul {
+.cais-settings ul {
 	list-style-type: disc !important;
 }
 
 @media (max-width: 782px) {
-	.wp-cais-content-wrapper {
+	.cais-content-wrapper {
 		flex-direction: column;
 	}
 
-	.wp-cais-sidebar {
+	.cais-sidebar {
 		width: 100%;
 	}
 }

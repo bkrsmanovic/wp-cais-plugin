@@ -2,7 +2,7 @@
 /**
  * Settings management class.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,16 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_Settings class.
+ * CAIS_Settings class.
  */
-class WP_CAIS_Settings {
+class CAIS_Settings {
 
 	/**
 	 * Option name for storing settings.
 	 *
 	 * @var string
 	 */
-	const OPTION_NAME = 'wp_cais_settings';
+	const OPTION_NAME = 'cais_settings';
 
 	/**
 	 * Default settings.
@@ -29,7 +29,7 @@ class WP_CAIS_Settings {
 	 */
 	private static $defaults = array(
 		'enabled_post_types' => array( 'post', 'page' ),
-		'version'            => WP_CAIS_VERSION,
+		'version'            => CAIS_VERSION,
 		'contact_phone'       => '',
 		'contact_address'    => '',
 		'ai_api_key'         => '',
@@ -144,7 +144,7 @@ class WP_CAIS_Settings {
 	 * @return string
 	 */
 	public static function get_search_title(): string {
-		return self::get_custom_text( 'custom_title', __( 'Search Our Library', 'wp-context-ai-search' ) );
+		return self::get_custom_text( 'custom_title', __( 'Search Our Library', 'context-ai-search' ) );
 	}
 
 	/**
@@ -153,7 +153,7 @@ class WP_CAIS_Settings {
 	 * @return string
 	 */
 	public static function get_search_subtitle(): string {
-		return self::get_custom_text( 'custom_subtitle', __( 'Ask any question and get intelligent, context-aware answers', 'wp-context-ai-search' ) );
+		return self::get_custom_text( 'custom_subtitle', __( 'Ask any question and get intelligent, context-aware answers', 'context-ai-search' ) );
 	}
 
 	/**
@@ -162,7 +162,7 @@ class WP_CAIS_Settings {
 	 * @return string
 	 */
 	public static function get_search_placeholder(): string {
-		return self::get_custom_text( 'custom_placeholder', __( 'Type your question here...', 'wp-context-ai-search' ) );
+		return self::get_custom_text( 'custom_placeholder', __( 'Type your question here...', 'context-ai-search' ) );
 	}
 
 	/**
@@ -171,7 +171,7 @@ class WP_CAIS_Settings {
 	 * @return string
 	 */
 	public static function get_welcome_message(): string {
-		return self::get_custom_text( 'custom_welcome_msg', __( 'Enter your question above to get started.', 'wp-context-ai-search' ) );
+		return self::get_custom_text( 'custom_welcome_msg', __( 'Enter your question above to get started.', 'context-ai-search' ) );
 	}
 
 	/**
@@ -216,7 +216,7 @@ class WP_CAIS_Settings {
 		}
 
 		// Check cached validation result (valid for 1 hour)
-		$cache_key = 'wp_cais_api_valid_' . md5( $api_key );
+		$cache_key = 'cais_api_valid_' . md5( $api_key );
 		$cached = get_transient( $cache_key );
 		
 		if ( false !== $cached ) {
@@ -224,9 +224,9 @@ class WP_CAIS_Settings {
 		}
 
 		// Validate API key
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-ai.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-ai.php';
 		$provider = self::get_ai_provider();
-		$validation = WP_CAIS_AI::validate_api_key( $api_key, $provider );
+		$validation = CAIS_AI::validate_api_key( $api_key, $provider );
 
 		$is_valid = ! is_wp_error( $validation );
 		

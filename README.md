@@ -1,4 +1,4 @@
-# WP Context AI Search
+# Context AI Search
 
 AI-powered search for WordPress content with free and premium features.
 
@@ -19,7 +19,7 @@ AI-powered search for WordPress content with free and premium features.
 
 ## Installation
 
-1. Upload the plugin to `/wp-content/plugins/wp-context-ai-search/`
+1. Upload the plugin to `/wp-content/plugins/context-ai-search/`
 2. Activate the plugin through the 'Plugins' screen
 3. Configure API key in Settings → WP CAIS
 
@@ -36,7 +36,7 @@ AI-powered search for WordPress content with free and premium features.
 
 Add the shortcode to any page:
 ```
-[wp-context-ai-search]
+[context-ai-search]
 ```
 
 ## Development
@@ -79,10 +79,10 @@ make version-check
 Override CSS variables in your theme:
 
 ```css
-.wp-cais-search-container {
-	--wp-cais-primary-color: #your-color;
-	--wp-cais-font-size-xl: 36px;
-	--wp-cais-container-max-width: 1200px;
+.cais-search-container {
+	--cais-primary-color: #your-color;
+	--cais-font-size-xl: 36px;
+	--cais-container-max-width: 1200px;
 }
 ```
 
@@ -90,12 +90,12 @@ Override CSS variables in your theme:
 
 Set the premium purchase URL via environment variable:
 ```bash
-export WP_CAIS_PREMIUM_URL="https://deeq.io/wp-cais-premium"
+export CAIS_PREMIUM_URL="https://deeq.io/cais-premium"
 ```
 
 Or define it in `wp-config.php`:
 ```php
-define( 'WP_CAIS_PREMIUM_URL', 'https://deeq.io/wp-cais-premium' );
+define( 'CAIS_PREMIUM_URL', 'https://deeq.io/cais-premium' );
 ```
 
 ## Testing
@@ -120,7 +120,7 @@ composer run phpcs
 ## File Structure
 
 ```
-wp-context-ai-search/
+context-ai-search/
 ├── admin/              # Admin assets (CSS, JS)
 ├── includes/           # Core classes
 │   ├── internal/      # Base classes (singleton, template loader)
@@ -128,7 +128,7 @@ wp-context-ai-search/
 ├── public/            # Frontend assets
 ├── templates/         # Template files
 ├── tests/             # Test files
-└── wp-context-ai-search.php  # Main plugin file
+└── context-ai-search.php  # Main plugin file
 ```
 
 ## License

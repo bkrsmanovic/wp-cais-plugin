@@ -2,7 +2,7 @@
 /**
  * License and premium features management.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_License class.
+ * CAIS_License class.
  */
-class WP_CAIS_License {
+class CAIS_License {
 
 	/**
 	 * Check if premium features are available.
@@ -21,11 +21,11 @@ class WP_CAIS_License {
 	 * @return bool
 	 */
 	public static function is_premium() {
-		if ( ! function_exists( 'wp_cais_fs' ) ) {
+		if ( ! function_exists( 'cais_fs' ) ) {
 			return false;
 		}
 
-		return wp_cais_fs()->can_use_premium_code__premium_only();
+		return cais_fs()->can_use_premium_code__premium_only();
 	}
 
 	/**
@@ -34,11 +34,11 @@ class WP_CAIS_License {
 	 * @return string
 	 */
 	public static function get_license_key() {
-		if ( ! function_exists( 'wp_cais_fs' ) ) {
+		if ( ! function_exists( 'cais_fs' ) ) {
 			return '';
 		}
 
-		$license = wp_cais_fs()->_get_license();
+		$license = cais_fs()->_get_license();
 		return $license ? $license->secret_key : '';
 	}
 
@@ -82,23 +82,23 @@ class WP_CAIS_License {
 	public static function get_premium_features() {
 		return array(
 			'custom_post_types' => array(
-				'label' => __( 'Custom Post Types', 'wp-context-ai-search' ),
+				'label' => __( 'Custom Post Types', 'context-ai-search' ),
 				'available' => true,
 			),
 			'json_files' => array(
-				'label' => __( 'JSON Files', 'wp-context-ai-search' ),
+				'label' => __( 'JSON Files', 'context-ai-search' ),
 				'available' => false,
 			),
 			'markdown_files' => array(
-				'label' => __( 'Markdown Files', 'wp-context-ai-search' ),
+				'label' => __( 'Markdown Files', 'context-ai-search' ),
 				'available' => false,
 			),
 			'external_files' => array(
-				'label' => __( 'External Files', 'wp-context-ai-search' ),
+				'label' => __( 'External Files', 'context-ai-search' ),
 				'available' => false,
 			),
 			'excel_files' => array(
-				'label' => __( 'Excel/Spreadsheet Files', 'wp-context-ai-search' ),
+				'label' => __( 'Excel/Spreadsheet Files', 'context-ai-search' ),
 				'available' => false,
 			),
 		);

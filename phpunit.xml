@@ -8,7 +8,7 @@
 	convertWarningsToExceptions="true"
 	>
 	<testsuites>
-		<testsuite name="WP Context AI Search">
+		<testsuite name="Context AI Search">
 			<directory>./tests</directory>
 		</testsuite>
 	</testsuites>

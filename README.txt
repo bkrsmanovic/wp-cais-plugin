@@ -1,4 +1,4 @@
-=== WP Context AI Search ===
+=== Context AI Search ===
 Contributors: bkrsmanovic
 Tags: search, ai, artificial intelligence, openai, claude, gemini, context search, smart search
 Requires at least: 5.8
@@ -12,7 +12,7 @@ AI-powered search for WordPress content with intelligent, context-aware results 
 
 == Description ==
 
-WP Context AI Search transforms your WordPress site's search functionality with AI-powered, context-aware results. Instead of simple keyword matching, users get intelligent answers that understand the meaning and context of their queries.
+Context AI Search transforms your WordPress site's search functionality with AI-powered, context-aware results. Instead of simple keyword matching, users get intelligent answers that understand the meaning and context of their queries.
 
 = Key Features =
 
@@ -67,13 +67,13 @@ WP Context AI Search transforms your WordPress site's search functionality with 
 = Automatic Installation =
 
 1. Go to Plugins → Add New
-2. Search for "WP Context AI Search"
+2. Search for "Context AI Search"
 3. Click "Install Now"
 4. Activate the plugin
 
 = Manual Installation =
 
-1. Upload the `wp-context-ai-search` folder to `/wp-content/plugins/`
+1. Upload the `context-ai-search` folder to `/wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' screen
 3. Go to Settings → WP CAIS to configure
 
@@ -94,7 +94,7 @@ WP Context AI Search transforms your WordPress site's search functionality with 
 
 Add the shortcode to any page or post:
 
-`[wp-context-ai-search]`
+`[context-ai-search]`
 
 The search interface will appear with a modern, AI-like interface where users can ask questions and get intelligent answers based on your content.
 
@@ -167,7 +167,7 @@ Initial release. Install and configure your API key to get started.
 For support, feature requests, and bug reports:
 * Website: https://deeq.io
 * Email: bojan@deeq.io
-* GitHub: https://github.com/bkrsmanovic/wp-cais-plugin
+* GitHub: https://github.com/bkrsmanovic/cais-plugin
 
 == Credits ==
 

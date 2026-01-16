@@ -1,5 +1,5 @@
 /**
- * WP Context AI Search - RTL (Right-to-Left) Styles
+ * Context AI Search - RTL (Right-to-Left) Styles
  * 
  * This file contains RTL-specific overrides for Arabic and other RTL languages
  */
@@ -7,8 +7,8 @@
 /* ============================================
    RTL Base Overrides
    ============================================ */
-[dir="rtl"] .wp-cais-search-container,
-html[dir="rtl"] .wp-cais-search-container {
+[dir="rtl"] .cais-search-container,
+html[dir="rtl"] .cais-search-container {
 	direction: rtl;
 	text-align: right;
 }
@@ -16,41 +16,41 @@ html[dir="rtl"] .wp-cais-search-container {
 /* ============================================
    Error Messages - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-error-message,
-html[dir="rtl"] .wp-cais-error-message {
-	border-left: var(--wp-cais-border-width) solid var(--wp-cais-error-border);
-	border-right: 4px solid var(--wp-cais-error-border-accent);
+[dir="rtl"] .cais-error-message,
+html[dir="rtl"] .cais-error-message {
+	border-left: var(--cais-border-width) solid var(--cais-error-border);
+	border-right: 4px solid var(--cais-error-border-accent);
 }
 
-[dir="rtl"] .wp-cais-error,
-html[dir="rtl"] .wp-cais-error {
-	border-left: var(--wp-cais-border-width) solid var(--wp-cais-error-border);
-	border-right: 4px solid var(--wp-cais-error-border-accent);
+[dir="rtl"] .cais-error,
+html[dir="rtl"] .cais-error {
+	border-left: var(--cais-border-width) solid var(--cais-error-border);
+	border-right: 4px solid var(--cais-error-border-accent);
 }
 
 /* ============================================
    Header Section - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-header-section,
-html[dir="rtl"] .wp-cais-header-section {
+[dir="rtl"] .cais-header-section,
+html[dir="rtl"] .cais-header-section {
 	text-align: center; /* Keep center for titles */
 }
 
 /* ============================================
    Search Form - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-search-form,
-html[dir="rtl"] .wp-cais-search-form {
+[dir="rtl"] .cais-search-form,
+html[dir="rtl"] .cais-search-form {
 	flex-direction: row-reverse;
 }
 
-[dir="rtl"] .wp-cais-input-wrapper,
-html[dir="rtl"] .wp-cais-input-wrapper {
+[dir="rtl"] .cais-input-wrapper,
+html[dir="rtl"] .cais-input-wrapper {
 	flex-direction: row-reverse;
 }
 
-[dir="rtl"] .wp-cais-query-input,
-html[dir="rtl"] .wp-cais-query-input {
+[dir="rtl"] .cais-query-input,
+html[dir="rtl"] .cais-query-input {
 	text-align: right;
 	direction: rtl;
 }
@@ -58,92 +58,92 @@ html[dir="rtl"] .wp-cais-query-input {
 /* ============================================
    Results - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-result-content,
-html[dir="rtl"] .wp-cais-result-content {
+[dir="rtl"] .cais-result-content,
+html[dir="rtl"] .cais-result-content {
 	text-align: right;
 	direction: rtl;
 }
 
-[dir="rtl"] .wp-cais-result-content p,
-html[dir="rtl"] .wp-cais-result-content p {
+[dir="rtl"] .cais-result-content p,
+html[dir="rtl"] .cais-result-content p {
 	text-align: right;
 }
 
 /* ============================================
    Sources - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-sources,
-html[dir="rtl"] .wp-cais-sources {
+[dir="rtl"] .cais-sources,
+html[dir="rtl"] .cais-sources {
 	text-align: right;
 }
 
-[dir="rtl"] .wp-cais-source-link,
-html[dir="rtl"] .wp-cais-source-link {
-	margin: var(--wp-cais-margin-xs) 0 var(--wp-cais-margin-xs) var(--wp-cais-margin-sm);
+[dir="rtl"] .cais-source-link,
+html[dir="rtl"] .cais-source-link {
+	margin: var(--cais-margin-xs) 0 var(--cais-margin-xs) var(--cais-margin-sm);
 }
 
 /* ============================================
    Footer - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-footer,
-html[dir="rtl"] .wp-cais-footer {
+[dir="rtl"] .cais-footer,
+html[dir="rtl"] .cais-footer {
 	text-align: center; /* Keep center for footer */
 }
 
-[dir="rtl"] .wp-cais-separator,
-html[dir="rtl"] .wp-cais-separator {
-	margin: 0 var(--wp-cais-margin-sm);
+[dir="rtl"] .cais-separator,
+html[dir="rtl"] .cais-separator {
+	margin: 0 var(--cais-margin-sm);
 }
 
 /* ============================================
    Welcome Message - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-welcome-message,
-html[dir="rtl"] .wp-cais-welcome-message {
+[dir="rtl"] .cais-welcome-message,
+html[dir="rtl"] .cais-welcome-message {
 	text-align: center; /* Keep center */
 }
 
 /* ============================================
    Loading - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-loading,
-html[dir="rtl"] .wp-cais-loading {
+[dir="rtl"] .cais-loading,
+html[dir="rtl"] .cais-loading {
 	flex-direction: row-reverse;
 }
 
 /* ============================================
    Input Container - RTL
    ============================================ */
-[dir="rtl"] .wp-cais-input-container,
-html[dir="rtl"] .wp-cais-input-container {
+[dir="rtl"] .cais-input-container,
+html[dir="rtl"] .cais-input-container {
 	text-align: right;
 }
 
 /* ============================================
    Typography - RTL Font Support
    ============================================ */
-[dir="rtl"] .wp-cais-search-container,
-html[dir="rtl"] .wp-cais-search-container {
+[dir="rtl"] .cais-search-container,
+html[dir="rtl"] .cais-search-container {
 	font-family: 'Segoe UI', Tahoma, Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 /* Arabic font stack */
-[dir="rtl"] .wp-cais-search-container,
-html[dir="rtl"] .wp-cais-search-container {
+[dir="rtl"] .cais-search-container,
+html[dir="rtl"] .cais-search-container {
 	font-family: 'Segoe UI', 'Arabic UI Text', 'Arabic UI Display', Tahoma, Arial, sans-serif;
 }
 
 /* ============================================
    Animations - RTL Adjustments
    ============================================ */
-[dir="rtl"] .wp-cais-error-message,
-html[dir="rtl"] .wp-cais-error-message {
-	animation: fadeInDownRTL var(--wp-cais-animation-base) ease-out;
+[dir="rtl"] .cais-error-message,
+html[dir="rtl"] .cais-error-message {
+	animation: fadeInDownRTL var(--cais-animation-base) ease-out;
 }
 
-[dir="rtl"] .wp-cais-result,
-html[dir="rtl"] .wp-cais-result {
-	animation: fadeInUpRTL var(--wp-cais-animation-fast) ease-out;
+[dir="rtl"] .cais-result,
+html[dir="rtl"] .cais-result {
+	animation: fadeInUpRTL var(--cais-animation-fast) ease-out;
 }
 
 @keyframes fadeInDownRTL {
@@ -172,8 +172,8 @@ html[dir="rtl"] .wp-cais-result {
    Responsive - RTL
    ============================================ */
 @media (max-width: 768px) {
-	[dir="rtl"] .wp-cais-search-container,
-	html[dir="rtl"] .wp-cais-search-container {
-		padding: var(--wp-cais-padding-lg) var(--wp-cais-container-padding-mobile);
+	[dir="rtl"] .cais-search-container,
+	html[dir="rtl"] .cais-search-container {
+		padding: var(--cais-padding-lg) var(--cais-container-padding-mobile);
 	}
 }

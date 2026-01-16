@@ -1,15 +1,15 @@
-# Spanish translation for WP Context AI Search
+# Spanish translation for Context AI Search
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Context AI Search 1.0.0\n"
+"Project-Id-Version: Context AI Search 1.0.0\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "WP Context AI Search"
-msgstr "Búsqueda IA Contexto WP"
+msgid "Context AI Search"
+msgstr "Búsqueda IA Contexto"
 
 msgid "Search Our Library"
 msgstr "Buscar en nuestra biblioteca"
@@ -36,7 +36,7 @@ msgid "An error occurred. Please try again."
 msgstr "Ocurrió un error. Por favor, inténtalo de nuevo."
 
 msgid "WP CAIS not configured properly. Please check your API key settings."
-msgstr "WP CAIS no está configurado correctamente. Por favor, verifica la configuración de tu clave API."
+msgstr "CAIS no está configurado correctamente. Por favor, verifica la configuración de tu clave API."
 
 msgid "I found %d relevant result(s) for your query: \"%s\"."
 msgstr "Encontré %d resultado(s) relevante(s) para tu consulta: \"%s\"."

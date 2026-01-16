@@ -2,19 +2,19 @@
 /**
  * Tests for Settings class
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 /**
  * Test settings functionality
  */
-class Test_WP_CAIS_Settings extends WP_UnitTestCase {
+class Test_CAIS_Settings extends WP_UnitTestCase {
 
 	/**
 	 * Test default settings
 	 */
 	public function test_default_settings() {
-		$settings = WP_CAIS_Settings::get_settings();
+		$settings = CAIS_Settings::get_settings();
 		
 		$this->assertIsArray( $settings );
 		$this->assertArrayHasKey( 'enabled_post_types', $settings );
@@ -26,7 +26,7 @@ class Test_WP_CAIS_Settings extends WP_UnitTestCase {
 	 * Test getting enabled post types
 	 */
 	public function test_get_enabled_post_types() {
-		$enabled = WP_CAIS_Settings::get_enabled_post_types();
+		$enabled = CAIS_Settings::get_enabled_post_types();
 		
 		$this->assertIsArray( $enabled );
 		$this->assertContains( 'post', $enabled );
@@ -37,16 +37,16 @@ class Test_WP_CAIS_Settings extends WP_UnitTestCase {
 	 * Test checking if post type is enabled
 	 */
 	public function test_is_post_type_enabled() {
-		$this->assertTrue( WP_CAIS_Settings::is_post_type_enabled( 'post' ) );
-		$this->assertTrue( WP_CAIS_Settings::is_post_type_enabled( 'page' ) );
-		$this->assertFalse( WP_CAIS_Settings::is_post_type_enabled( 'nonexistent' ) );
+		$this->assertTrue( CAIS_Settings::is_post_type_enabled( 'post' ) );
+		$this->assertTrue( CAIS_Settings::is_post_type_enabled( 'page' ) );
+		$this->assertFalse( CAIS_Settings::is_post_type_enabled( 'nonexistent' ) );
 	}
 
 	/**
 	 * Test free post types
 	 */
 	public function test_get_free_post_types() {
-		$free_types = WP_CAIS_Settings::get_free_post_types();
+		$free_types = CAIS_Settings::get_free_post_types();
 		
 		$this->assertIsArray( $free_types );
 		$this->assertContains( 'post', $free_types );
@@ -57,7 +57,7 @@ class Test_WP_CAIS_Settings extends WP_UnitTestCase {
 	 * Test contact info
 	 */
 	public function test_get_contact_info() {
-		$contact = WP_CAIS_Settings::get_contact_info();
+		$contact = CAIS_Settings::get_contact_info();
 		
 		$this->assertIsArray( $contact );
 		$this->assertArrayHasKey( 'phone', $contact );

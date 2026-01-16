@@ -1,14 +1,14 @@
-# Contributing to WP Context AI Search
+# Contributing to Context AI Search
 
-Thank you for your interest in contributing to WP Context AI Search!
+Thank you for your interest in contributing to Context AI Search!
 
 ## Reporting Issues
 
 ### Bug Reports
-Please use the [Bug Report template](https://github.com/bkrsmanovic/wp-cais-plugin/issues/new?template=bug_report.md) when reporting bugs.
+Please use the [Bug Report template](https://github.com/bkrsmanovic/cais-plugin/issues/new?template=bug_report.md) when reporting bugs.
 
 ### Feature Requests
-Please use the [Feature Request template](https://github.com/bkrsmanovic/wp-cais-plugin/issues/new?template=feature_request.md) when suggesting new features.
+Please use the [Feature Request template](https://github.com/bkrsmanovic/cais-plugin/issues/new?template=feature_request.md) when suggesting new features.
 
 ## Development Setup
 

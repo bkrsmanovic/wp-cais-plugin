@@ -1,5 +1,5 @@
 /**
- * WP Context AI Search - Frontend Scripts
+ * Context AI Search - Frontend Scripts
  */
 (function($) {
 	'use strict';
@@ -7,15 +7,15 @@
 	var $container, $messages, $form, $input, $submitBtn;
 
 	$(document).ready(function() {
-		$container = $('#wp-cais-search-container');
+		$container = $('#cais-search-container');
 		if (!$container.length) {
 			return;
 		}
 
-		$messages = $('#wp-cais-results-container');
-		$form = $('#wp-cais-search-form');
-		$input = $('#wp-cais-query-input');
-		$submitBtn = $('#wp-cais-submit-btn');
+		$messages = $('#cais-results-container');
+		$form = $('#cais-search-form');
+		$input = $('#cais-query-input');
+		$submitBtn = $('#cais-submit-btn');
 
 		// Handle form submission
 		$form.on('submit', handleSubmit);
@@ -33,7 +33,7 @@
 		}
 
 		// Remove welcome message if exists
-		$('#wp-cais-welcome-message').fadeOut(200, function() {
+		$('#cais-welcome-message').fadeOut(200, function() {
 			$(this).remove();
 		});
 
@@ -52,7 +52,7 @@
 			url: wpCais.ajaxUrl,
 			type: 'POST',
 			data: {
-				action: 'wp_cais_search',
+				action: 'cais_search',
 				nonce: wpCais.nonce,
 				query: query
 			},
@@ -79,8 +79,8 @@
 	}
 
 	function addResult(content, sources) {
-		var $result = $('<div>').addClass('wp-cais-result');
-		var $content = $('<div>').addClass('wp-cais-result-content');
+		var $result = $('<div>').addClass('cais-result');
+		var $content = $('<div>').addClass('cais-result-content');
 
 		// Decode HTML entities in content
 		var tempDiv = document.createElement('div');
@@ -99,12 +99,12 @@
 
 		// Add sources if available
 		if (sources && sources.length > 0) {
-			var $sources = $('<div>').addClass('wp-cais-sources');
-			$sources.append($('<div>').addClass('wp-cais-sources-title').text('Sources:'));
+			var $sources = $('<div>').addClass('cais-sources');
+			$sources.append($('<div>').addClass('cais-sources-title').text('Sources:'));
 			
 			sources.forEach(function(source) {
 				var $link = $('<a>')
-					.addClass('wp-cais-source-link')
+					.addClass('cais-source-link')
 					.attr('href', source.url)
 					.attr('target', '_blank')
 					.text(source.title);
@@ -119,21 +119,21 @@
 	}
 
 	function addError(message) {
-		var $error = $('<div>').addClass('wp-cais-error');
+		var $error = $('<div>').addClass('cais-error');
 		$error.append($('<p>').text(message));
 		$messages.append($error);
 		scrollToBottom();
 	}
 
 	function addLoadingMessage() {
-		var $loading = $('<div>').addClass('wp-cais-message wp-cais-message-assistant');
-		var $content = $('<div>').addClass('wp-cais-loading');
+		var $loading = $('<div>').addClass('cais-message cais-message-assistant');
+		var $content = $('<div>').addClass('cais-loading');
 		
 		$content.append($('<span>').text(wpCais.strings.searching));
-		$content.append($('<div>').addClass('wp-cais-loading-dots')
-			.append($('<span>').addClass('wp-cais-loading-dot'))
-			.append($('<span>').addClass('wp-cais-loading-dot'))
-			.append($('<span>').addClass('wp-cais-loading-dot'))
+		$content.append($('<div>').addClass('cais-loading-dots')
+			.append($('<span>').addClass('cais-loading-dot'))
+			.append($('<span>').addClass('cais-loading-dot'))
+			.append($('<span>').addClass('cais-loading-dot'))
 		);
 
 		$loading.append($content);

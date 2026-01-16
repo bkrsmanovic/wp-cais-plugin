@@ -2,7 +2,7 @@
 /**
  * Content extraction for posts.
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -11,9 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WP_CAIS_Content_Extractor class.
+ * CAIS_Content_Extractor class.
  */
-class WP_CAIS_Content_Extractor {
+class CAIS_Content_Extractor {
 
 	/**
 	 * Extract all content from a post.

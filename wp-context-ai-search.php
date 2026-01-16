@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: WP Context AI Search
- * Plugin URI: https://github.com/bkrsmanovic/wp-cais-plugin
+ * Plugin Name: Context AI Search
+ * Plugin URI: https://github.com/bkrsmanovic/cais-plugin
  * Description: AI-powered search for WordPress content with free and premium features. Search your site's posts, pages, and more with intelligent context-aware results powered by OpenAI, Claude, or Gemini.
  * Version: 1.0.0
  * Update URI: https://api.freemius.com
@@ -9,14 +9,14 @@
  * Author URI: https://deeq.io
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: wp-context-ai-search
+ * Text Domain: context-ai-search
  * Domain Path: /languages
  * Requires at least: 5.8
  * Requires PHP: 7.4
  *
- * @fs_premium_only /includes/class-wp-cais-license.php
+ * @fs_premium_only /includes/class-cais-license.php
  *
- * @package WP_Context_AI_Search
+ * @package Context_AI_Search
  */
 
 // Exit if accessed directly.
@@ -25,29 +25,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Freemius SDK integration - check if already loaded
-if ( function_exists( 'wp_cais_fs' ) ) {
-	wp_cais_fs()->set_basename( true, __FILE__ );
+if ( function_exists( 'cais_fs' ) ) {
+	cais_fs()->set_basename( true, __FILE__ );
 } else {
 	/**
 	 * DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE
 	 * `function_exists` CALL ABOVE TO PROPERLY WORK.
 	 */
-	if ( ! function_exists( 'wp_cais_fs' ) ) {
+	if ( ! function_exists( 'cais_fs' ) ) {
 		/**
 		 * Create a helper function for easy SDK access.
 		 *
 		 * @return Freemius
 		 */
-		function wp_cais_fs() {
-			global $wp_cais_fs;
+		function cais_fs() {
+			global $cais_fs;
 
-			if ( ! isset( $wp_cais_fs ) ) {
+			if ( ! isset( $cais_fs ) ) {
 				// Include Freemius SDK.
 				require_once dirname( __FILE__ ) . '/freemius/start.php';
 
-				$wp_cais_fs = fs_dynamic_init( array(
+				$cais_fs = fs_dynamic_init( array(
 					'id'                  => '23024',
-					'slug'                => 'wp-context-ai-search',
+					'slug'                => 'context-ai-search',
 					'type'                => 'plugin',
 					'public_key'          => 'pk_bb0c2d4d32815a76add42a2b03bd9',
 					'is_premium'          => true,
@@ -58,24 +58,23 @@ if ( function_exists( 'wp_cais_fs' ) ) {
 					'has_paid_plans'      => true,
 					// Automatically removed in the free version. If you're not using the
 					// auto-generated free version, delete this line before uploading to wp.org.
-					'wp_org_gatekeeper'   => 'OA7#BoRiBNqdf52FvzEf!!074aRLPs8fspif$7K1#4u4Csys1fQlCecVcUTOs2mcpeVHi#C2j9d09fOTvbC0HloPT7fFee5WdS3G',
 					'menu'                => array(
-						'slug'           => 'wp-context-ai-search',
+						'slug'           => 'context-ai-search',
 						'support'        => false,
 					),
 				) );
 			}
 
-			return $wp_cais_fs;
+			return $cais_fs;
 		}
 
 		// Init Freemius.
-		wp_cais_fs();
+		cais_fs();
 		
 		// For WordPress.org hosted free version, prevent Freemius updater from hooking into update system.
 		// WordPress.org plugins must not use custom updaters - updates come from WordPress.org.
-		if ( function_exists( 'wp_cais_fs' ) ) {
-			$fs = wp_cais_fs();
+		if ( function_exists( 'cais_fs' ) ) {
+			$fs = cais_fs();
 			// Only for free version (WordPress.org hosted).
 			if ( ! $fs->is_premium() ) {
 				// Remove updater filters after Freemius fully initializes.
@@ -100,38 +99,38 @@ if ( function_exists( 'wp_cais_fs' ) ) {
 		}
 		
 		// Signal that SDK was initiated.
-		do_action( 'wp_cais_fs_loaded' );
+		do_action( 'cais_fs_loaded' );
 	}
 }
 
 // Define plugin constants.
-define( 'WP_CAIS_VERSION', '1.0.0' );
-define( 'WP_CAIS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'WP_CAIS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'WP_CAIS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-define( 'WP_CAIS_PLUGIN_FILE', __FILE__ );
+define( 'CAIS_VERSION', '1.0.0' );
+define( 'CAIS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'CAIS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'CAIS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+define( 'CAIS_PLUGIN_FILE', __FILE__ );
 
 // Premium purchase link - can be overridden via environment variable.
-if ( ! defined( 'WP_CAIS_PREMIUM_URL' ) ) {
-	define( 'WP_CAIS_PREMIUM_URL', getenv( 'WP_CAIS_PREMIUM_URL' ) ?: 'https://deeq.io/wp-cais-premium' );
+if ( ! defined( 'CAIS_PREMIUM_URL' ) ) {
+	define( 'CAIS_PREMIUM_URL', getenv( 'CAIS_PREMIUM_URL' ) ?: 'https://deeq.io/cais-premium' );
 }
 
 /**
  * Main plugin class.
  */
-final class WP_Context_AI_Search {
+final class Context_AI_Search {
 
 	/**
 	 * Plugin instance.
 	 *
-	 * @var WP_Context_AI_Search
+	 * @var Context_AI_Search
 	 */
 	private static $instance = null;
 
 	/**
 	 * Get plugin instance.
 	 *
-	 * @return WP_Context_AI_Search
+	 * @return Context_AI_Search
 	 */
 	public static function get_instance() {
 		if ( null === self::$instance ) {
@@ -166,73 +165,73 @@ final class WP_Context_AI_Search {
 		$this->init_frontend();
 
 		// Activation hook.
-		register_activation_hook( WP_CAIS_PLUGIN_FILE, array( __CLASS__, 'activate' ) );
+		register_activation_hook( CAIS_PLUGIN_FILE, array( __CLASS__, 'activate' ) );
 		
 		// Deactivation hook.
-		register_deactivation_hook( WP_CAIS_PLUGIN_FILE, array( __CLASS__, 'deactivate' ) );
+		register_deactivation_hook( CAIS_PLUGIN_FILE, array( __CLASS__, 'deactivate' ) );
 	}
 
 	/**
 	 * Load plugin includes.
 	 */
 	private function load_includes() {
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/internal/singleton.php';
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/constants.php';
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-settings.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/internal/singleton.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/constants.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-settings.php';
 		
 		// Load license class only if Freemius is available
-		if ( function_exists( 'wp_cais_fs' ) ) {
-			require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-license.php';
+		if ( function_exists( 'cais_fs' ) ) {
+			require_once CAIS_PLUGIN_DIR . 'includes/class-cais-license.php';
 		}
 		
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-database.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-database.php';
 		
 		// Ensure database table exists on every load
-		WP_CAIS_Database::ensure_table_exists();
+		CAIS_Database::ensure_table_exists();
 	}
 
 	/**
 	 * Initialize frontend.
 	 */
 	private function init_frontend() {
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-frontend.php';
-		WP_CAIS_Frontend::instance();
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-frontend.php';
+		CAIS_Frontend::instance();
 	}
 
 	/**
 	 * Initialize admin functionality.
 	 */
 	private function init_admin() {
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-admin.php';
-		WP_CAIS_Admin::instance();
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-admin.php';
+		CAIS_Admin::instance();
 	}
 
 	/**
 	 * Plugin activation.
 	 */
 	public static function activate() {
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-settings.php';
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-database.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-settings.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-database.php';
 		
-		WP_CAIS_Database::create_table();
+		CAIS_Database::create_table();
 	}
 
 	/**
 	 * Plugin deactivation.
 	 */
 	public static function deactivate() {
-		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-database.php';
+		require_once CAIS_PLUGIN_DIR . 'includes/class-cais-database.php';
 		// Optionally clean old cache
-		WP_CAIS_Database::clean_old_cache( 30 );
+		CAIS_Database::clean_old_cache( 30 );
 	}
 }
 
 /**
  * Initialize plugin.
  */
-function wp_cais_init() {
-	return WP_Context_AI_Search::get_instance();
+function cais_init() {
+	return Context_AI_Search::get_instance();
 }
 
 // Start the plugin.
-wp_cais_init();
+cais_init();

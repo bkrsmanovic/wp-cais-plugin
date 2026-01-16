@@ -1,5 +1,5 @@
 {
-	"name": "wp-context-ai-search",
+	"name": "context-ai-search",
 	"version": "1.0.0",
 	"description": "AI-powered search for WordPress content",
 	"scripts": {

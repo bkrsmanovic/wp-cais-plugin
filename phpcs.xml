@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="WP Context AI Search">
-	<description>WordPress Coding Standards for WP Context AI Search</description>
+<ruleset name="Context AI Search">
+	<description>WordPress Coding Standards for Context AI Search</description>
 
 	<!-- What to scan -->
 	<file>.</file>
