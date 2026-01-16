@@ -186,31 +186,45 @@ class WP_CAIS_Search {
 		require_once WP_CAIS_PLUGIN_DIR . 'includes/class-wp-cais-content-extractor.php';
 		
 		// Build search conditions
-		$post_types_placeholder = implode( ',', array_map( function( $type ) use ( $wpdb ) {
-			return $wpdb->prepare( '%s', $type );
-		}, $enabled_types ) );
+		// Prepare post types for IN clause
+		$post_types_placeholders = implode( ',', array_fill( 0, count( $enabled_types ), '%s' ) );
 		
+		// Build LIKE conditions with placeholders
 		$like_conditions = array();
+		$prepare_values = array();
+		
 		foreach ( $key_terms as $term ) {
 			$escaped_term = '%' . $wpdb->esc_like( $term ) . '%';
-			$like_conditions[] = $wpdb->prepare(
-				"(p.post_title LIKE %s OR p.post_content LIKE %s)",
-				$escaped_term,
-				$escaped_term
-			);
+			$like_conditions[] = "(p.post_title LIKE %s OR p.post_content LIKE %s)";
+			$prepare_values[] = $escaped_term;
+			$prepare_values[] = $escaped_term;
 		}
 		
 		if ( empty( $like_conditions ) ) {
 			return array();
 		}
 		
-		$sql = "SELECT DISTINCT p.ID, p.post_title, p.post_type
+		// Build the full query with all placeholders
+		$like_conditions_sql = implode( ' OR ', $like_conditions );
+		
+		// Combine all values for prepare: post types first, then LIKE values
+		$all_values = array_merge( $enabled_types, $prepare_values );
+		
+		// Build query template with table name (table names can't use placeholders)
+		// $wpdb->posts is a WordPress constant, safe to use directly
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Table name is WordPress constant, placeholders are used for all user input
+		$query_template = "SELECT DISTINCT p.ID, p.post_title, p.post_type
 			FROM {$wpdb->posts} p
-			WHERE p.post_type IN ($post_types_placeholder)
+			WHERE p.post_type IN ($post_types_placeholders)
 			AND p.post_status = 'publish'
-			AND (" . implode( ' OR ', $like_conditions ) . ")
+			AND ($like_conditions_sql)
 			LIMIT 50";
 		
+		// Prepare the full query
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query is prepared on next line
+		$sql = $wpdb->prepare( $query_template, ...$all_values );
+		
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- SQL is prepared above
 		$post_ids = $wpdb->get_col( $sql );
 		
 		if ( empty( $post_ids ) ) {
@@ -459,7 +473,8 @@ class WP_CAIS_Search {
 	 */
 	private function generate_simple_response( $query, $results ) {
 		$response = sprintf(
-			__( 'I found %d relevant result(s) for your query: "%s".', 'wp-context-ai-search' ),
+			/* translators: %1$d: number of results, %2$s: search query text */
+			__( 'I found %1$d relevant result(s) for your query: "%2$s".', 'wp-context-ai-search' ),
 			count( $results ),
 			esc_html( $query )
 		);

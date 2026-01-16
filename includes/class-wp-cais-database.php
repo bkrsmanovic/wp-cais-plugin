@@ -79,7 +79,24 @@ class WP_CAIS_Database {
 		}
 		
 		// If dbDelta didn't work, try direct query
-		$wpdb->query( $sql );
+		// Note: DDL statements (CREATE TABLE) cannot use placeholders, so we escape the table name.
+		$escaped_table_name = esc_sql( $table_name );
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- DDL statement, table name is escaped
+		$sql_direct = "CREATE TABLE $escaped_table_name (
+			id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+			query_hash varchar(64) NOT NULL,
+			query_text text NOT NULL,
+			response text NOT NULL,
+			source_ids text,
+			created_at datetime DEFAULT CURRENT_TIMESTAMP,
+			updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+			hit_count int(11) DEFAULT 0,
+			PRIMARY KEY (id),
+			UNIQUE KEY query_hash (query_hash),
+			KEY created_at (created_at)
+		) $charset_collate;";
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- DDL statement, table name is escaped
+		$wpdb->query( $sql_direct );
 		
 		if ( self::table_exists() ) {
 			return true;
@@ -112,7 +129,9 @@ class WP_CAIS_Database {
 	public static function drop_table() {
 		global $wpdb;
 		$table_name = self::get_table_name();
-		$wpdb->query( "DROP TABLE IF EXISTS $table_name" );
+		// Note: DDL statements (DROP TABLE) cannot use placeholders, so we escape the table name.
+		$escaped_table_name = esc_sql( $table_name );
+		$wpdb->query( "DROP TABLE IF EXISTS $escaped_table_name" );
 	}
 
 	/**

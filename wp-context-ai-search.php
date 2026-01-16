@@ -13,7 +13,6 @@
  * Domain Path: /languages
  * Requires at least: 5.8
  * Requires PHP: 7.4
- * Network: false
  *
  * @fs_premium_only /includes/class-wp-cais-license.php
  *
@@ -72,6 +71,34 @@ if ( function_exists( 'wp_cais_fs' ) ) {
 
 		// Init Freemius.
 		wp_cais_fs();
+		
+		// For WordPress.org hosted free version, prevent Freemius updater from hooking into update system.
+		// WordPress.org plugins must not use custom updaters - updates come from WordPress.org.
+		if ( function_exists( 'wp_cais_fs' ) ) {
+			$fs = wp_cais_fs();
+			// Only for free version (WordPress.org hosted).
+			if ( ! $fs->is_premium() ) {
+				// Remove updater filters after Freemius fully initializes.
+				// Use 'wp_loaded' to ensure Freemius has completed initialization.
+				add_action( 'wp_loaded', function() use ( $fs ) {
+					if ( class_exists( 'FS_Plugin_Updater' ) ) {
+						$updater = FS_Plugin_Updater::instance( $fs );
+						if ( $updater && is_object( $updater ) ) {
+							// Remove the update transient filters to comply with WordPress.org guidelines.
+							remove_filter( 'pre_set_site_transient_update_plugins', array( 
+								$updater, 
+								'pre_set_site_transient_update_plugins_filter' 
+							) );
+							remove_filter( 'pre_set_site_transient_update_themes', array( 
+								$updater, 
+								'pre_set_site_transient_update_plugins_filter' 
+							) );
+						}
+					}
+				}, 999 );
+			}
+		}
+		
 		// Signal that SDK was initiated.
 		do_action( 'wp_cais_fs_loaded' );
 	}
@@ -124,8 +151,8 @@ final class WP_Context_AI_Search {
 	 * Initialize plugin.
 	 */
 	private function init() {
-		// Load plugin textdomain.
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		// Note: load_plugin_textdomain() is not needed for WordPress.org hosted plugins.
+		// WordPress automatically loads translations for plugins hosted on WordPress.org.
 
 		// Load includes.
 		$this->load_includes();
@@ -143,17 +170,6 @@ final class WP_Context_AI_Search {
 		
 		// Deactivation hook.
 		register_deactivation_hook( WP_CAIS_PLUGIN_FILE, array( __CLASS__, 'deactivate' ) );
-	}
-
-	/**
-	 * Load plugin textdomain.
-	 */
-	public function load_textdomain() {
-		load_plugin_textdomain(
-			'wp-context-ai-search',
-			false,
-			dirname( WP_CAIS_PLUGIN_BASENAME ) . '/languages'
-		);
 	}
 
 	/**

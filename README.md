@@ -67,8 +67,6 @@ composer run test
 Update version across all files:
 ```bash
 make version VERSION=1.0.1
-# or
-./bin/update-version.sh 1.0.1
 ```
 
 Check version consistency:
@@ -105,12 +103,11 @@ define( 'WP_CAIS_PREMIUM_URL', 'https://deeq.io/wp-cais-premium' );
 ### Running Tests
 
 ```bash
-# Install WordPress test environment (first time only)
-./bin/install-wp-tests.sh db_name db_user db_pass
-
 # Run tests
 composer run test
 ```
+
+Note: WordPress test environment setup is handled by the test suite automatically.
 
 ### Code Standards
 
