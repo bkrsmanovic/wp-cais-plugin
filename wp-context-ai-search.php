@@ -3,7 +3,7 @@
  * Plugin Name: Context AI Search
  * Plugin URI: https://github.com/bkrsmanovic/cais-plugin
  * Description: AI-powered search for WordPress content with free and premium features. Search your site's posts, pages, and more with intelligent context-aware results powered by OpenAI, Claude, or Gemini.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Update URI: https://api.freemius.com
  * Author: Bojan Krsmanovic
  * Author URI: https://deeq.io
@@ -104,7 +104,7 @@ if ( function_exists( 'cais_fs' ) ) {
 }
 
 // Define plugin constants.
-define( 'CAIS_VERSION', '1.0.0' );
+define( 'CAIS_VERSION', '1.0.1' );
 define( 'CAIS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CAIS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'CAIS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );

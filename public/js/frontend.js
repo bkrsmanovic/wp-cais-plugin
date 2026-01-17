@@ -100,7 +100,7 @@
 		// Add sources if available
 		if (sources && sources.length > 0) {
 			var $sources = $('<div>').addClass('cais-sources');
-			$sources.append($('<div>').addClass('cais-sources-title').text('Sources:'));
+			$sources.append($('<div>').addClass('cais-sources-title').text('Results:'));
 			
 			sources.forEach(function(source) {
 				var $link = $('<a>')

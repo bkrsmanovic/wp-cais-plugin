@@ -479,21 +479,6 @@ class CAIS_Search {
 			esc_html( $query )
 		);
 
-		$response .= "\n\n";
-		$response .= __( 'Here are the most relevant sources:', 'context-ai-search' );
-
-		foreach ( array_slice( $results, 0, 3 ) as $result ) {
-			$title = html_entity_decode( $result['title'], ENT_QUOTES | ENT_HTML5, 'UTF-8' );
-			$response .= "\n\n• " . $title;
-			if ( ! empty( $result['excerpt'] ) ) {
-				$excerpt = html_entity_decode( $result['excerpt'], ENT_QUOTES | ENT_HTML5, 'UTF-8' );
-				$trimmed = wp_trim_words( $excerpt, 20 );
-				// Decode again in case wp_trim_words preserved entities
-				$trimmed = html_entity_decode( $trimmed, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
-				$response .= "\n  " . $trimmed;
-			}
-		}
-
 		return $response;
 	}
 

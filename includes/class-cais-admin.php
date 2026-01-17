@@ -354,6 +354,9 @@ class CAIS_Admin extends CAIS_Singleton {
 				<p class="description">
 					<?php esc_html_e( 'Enable AI-powered search for your WordPress content. Select which content types should be searchable.', 'context-ai-search' ); ?>
 				</p>
+				<p style="color: #646970; font-size: 13px; margin-top: 5px;">
+					<?php echo esc_html( sprintf( __( 'Version %s', 'context-ai-search' ), CAIS_VERSION ) ); ?>
+				</p>
 				<?php if ( ! $is_premium && function_exists( 'cais_fs' ) ) : ?>
 					<div class="cais-free-plan-notice notice notice-info" style="margin-top: 15px; padding: 12px;">
 						<p style="margin: 0;">
@@ -659,14 +662,11 @@ class CAIS_Admin extends CAIS_Singleton {
 												<option value="openai" <?php selected( $ai_provider, 'openai' ); ?>>
 													<?php esc_html_e( 'OpenAI (GPT-3.5 Turbo)', 'context-ai-search' ); ?>
 												</option>
-												<option value="claude" <?php selected( $ai_provider, 'claude' ); ?>>
+												<option value="claude" <?php selected( $ai_provider, 'claude' ); ?> disabled>
 													<?php esc_html_e( 'Claude (Anthropic)', 'context-ai-search' ); ?>
 												</option>
-												<option value="gemini" <?php selected( $ai_provider, 'gemini' ); ?>>
+												<option value="gemini" <?php selected( $ai_provider, 'gemini' ); ?> disabled>
 													<?php esc_html_e( 'Gemini (Google)', 'context-ai-search' ); ?>
-												</option>
-												<option value="huggingface" <?php selected( $ai_provider, 'huggingface' ); ?>>
-													<?php esc_html_e( 'HuggingFace (Coming Soon)', 'context-ai-search' ); ?>
 												</option>
 											</select>
 											<p class="description">
